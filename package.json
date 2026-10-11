@@ -13,7 +13,8 @@
     "typecheck": "tsc -p tsconfig.server.json --noEmit && tsc -p tsconfig.client.json --noEmit",
     "test": "tsc -p tsconfig.server.json && node --test dist/server/*.test.js",
     "build:verify": "node scripts/build-verify.js",
-    "desktop": "node desktop/launch.cjs"
+    "desktop": "node desktop/launch.cjs",
+    "package": "npm run build && electron-builder --win"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.3.270",
@@ -44,5 +45,36 @@
     "electron@38.8.6": true,
     "esbuild@0.28.2": true,
     "esbuild@0.25.12": true
+  },
+  "build": {
+    "appId": "com.opengrokbot.studio",
+    "productName": "OpenGrokBot Studio",
+    "asar": false,
+    "directories": {
+      "output": "releases"
+    },
+    "files": [
+      "dist/**/*",
+      "desktop/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "OpenGrokBot-Studio-Setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "OpenGrokBot Studio"
+    }
   }
 }

@@ -237,6 +237,32 @@ export interface AccountStatus {
   updatedAt?: number
 }
 
+export interface Brand {
+  id: string
+  name: string
+  tagline: string
+  description?: string
+  website?: string
+  color?: string
+}
+
+export const DEFAULT_BRANDS: Brand[] = [
+  {
+    id: 'growthifyx',
+    name: 'Growthifyx',
+    tagline: 'Growth & Marketing Studio',
+    description: 'AI-driven business growth, lead discovery, and outreach operations.',
+    color: '#18836B',
+  },
+  {
+    id: 'the-solver-agency',
+    name: 'The Solver Agency',
+    tagline: 'Automation & Problem Solving Desk',
+    description: 'Automation workflows, intelligent systems, and technical agency services.',
+    color: '#2B6CB0',
+  },
+]
+
 export interface ProviderStatus {
   id: string
   kind: ProviderKind
@@ -251,6 +277,7 @@ export type LeadOutreachStatus = 'not-contacted' | 'review-needed' | 'contacted'
 /** A local, public-business lead. Empty strings mean the source did not publish that field. */
 export interface Lead {
   id: string
+  brandId?: string
   businessName: string
   industry: string
   districtLocation: string
@@ -312,6 +339,7 @@ export interface ApprovalHistoryItem {
 
 export interface BotTask {
   id: string
+  brandId?: string
   title: string
   workspace: 'workspace-lead-hunt' | 'workspace-marketing'
   status: 'queued' | 'running' | 'completed' | 'failed' | 'cancelled' | 'waiting-approval'
@@ -327,6 +355,7 @@ export interface BotTask {
 
 export interface MemoryItem {
   id: string
+  brandId?: string
   scope: 'lead-hunt' | 'marketing' | 'shared'
   category: 'preference' | 'instruction' | 'fact' | 'history' | 'task'
   title: string
@@ -336,6 +365,7 @@ export interface MemoryItem {
 
 export interface OutputFile {
   id: string
+  brandId?: string
   name: string
   category: 'Lead-Hunt' | 'Marketing'
   path: string

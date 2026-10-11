@@ -3,15 +3,16 @@ import { fetchDashboard, resolveApproval } from '../api'
 
 interface DashboardViewProps {
   onNavigate: (section: string) => void
+  brandId?: string
 }
 
-export function DashboardView({ onNavigate }: DashboardViewProps) {
+export function DashboardView({ onNavigate, brandId }: DashboardViewProps) {
   const [data, setData] = useState<any | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   const load = () => {
-    fetchDashboard()
+    fetchDashboard(brandId)
       .then((d) => {
         setData(d)
         setLoading(false)
@@ -26,7 +27,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
     load()
     const timer = setInterval(load, 5000)
     return () => clearInterval(timer)
-  }, [])
+  }, [brandId])
 
   if (loading && !data) {
     return (
@@ -36,11 +37,13 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
     )
   }
 
+  const brandLabel = brandId === 'the-solver-agency' ? 'The Solver Agency' : 'Growthifyx'
+
   return (
     <div className="management-view dashboard-view">
       <div className="management-header">
         <div>
-          <h2>OpenGrokBot Dashboard</h2>
+          <h2>OpenGrokBot Dashboard <span className="badge-verified" style={{ fontSize: '12px', verticalAlign: 'middle', marginLeft: '6px' }}>{brandLabel}</span></h2>
           <p className="management-subtitle">System status, AI providers, and live operations overview</p>
         </div>
         <button type="button" className="btn-secondary" onClick={load}>

@@ -126,9 +126,10 @@ app.get('/api/state', (_req, res) => {
 
 // ---- local lead database ----
 
-app.get('/api/leads', (_req, res) => {
+app.get('/api/leads', (req, res) => {
   try {
-    res.json({ leads: leads.list(), summary: leads.summary() })
+    const brandId = typeof req.query.brandId === 'string' ? req.query.brandId : undefined
+    res.json({ leads: leads.list(brandId), summary: leads.summary(brandId) })
   } catch (err) {
     res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
   }
@@ -136,7 +137,8 @@ app.get('/api/leads', (_req, res) => {
 
 app.post('/api/leads', (req, res) => {
   try {
-    res.json(leads.upsert(req.body))
+    const brandId = typeof req.body?.brandId === 'string' ? req.body.brandId : undefined
+    res.json(leads.upsert(req.body, brandId))
   } catch (err) {
     const status = err instanceof LeadStoreError ? 400 : 500
     res.status(status).json({ error: err instanceof Error ? err.message : String(err) })
@@ -165,11 +167,12 @@ app.delete('/api/leads/:id', (req, res) => {
   }
 })
 
-app.get('/api/leads/export.csv', (_req, res) => {
+app.get('/api/leads/export.csv', (req, res) => {
   try {
+    const brandId = typeof req.query.brandId === 'string' ? req.query.brandId : undefined
     res.setHeader('Content-Type', 'text/csv; charset=utf-8')
-    res.setHeader('Content-Disposition', 'attachment; filename="opengrokbot-leads.csv"')
-    res.send(leads.csv())
+    res.setHeader('Content-Disposition', `attachment; filename="${brandId || 'opengrokbot'}-leads.csv"`)
+    res.send(leads.csv(brandId))
   } catch (err) {
     res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
   }
@@ -229,8 +232,9 @@ app.post('/api/leads/to-marketing', (req, res) => {
 
 // ---- dashboard ----
 
-app.get('/api/dashboard', async (_req, res) => {
+app.get('/api/dashboard', async (req, res) => {
   try {
+    const brandId = typeof req.query.brandId === 'string' ? req.query.brandId : undefined
     const leadAgent = team.agents.find((a) => a.id === 'lead_collection_specialist')
     const activeProvider = leadAgent?.provider || 'antigravity'
     let agyStatus
@@ -243,20 +247,21 @@ app.get('/api/dashboard', async (_req, res) => {
       // ignore probe failures
     }
 
-    const allTasks = tasks.list()
+    const allTasks = tasks.list(brandId)
     const runningTasks = allTasks.filter((t) => t.status === 'running')
     const queuedTasks = allTasks.filter((t) => t.status === 'queued')
     const completedTasks = allTasks.filter((t) => t.status === 'completed')
     const failedTasks = allTasks.filter((t) => t.status === 'failed')
 
-    const leadSummary = leads.summary()
+    const leadSummary = leads.summary(brandId)
     const pendingApprovals = approvals.list()
     const approvalHistory = approvals.getHistory().slice(0, 8)
-    const recentOutputs = outputs.list().slice(0, 6)
+    const recentOutputs = outputs.list(brandId).slice(0, 6)
     const browserProfiles = browserManager.getProfiles()
 
     res.json({
       activeProvider,
+      activeBrand: brandId || 'growthifyx',
       providerDetails: {
         antigravity: agyStatus,
         codex: codexStatus,
@@ -287,19 +292,25 @@ app.get('/api/dashboard', async (_req, res) => {
 
 // ---- tasks ----
 
-app.get('/api/tasks', (_req, res) => {
-  res.json(tasks.list())
+app.get('/api/tasks', (req, res) => {
+  const brandId = typeof req.query.brandId === 'string' ? req.query.brandId : undefined
+  res.json(tasks.list(brandId))
 })
 
 app.post('/api/tasks', (req, res) => {
   try {
-    const { title, workspace, prompt } = req.body ?? {}
+    const { title, workspace, prompt, brandId } = req.body ?? {}
     if (!prompt || typeof prompt !== 'string') {
       res.status(400).json({ error: 'prompt text is required' })
       return
     }
     const ws = workspace === 'workspace-marketing' ? 'workspace-marketing' : 'workspace-lead-hunt'
-    const t = tasks.create({ title: String(title || 'Task'), workspace: ws, prompt })
+    const t = tasks.create({
+      title: String(title || 'Task'),
+      workspace: ws,
+      prompt,
+      brandId: typeof brandId === 'string' ? brandId : undefined,
+    })
     res.json(t)
   } catch (err) {
     res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
@@ -327,17 +338,19 @@ app.delete('/api/tasks', (_req, res) => {
 
 app.get('/api/memory', (req, res) => {
   const scope = typeof req.query.scope === 'string' ? (req.query.scope as 'lead-hunt' | 'marketing' | 'shared') : undefined
-  res.json(memory.list(scope))
+  const brandId = typeof req.query.brandId === 'string' ? req.query.brandId : undefined
+  res.json(memory.list(scope, brandId))
 })
 
 app.post('/api/memory', (req, res) => {
   try {
-    const { scope, category, title, content } = req.body ?? {}
+    const { scope, category, title, content, brandId } = req.body ?? {}
     if (!title || !content) {
       res.status(400).json({ error: 'title and content are required' })
       return
     }
     const item = memory.add({
+      brandId: typeof brandId === 'string' ? brandId : undefined,
       scope: scope === 'marketing' || scope === 'lead-hunt' ? scope : 'shared',
       category: ['preference', 'instruction', 'fact', 'history', 'task'].includes(category) ? category : 'fact',
       title: String(title),
@@ -375,8 +388,9 @@ app.delete('/api/memory', (req, res) => {
 
 // ---- outputs ----
 
-app.get('/api/outputs', (_req, res) => {
-  res.json({ dir: outputs.getBaseDir(), files: outputs.list() })
+app.get('/api/outputs', (req, res) => {
+  const brandId = typeof req.query.brandId === 'string' ? req.query.brandId : undefined
+  res.json({ dir: outputs.getBaseDir(), files: outputs.list(brandId) })
 })
 
 app.post('/api/outputs/open', (req, res) => {
@@ -386,7 +400,8 @@ app.post('/api/outputs/open', (req, res) => {
 
 app.post('/api/outputs/open-folder', (req, res) => {
   const category = req.body?.category === 'Marketing' ? 'Marketing' : req.body?.category === 'Lead-Hunt' ? 'Lead-Hunt' : undefined
-  res.json({ ok: outputs.openFolder(category) })
+  const brandId = typeof req.body?.brandId === 'string' ? req.body.brandId : undefined
+  res.json({ ok: outputs.openFolder(category, brandId) })
 })
 
 app.get('/api/outputs/preview', (req, res) => {

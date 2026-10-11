@@ -91,9 +91,10 @@ export class LeadStore {
     mkdirSync(this.dir, { recursive: true })
   }
 
-  private normalizeInput(value: unknown): LeadInput {
+  private normalizeInput(value: unknown, defaultBrandId?: string): LeadInput {
     const raw = record(value)
     return {
+      brandId: text(raw.brandId, 'brandId') || defaultBrandId || undefined,
       businessName: text(raw.businessName, 'businessName', true),
       industry: text(raw.industry, 'industry'),
       districtLocation: text(raw.districtLocation, 'districtLocation'),
@@ -129,12 +130,16 @@ export class LeadStore {
     renameSync(tmp, this.file)
   }
 
-  list(): Lead[] {
-    return this.read().sort((a, b) => b.collectionDate.localeCompare(a.collectionDate) || b.updatedAt - a.updatedAt)
+  list(brandId?: string): Lead[] {
+    const all = this.read().sort((a, b) => b.collectionDate.localeCompare(a.collectionDate) || b.updatedAt - a.updatedAt)
+    if (brandId && brandId !== 'all') {
+      return all.filter((l) => !l.brandId || l.brandId === brandId)
+    }
+    return all
   }
 
-  summary(): LeadSummary {
-    const leads = this.read()
+  summary(brandId?: string): LeadSummary {
+    const leads = this.list(brandId)
     return {
       total: leads.length,
       verified: leads.filter((lead) => lead.verificationStatus === 'verified').length,
@@ -144,6 +149,7 @@ export class LeadStore {
   }
 
   private sameBusiness(a: Lead, b: LeadInput): boolean {
+    if (a.brandId && b.brandId && a.brandId !== b.brandId) return false
     const nameMatch = normalize(a.businessName) === normalize(b.businessName)
     const locationMatch = normalize(a.districtLocation) === normalize(b.districtLocation)
     if (nameMatch && (locationMatch || !a.districtLocation || !b.districtLocation)) return true
@@ -152,8 +158,8 @@ export class LeadStore {
     return Boolean(aSite && bSite && aSite === bSite)
   }
 
-  upsert(value: unknown): { lead: Lead; created: boolean } {
-    const incoming = this.normalizeInput(value)
+  upsert(value: unknown, defaultBrandId?: string): { lead: Lead; created: boolean } {
+    const incoming = this.normalizeInput(value, defaultBrandId)
     const leads = this.read()
     const now = Date.now()
     const index = leads.findIndex((lead) => this.sameBusiness(lead, incoming))
@@ -212,7 +218,7 @@ export class LeadStore {
     return true
   }
 
-  csv(): string {
+  csv(brandId?: string): string {
     const cell = (value: unknown): string => {
       let textValue = String(value ?? '').replace(/\r?\n/g, ' ')
       // Prevent spreadsheet formula execution when a CSV is opened in Excel.
@@ -220,7 +226,7 @@ export class LeadStore {
       return `"${textValue.replace(/"/g, '""')}"`
     }
     const lines = [CSV_COLUMNS.map((column) => cell(column.label)).join(',')]
-    for (const lead of this.list()) lines.push(CSV_COLUMNS.map((column) => cell(lead[column.key])).join(','))
+    for (const lead of this.list(brandId)) lines.push(CSV_COLUMNS.map((column) => cell(lead[column.key])).join(','))
     return `\uFEFF${lines.join('\r\n')}\r\n`
   }
 

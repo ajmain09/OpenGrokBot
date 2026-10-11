@@ -4,9 +4,10 @@ import { deleteLead, importLeads, leadExportUrl, listLeads, sendLeadsToMarketing
 
 interface LeadManagerViewProps {
   onNavigateToMarketing?: () => void
+  brandId?: string
 }
 
-export function LeadManagerView({ onNavigateToMarketing }: LeadManagerViewProps) {
+export function LeadManagerView({ onNavigateToMarketing, brandId }: LeadManagerViewProps) {
   const [leads, setLeads] = useState<Lead[]>([])
   const [summary, setSummary] = useState<LeadSummary>({ total: 0, verified: 0, partiallyVerified: 0, unverified: 0 })
   const [search, setSearch] = useState('')
@@ -26,7 +27,7 @@ export function LeadManagerView({ onNavigateToMarketing }: LeadManagerViewProps)
     setLoading(true)
     setError(null)
     try {
-      const data = await listLeads()
+      const data = await listLeads(brandId)
       setLeads(data.leads)
       setSummary(data.summary)
     } catch (err) {
@@ -38,7 +39,7 @@ export function LeadManagerView({ onNavigateToMarketing }: LeadManagerViewProps)
 
   useEffect(() => {
     void load()
-  }, [])
+  }, [brandId])
 
   // Extract distinct industries and locations for filters
   const uniqueIndustries = Array.from(new Set(leads.map((l) => l.industry?.trim()).filter(Boolean) as string[])).sort()
@@ -157,7 +158,7 @@ export function LeadManagerView({ onNavigateToMarketing }: LeadManagerViewProps)
     <div className="management-view lead-manager-view">
       <div className="management-header">
         <div>
-          <h2>Lead Manager</h2>
+          <h2>Lead Manager <span className="badge-verified" style={{ fontSize: '12px', verticalAlign: 'middle', marginLeft: '6px' }}>{brandId === 'the-solver-agency' ? 'The Solver Agency' : 'Growthifyx'}</span></h2>
           <p className="management-subtitle">
             Public business leads collected by Lead Hunt. Persisted locally and deduplicated.
           </p>
@@ -180,7 +181,7 @@ export function LeadManagerView({ onNavigateToMarketing }: LeadManagerViewProps)
           >
             Import (CSV/JSON)
           </button>
-          <a className="btn-secondary" href={leadExportUrl()} download>
+          <a className="btn-secondary" href={leadExportUrl(brandId)} download>
             Export CSV ⬇
           </a>
           <button

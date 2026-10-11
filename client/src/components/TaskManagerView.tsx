@@ -3,9 +3,10 @@ import { cancelTask, clearFinishedTasks, createTask, deleteTask, listTasks, retr
 
 interface TaskManagerViewProps {
   onNavigateToApprovals?: () => void
+  brandId?: string
 }
 
-export function TaskManagerView({ onNavigateToApprovals }: TaskManagerViewProps) {
+export function TaskManagerView({ onNavigateToApprovals, brandId }: TaskManagerViewProps) {
   const [tasks, setTasks] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -18,7 +19,7 @@ export function TaskManagerView({ onNavigateToApprovals }: TaskManagerViewProps)
   const [submitting, setSubmitting] = useState(false)
 
   const load = () => {
-    listTasks()
+    listTasks(brandId)
       .then((data) => {
         setTasks(data)
         setLoading(false)
@@ -33,7 +34,7 @@ export function TaskManagerView({ onNavigateToApprovals }: TaskManagerViewProps)
     load()
     const interval = setInterval(load, 3000)
     return () => clearInterval(interval)
-  }, [])
+  }, [brandId])
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -42,6 +43,7 @@ export function TaskManagerView({ onNavigateToApprovals }: TaskManagerViewProps)
     setError(null)
     try {
       await createTask({
+        brandId,
         title: title.trim() || 'Custom Task',
         workspace,
         prompt: prompt.trim(),
@@ -65,7 +67,7 @@ export function TaskManagerView({ onNavigateToApprovals }: TaskManagerViewProps)
     <div className="management-view task-manager-view">
       <div className="management-header">
         <div>
-          <h2>Task Manager</h2>
+          <h2>Task Manager <span className="badge-verified" style={{ fontSize: '12px', verticalAlign: 'middle', marginLeft: '6px' }}>{brandId === 'the-solver-agency' ? 'The Solver Agency' : 'Growthifyx'}</span></h2>
           <p className="management-subtitle">
             Manage long-running agent tasks and background automation. Results are automatically saved.
           </p>

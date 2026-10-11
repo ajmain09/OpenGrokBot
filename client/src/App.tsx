@@ -28,10 +28,10 @@ export function App() {
   const [settings, setSettings] = useState<SettingsSection | null>(null)
   const [replyTo, setReplyTo] = useState<ReplyTarget | null>(null)
 
-  // Dark/Light Theme state persisted in localStorage
+  // Theme state persisted in localStorage (default: 'light')
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     const saved = localStorage.getItem('ogb_theme')
-    return saved === 'light' ? 'light' : 'dark'
+    return saved === 'dark' ? 'dark' : 'light'
   })
 
   useEffect(() => {
@@ -41,6 +41,17 @@ export function App() {
 
   const handleToggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
+  }
+
+  // Multi-brand architecture state persisted in localStorage (default: 'growthifyx')
+  const [activeBrand, setActiveBrand] = useState<string>(() => {
+    const saved = localStorage.getItem('ogb_active_brand')
+    return saved === 'the-solver-agency' ? 'the-solver-agency' : 'growthifyx'
+  })
+
+  const handleBrandChange = (brandId: string) => {
+    setActiveBrand(brandId)
+    localStorage.setItem('ogb_active_brand', brandId)
   }
 
   // Zoom control persisted in localStorage
@@ -186,14 +197,16 @@ export function App() {
         onZoomReset={handleZoomReset}
         theme={theme}
         onToggleTheme={handleToggleTheme}
+        activeBrand={activeBrand}
+        onBrandChange={handleBrandChange}
       />
 
       <main className="main workspace-main">
-        {activeId === 'dashboard' && <DashboardView onNavigate={handleSelectNav} />}
-        {activeId === 'leads' && <LeadManagerView onNavigateToMarketing={() => handleSelectNav(MARKETING)} />}
-        {activeId === 'tasks' && <TaskManagerView onNavigateToApprovals={() => handleSelectNav('approvals')} />}
-        {activeId === 'memory' && <MemoryManagerView />}
-        {activeId === 'outputs' && <OutputManagerView />}
+        {activeId === 'dashboard' && <DashboardView onNavigate={handleSelectNav} brandId={activeBrand} />}
+        {activeId === 'leads' && <LeadManagerView onNavigateToMarketing={() => handleSelectNav(MARKETING)} brandId={activeBrand} />}
+        {activeId === 'tasks' && <TaskManagerView onNavigateToApprovals={() => handleSelectNav('approvals')} brandId={activeBrand} />}
+        {activeId === 'memory' && <MemoryManagerView brandId={activeBrand} />}
+        {activeId === 'outputs' && <OutputManagerView brandId={activeBrand} />}
         {activeId === 'browser' && <BrowserManagerView />}
         {activeId === 'approvals' && <ApprovalCenterView />}
         {activeId === 'skills' && (

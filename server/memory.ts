@@ -71,12 +71,19 @@ export class Memory {
     }
   }
 
-  list(scope?: 'lead-hunt' | 'marketing' | 'shared'): MemoryItem[] {
-    if (!scope) return [...this.items]
-    return this.items.filter((item) => item.scope === scope || item.scope === 'shared')
+  list(scope?: 'lead-hunt' | 'marketing' | 'shared', brandId?: string): MemoryItem[] {
+    let res = [...this.items]
+    if (scope) {
+      res = res.filter((item) => item.scope === scope || item.scope === 'shared')
+    }
+    if (brandId && brandId !== 'all') {
+      res = res.filter((item) => !item.brandId || item.brandId === brandId)
+    }
+    return res
   }
 
   add(input: {
+    brandId?: string
     scope: 'lead-hunt' | 'marketing' | 'shared'
     category: 'preference' | 'instruction' | 'fact' | 'history' | 'task'
     title: string
@@ -84,6 +91,7 @@ export class Memory {
   }): MemoryItem {
     const item: MemoryItem = {
       id: randomUUID(),
+      brandId: input.brandId,
       scope: input.scope,
       category: input.category,
       title: input.title.trim().slice(0, 150),

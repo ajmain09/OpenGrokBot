@@ -1,4 +1,4 @@
-import { execFile, execSync } from 'node:child_process'
+import { execFile } from 'node:child_process'
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import type { OutputFile } from '../shared/types.js'
@@ -6,6 +6,13 @@ import type { OutputFile } from '../shared/types.js'
 function getDefaultOutputDir(): string {
   const userProfile = process.env.USERPROFILE || process.env.HOME || 'C:\\Users\\Default'
   return path.join(userProfile, 'Documents', 'OpenGrokBot', 'Outputs')
+}
+
+function sanitizeBrandDir(brandId?: string): string {
+  if (!brandId) return 'Growthifyx'
+  if (brandId === 'the-solver-agency') return 'The-Solver-Agency'
+  if (brandId === 'growthifyx') return 'Growthifyx'
+  return brandId.replace(/[^a-zA-Z0-9_-]/g, '_')
 }
 
 export class OutputManager {
@@ -35,8 +42,15 @@ export class OutputManager {
   private ensureDirs(): void {
     try {
       mkdirSync(this.baseDir, { recursive: true })
+      // Root-level categories
       mkdirSync(path.join(this.baseDir, 'Lead-Hunt'), { recursive: true })
       mkdirSync(path.join(this.baseDir, 'Marketing'), { recursive: true })
+      // Multi-brand categories
+      const brands = ['Growthifyx', 'The-Solver-Agency']
+      for (const b of brands) {
+        mkdirSync(path.join(this.baseDir, b, 'Lead-Hunt'), { recursive: true })
+        mkdirSync(path.join(this.baseDir, b, 'Marketing'), { recursive: true })
+      }
     } catch {
       // non-critical
     }
@@ -58,23 +72,23 @@ export class OutputManager {
     }
   }
 
-  list(): OutputFile[] {
+  list(brandFilter?: string): OutputFile[] {
     this.ensureDirs()
     const categories: ('Lead-Hunt' | 'Marketing')[] = ['Lead-Hunt', 'Marketing']
     const result: OutputFile[] = []
 
-    for (const cat of categories) {
-      const catDir = path.join(this.baseDir, cat)
-      if (!existsSync(catDir)) continue
+    const scanDir = (dir: string, cat: 'Lead-Hunt' | 'Marketing', brandId?: string) => {
+      if (!existsSync(dir)) return
       try {
-        const files = readdirSync(catDir)
+        const files = readdirSync(dir)
         for (const f of files) {
-          const fullPath = path.join(catDir, f)
+          const fullPath = path.join(dir, f)
           try {
             const st = statSync(fullPath)
             if (st.isFile()) {
               result.push({
-                id: `${cat}-${f}`,
+                id: `${brandId || 'root'}-${cat}-${f}`,
+                brandId,
                 name: f,
                 category: cat,
                 path: fullPath,
@@ -84,7 +98,7 @@ export class OutputManager {
               })
             }
           } catch {
-            // skip unreadable
+            // skip
           }
         }
       } catch {
@@ -92,13 +106,34 @@ export class OutputManager {
       }
     }
 
+    // 1. Scan root categories
+    for (const cat of categories) {
+      scanDir(path.join(this.baseDir, cat), cat, undefined)
+    }
+
+    // 2. Scan brand directories
+    const brandFolders = ['Growthifyx', 'The-Solver-Agency']
+    for (const bFolder of brandFolders) {
+      const bId = bFolder.toLowerCase() === 'the-solver-agency' ? 'the-solver-agency' : 'growthifyx'
+      for (const cat of categories) {
+        scanDir(path.join(this.baseDir, bFolder, cat), cat, bId)
+      }
+    }
+
     result.sort((a, b) => b.updatedAt - a.updatedAt)
+
+    if (brandFilter) {
+      return result.filter((f) => !f.brandId || f.brandId === brandFilter)
+    }
     return result
   }
 
-  saveFile(category: 'Lead-Hunt' | 'Marketing', filename: string, content: string | Buffer): string {
+  saveFile(category: 'Lead-Hunt' | 'Marketing', filename: string, content: string | Buffer, brandId?: string): string {
     this.ensureDirs()
-    const targetFolder = path.join(this.baseDir, category)
+    const brandFolder = sanitizeBrandDir(brandId)
+    const targetFolder = path.join(this.baseDir, brandFolder, category)
+    mkdirSync(targetFolder, { recursive: true })
+
     let finalName = filename
     let targetPath = path.join(targetFolder, finalName)
 
@@ -126,9 +161,18 @@ export class OutputManager {
     }
   }
 
-  openFolder(category?: 'Lead-Hunt' | 'Marketing'): boolean {
-    const dir = category ? path.join(this.baseDir, category) : this.baseDir
+  openFolder(category?: 'Lead-Hunt' | 'Marketing', brandId?: string): boolean {
     this.ensureDirs()
+    let dir = this.baseDir
+    if (brandId) {
+      const brandFolder = sanitizeBrandDir(brandId)
+      dir = category ? path.join(this.baseDir, brandFolder, category) : path.join(this.baseDir, brandFolder)
+    } else if (category) {
+      dir = path.join(this.baseDir, category)
+    }
+    if (!existsSync(dir)) {
+      mkdirSync(dir, { recursive: true })
+    }
     return this.openPath(dir)
   }
 
@@ -136,7 +180,6 @@ export class OutputManager {
     if (!existsSync(targetPath)) return null
     try {
       const buf = readFileSync(targetPath)
-      // Check if text or binary
       const isBinary = buf.slice(0, 512).includes(0)
       if (isBinary) {
         return { content: `[Binary file, size: ${buf.length} bytes]`, binary: true }

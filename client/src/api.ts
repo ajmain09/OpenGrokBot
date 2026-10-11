@@ -44,12 +44,12 @@ export function exportUrl(id: string): string {
   return `/api/conversations/${encodeURIComponent(id)}/export.md`
 }
 
-export async function listLeads(): Promise<{ leads: Lead[]; summary: LeadSummary }> {
-  return call('/api/leads')
+export async function listLeads(brandId?: string): Promise<{ leads: Lead[]; summary: LeadSummary }> {
+  return call(`/api/leads${brandId ? `?brandId=${encodeURIComponent(brandId)}` : ''}`)
 }
 
-export function leadExportUrl(): string {
-  return '/api/leads/export.csv'
+export function leadExportUrl(brandId?: string): string {
+  return `/api/leads/export.csv${brandId ? `?brandId=${encodeURIComponent(brandId)}` : ''}`
 }
 
 export type AgentPatch = Partial<Omit<Agent, 'id'>>
@@ -179,8 +179,9 @@ export function importAgent(agent: unknown): Promise<{ agent: Agent }> {
 
 // ---- Management Systems APIs ----
 
-export function fetchDashboard(): Promise<{
+export function fetchDashboard(brandId?: string): Promise<{
   activeProvider: string
+  activeBrand?: string
   providerDetails: {
     antigravity?: ProviderStatus
     codex?: ProviderStatus
@@ -204,14 +205,14 @@ export function fetchDashboard(): Promise<{
   }
   browsers: any[]
 }> {
-  return call('/api/dashboard')
+  return call(`/api/dashboard${brandId ? `?brandId=${encodeURIComponent(brandId)}` : ''}`)
 }
 
-export function listTasks(): Promise<any[]> {
-  return call('/api/tasks')
+export function listTasks(brandId?: string): Promise<any[]> {
+  return call(`/api/tasks${brandId ? `?brandId=${encodeURIComponent(brandId)}` : ''}`)
 }
 
-export function createTask(task: { title: string; workspace: string; prompt: string }): Promise<any> {
+export function createTask(task: { title: string; workspace: string; prompt: string; brandId?: string }): Promise<any> {
   return call('/api/tasks', json('POST', task))
 }
 
@@ -231,11 +232,15 @@ export function clearFinishedTasks(): Promise<{ ok: boolean }> {
   return call('/api/tasks', { method: 'DELETE' })
 }
 
-export function listMemories(scope?: string): Promise<any[]> {
-  return call(`/api/memory${scope ? `?scope=${encodeURIComponent(scope)}` : ''}`)
+export function listMemories(scope?: string, brandId?: string): Promise<any[]> {
+  const params = new URLSearchParams()
+  if (scope) params.set('scope', scope)
+  if (brandId) params.set('brandId', brandId)
+  const qs = params.toString()
+  return call(`/api/memory${qs ? `?${qs}` : ''}`)
 }
 
-export function addMemory(item: { scope: string; category: string; title: string; content: string }): Promise<any> {
+export function addMemory(item: { scope: string; category: string; title: string; content: string; brandId?: string }): Promise<any> {
   return call('/api/memory', json('POST', item))
 }
 
@@ -255,16 +260,16 @@ export function clearMemories(scope?: string): Promise<{ ok: boolean }> {
   return call(`/api/memory${scope ? `?scope=${encodeURIComponent(scope)}` : ''}`, { method: 'DELETE' })
 }
 
-export function listOutputs(): Promise<{ dir: string; files: any[] }> {
-  return call('/api/outputs')
+export function listOutputs(brandId?: string): Promise<{ dir: string; files: any[] }> {
+  return call(`/api/outputs${brandId ? `?brandId=${encodeURIComponent(brandId)}` : ''}`)
 }
 
 export function openOutputPath(path: string): Promise<{ ok: boolean }> {
   return call('/api/outputs/open', json('POST', { path }))
 }
 
-export function openOutputFolder(category?: string): Promise<{ ok: boolean }> {
-  return call('/api/outputs/open-folder', json('POST', { category }))
+export function openOutputFolder(category?: string, brandId?: string): Promise<{ ok: boolean }> {
+  return call('/api/outputs/open-folder', json('POST', { category, brandId }))
 }
 
 export function fetchOutputPreview(path: string): Promise<{ content: string; binary: boolean }> {

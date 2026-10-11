@@ -6,7 +6,7 @@ const http = require('node:http')
 
 const PORT = Number(process.env.PORT ?? 4310)
 const URL = `http://127.0.0.1:${PORT}/`
-const root = path.join(__dirname, '..')
+const root = app.isPackaged ? app.getAppPath() : path.join(__dirname, '..')
 let server = null
 
 function startServer() {
@@ -40,11 +40,11 @@ async function createWindow() {
     height: 940,
     minWidth: 900,
     minHeight: 600,
-    backgroundColor: '#111111',
-    title: 'OpenGrokBot',
+    backgroundColor: '#FAFAF8',
+    title: 'OpenGrokBot Studio',
     autoHideMenuBar: true,
     titleBarStyle: 'hidden',
-    titleBarOverlay: { color: '#141414', symbolColor: '#8f8f8f', height: 40 },
+    titleBarOverlay: { color: '#F4F5F2', symbolColor: '#1B2421', height: 40 },
     webPreferences: { contextIsolation: true, sandbox: true },
   })
   win.webContents.setWindowOpenHandler(({ url }) => {

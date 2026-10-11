@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { ApprovalRequest, Conversation } from '../../../shared/types'
+import { DEFAULT_BRANDS } from '../../../shared/types'
 
 interface NavItem {
   id: string
@@ -74,6 +75,8 @@ interface WorkspaceSidebarProps {
   onZoomReset?: () => void
   theme?: 'dark' | 'light'
   onToggleTheme?: () => void
+  activeBrand?: string
+  onBrandChange?: (brandId: string) => void
 }
 
 export function WorkspaceSidebar({
@@ -87,8 +90,10 @@ export function WorkspaceSidebar({
   onZoomIn,
   onZoomOut,
   onZoomReset,
-  theme = 'dark',
+  theme = 'light',
   onToggleTheme,
+  activeBrand = 'growthifyx',
+  onBrandChange,
 }: WorkspaceSidebarProps) {
   const [collapsed, setCollapsed] = useState(() => {
     return localStorage.getItem('ogb_sidebar_collapsed') === 'true'
@@ -125,6 +130,37 @@ export function WorkspaceSidebar({
           {collapsed ? '▶' : '◀'}
         </button>
       </div>
+
+      {/* Brand Workspace Switcher */}
+      {!collapsed ? (
+        <div className="brand-selector-wrap">
+          <label className="brand-selector-label">Brand Workspace</label>
+          <select
+            className="brand-select"
+            value={activeBrand}
+            onChange={(e) => onBrandChange?.(e.target.value)}
+            title="Switch Active Brand Workspace"
+            aria-label="Active Brand Workspace"
+          >
+            {DEFAULT_BRANDS.map((b) => (
+              <option key={b.id} value={b.id}>
+                {b.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : (
+        <div
+          className="brand-selector-collapsed"
+          title={`Active Brand: ${activeBrand === 'the-solver-agency' ? 'The Solver Agency' : 'Growthifyx'}`}
+          onClick={() => onBrandChange?.(activeBrand === 'the-solver-agency' ? 'growthifyx' : 'the-solver-agency')}
+        >
+          <span
+            className="brand-dot"
+            style={{ backgroundColor: activeBrand === 'the-solver-agency' ? '#2B6CB0' : '#18836B' }}
+          />
+        </div>
+      )}
 
       {/* Main Navigation Groups */}
       <nav className="workspace-list" aria-label="Main Navigation">

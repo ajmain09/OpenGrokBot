@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react'
 import type { MemoryItem } from '../../../shared/types'
 import { addMemory, clearMemories, deleteMemoryItem, listMemories, searchMemories, updateMemoryItem } from '../api'
 
-export function MemoryManagerView() {
+interface MemoryManagerViewProps {
+  brandId?: string
+}
+
+export function MemoryManagerView({ brandId }: MemoryManagerViewProps) {
   const [items, setItems] = useState<MemoryItem[]>([])
   const [scope, setScope] = useState<'all' | 'lead-hunt' | 'marketing' | 'shared'>('all')
   const [search, setSearch] = useState('')
@@ -23,7 +27,7 @@ export function MemoryManagerView() {
         const res = await searchMemories(search.trim())
         setItems(res)
       } else {
-        const res = await listMemories(scope === 'all' ? undefined : scope)
+        const res = await listMemories(scope === 'all' ? undefined : scope, brandId)
         setItems(res)
       }
     } catch {
@@ -35,7 +39,7 @@ export function MemoryManagerView() {
 
   useEffect(() => {
     void load()
-  }, [scope, search])
+  }, [scope, search, brandId])
 
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -43,6 +47,7 @@ export function MemoryManagerView() {
     setAdding(true)
     try {
       await addMemory({
+        brandId,
         title: newTitle.trim(),
         scope: newScope,
         category: newCategory,
@@ -71,7 +76,7 @@ export function MemoryManagerView() {
     <div className="management-view memory-manager-view">
       <div className="management-header">
         <div>
-          <h2>AI Memory</h2>
+          <h2>AI Memory <span className="badge-verified" style={{ fontSize: '12px', verticalAlign: 'middle', marginLeft: '6px' }}>{brandId === 'the-solver-agency' ? 'The Solver Agency' : 'Growthifyx'}</span></h2>
           <p className="management-subtitle">
             Persistent rules, preferences, and verified business facts injected contextually into agent turns.
           </p>

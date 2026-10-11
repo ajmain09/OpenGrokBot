@@ -59,8 +59,12 @@ export class TaskManager {
     if (changed) this.save()
   }
 
-  list(): BotTask[] {
-    return [...this.tasks].sort((a, b) => b.createdAt - a.createdAt)
+  list(brandId?: string): BotTask[] {
+    const all = [...this.tasks].sort((a, b) => b.createdAt - a.createdAt)
+    if (brandId && brandId !== 'all') {
+      return all.filter((t) => !t.brandId || t.brandId === brandId)
+    }
+    return all
   }
 
   get(id: string): BotTask | undefined {
@@ -68,12 +72,14 @@ export class TaskManager {
   }
 
   create(input: {
+    brandId?: string
     workspace: 'workspace-lead-hunt' | 'workspace-marketing'
     title: string
     prompt: string
   }): BotTask {
     const task: BotTask = {
       id: randomUUID(),
+      brandId: input.brandId,
       title: input.title.trim().slice(0, 150) || 'Background AI Task',
       workspace: input.workspace,
       status: 'queued',
