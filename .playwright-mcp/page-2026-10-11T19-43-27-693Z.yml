@@ -1,0 +1,352 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "" [ref=e3] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e4]:
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "" [ref=e7] [cursor=pointer]:
+            - /url: "#grve-search-modal"
+      - list [ref=e8]:
+        - listitem [ref=e9]:
+          - link "Home" [ref=e10] [cursor=pointer]:
+            - /url: https://rednetworkbd.net/
+        - listitem [ref=e11]:
+          - link "Packages" [ref=e12] [cursor=pointer]:
+            - /url: https://rednetworkbd.net/packages/
+        - listitem [ref=e13]:
+          - link "Coverage Area" [ref=e14] [cursor=pointer]:
+            - /url: https://rednetworkbd.net/coverage-areas/
+        - listitem [ref=e15]:
+          - link "Registration" [ref=e16] [cursor=pointer]:
+            - /url: https://rednetworkbd.net/registration/
+        - listitem [ref=e17]:
+          - link "Payment Methods" [ref=e18] [cursor=pointer]:
+            - /url: https://rednetworkbd.net/payment-methods/
+        - listitem [ref=e19]:
+          - link "Online User Portal" [ref=e20] [cursor=pointer]:
+            - /url: https://billing.rednetworkbd.net/
+        - listitem [ref=e21]:
+          - link "About Us" [ref=e22] [cursor=pointer]:
+            - /url: https://rednetworkbd.net/about-us/
+        - listitem [ref=e23]:
+          - link "Contact Us" [ref=e24] [cursor=pointer]:
+            - /url: https://rednetworkbd.net/contact-us/
+  - generic [ref=e25]:
+    - banner [ref=e26]:
+      - generic [ref=e28]:
+        - list [ref=e29]:
+          - listitem [ref=e30]:
+            - paragraph [ref=e31]:
+              - generic [ref=e32]:
+                - text: "Hotline:"
+                - link "09613-920920" [ref=e33] [cursor=pointer]:
+                  - /url: tel:+8809613920920
+          - link:
+            - /url: tel:+8809613920920
+            - listitem:
+              - list
+        - link:
+          - /url: tel:+8809613920920
+        - list [ref=e34]:
+          - link:
+            - /url: tel:+8809613920920
+          - listitem [ref=e35]:
+            - link:
+              - /url: tel:+8809613920920
+            - paragraph [ref=e36]:
+              - link "WhatsApp Us" [ref=e37] [cursor=pointer]:
+                - /url: tel:+8809613920920
+              - link:
+                - /url: http://wa.me/+8801404050363
+          - link:
+            - /url: http://wa.me/+8801404050363
+            - listitem:
+              - list
+          - listitem [ref=e38]:
+            - link:
+              - /url: http://wa.me/+8801404050363
+            - list:
+              - link:
+                - /url: http://wa.me/+8801404050363
+              - listitem [ref=e39]:
+                - link:
+                  - /url: http://wa.me/+8801404050363
+                - link "" [ref=e40] [cursor=pointer]:
+                  - /url: https://facebook.com/@rednetbd/
+              - listitem [ref=e41]:
+                - link "" [ref=e42] [cursor=pointer]:
+                  - /url: http://www.instagram.com/_rednet_ltd_/
+              - listitem [ref=e43]:
+                - link "" [ref=e44] [cursor=pointer]:
+                  - /url: https://www.youtube.com/@rednetworkltd.9737/
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - link [ref=e49] [cursor=pointer]:
+            - /url: https://rednetworkbd.net/
+            - img "Red Network LTD." [ref=e50]
+          - generic: Red Network LTD.
+        - text: 
+        - navigation [ref=e51]:
+          - list:
+            - listitem [ref=e52]:
+              - link "Home" [ref=e53] [cursor=pointer]:
+                - /url: https://rednetworkbd.net/
+            - listitem [ref=e54]:
+              - link "Packages" [ref=e55] [cursor=pointer]:
+                - /url: https://rednetworkbd.net/packages/
+            - listitem [ref=e56]:
+              - link "Coverage Area" [ref=e57] [cursor=pointer]:
+                - /url: https://rednetworkbd.net/coverage-areas/
+            - listitem [ref=e58]:
+              - link "Registration" [ref=e59] [cursor=pointer]:
+                - /url: https://rednetworkbd.net/registration/
+            - listitem [ref=e60]:
+              - link "Payment Methods" [ref=e61] [cursor=pointer]:
+                - /url: https://rednetworkbd.net/payment-methods/
+            - listitem [ref=e62]:
+              - link "Online User Portal" [ref=e63] [cursor=pointer]:
+                - /url: https://billing.rednetworkbd.net/
+            - listitem [ref=e64]:
+              - link "About Us" [ref=e65] [cursor=pointer]:
+                - /url: https://rednetworkbd.net/about-us/
+            - listitem [ref=e66]:
+              - link "Contact Us" [ref=e67] [cursor=pointer]:
+                - /url: https://rednetworkbd.net/contact-us/
+    - generic [ref=e68]:
+      - generic [ref=e75] [cursor=pointer]:
+        - generic [ref=e79]: 
+        - generic [ref=e80]: 
+      - generic [ref=e83]:
+        - paragraph [ref=e87]: Welcome to RED NETWORK LTD.
+        - heading "SUPERFAST INTERNET" [level=1] [ref=e90]
+        - paragraph [ref=e93]:
+          - strong [ref=e94]: Red Network LTD.
+          - text: provides high-speed broadband and corporate internet services across multiple districts of
+          - strong [ref=e95]: Khulna Division
+          - text: ", such as Khulna, Jashore, Bagerhat, and Satkhira. We understand the connectivity needs of our customers and are committed to delivering reliable internet services with responsive technical support. Our goal is to become a leading ISP in the region by consistently providing quality service and exceeding customer expectations. We strive to support both personal and professional connectivity needs with dependable, customer-focused solutions."
+        - link "Learn More" [ref=e99] [cursor=pointer]:
+          - /url: https://rednetworkbd.net/about-us/
+      - generic [ref=e106]:
+        - heading "We are Connected with" [level=2] [ref=e109]
+        - generic [ref=e112]:
+          - generic [ref=e113]:
+            - group "1 of 8" [ref=e114]:
+              - figure [ref=e115]:
+                - img "APNIC-logo" [ref=e116]
+            - group "2 of 8" [ref=e118]:
+              - figure [ref=e119]:
+                - img "Meta-Logo-scaled" [ref=e120]
+            - group "3 of 8" [ref=e122]:
+              - figure [ref=e123]:
+                - img "summit-500x250-1" [ref=e124]
+            - group "4 of 8" [ref=e126]:
+              - figure [ref=e127]:
+                - img "ispn" [ref=e128]
+            - group "5 of 8" [ref=e130]:
+              - figure [ref=e131]:
+                - img "bdix_logo-final-final_320x200-Copy-removebg-preview" [ref=e132]
+            - group "6 of 8" [ref=e134]:
+              - figure [ref=e135]:
+                - img "juniper" [ref=e136]
+            - group "7 of 8" [ref=e138]:
+              - figure [ref=e139]:
+                - img "MikroTik" [ref=e140]
+            - group "8 of 8" [ref=e142]:
+              - figure [ref=e143]:
+                - img "Cisco_logo.svg" [ref=e144]
+          - button [ref=e146] [cursor=pointer]
+          - button [ref=e149] [cursor=pointer]
+      - heading "WHAT WE DO?" [level=2] [ref=e155]
+      - generic [ref=e157]:
+        - generic [ref=e158]:
+          - heading "Home Internet" [level=2] [ref=e162]
+          - generic [ref=e168]:
+            - paragraph [ref=e169]: High-speed optical fiber broadband with real IP for seamless home connectivity.
+            - link "Learn More" [ref=e171] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/home-internet/
+        - generic [ref=e175]:
+          - heading "Corporate Internet" [level=2] [ref=e179]
+          - generic [ref=e185]:
+            - paragraph [ref=e186]: Dedicated internet solutions for businesses, ensuring reliability and high performance.
+            - link "Learn More" [ref=e188] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/corporate-internet/
+        - generic [ref=e192]:
+          - heading "IP and CCTV" [level=2] [ref=e196]
+          - generic [ref=e202]:
+            - paragraph [ref=e203]: Advanced security with IP cameras and CCTV systems for homes and businesses.
+            - link "Learn More" [ref=e205] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/ip-and-cctv/
+      - generic [ref=e210]:
+        - generic [ref=e211]:
+          - heading "Network Solution" [level=2] [ref=e215]
+          - generic [ref=e221]:
+            - paragraph [ref=e222]: Custom network design, security, and management for optimized performance.
+            - link "Learn More" [ref=e224] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/network-solution/
+        - generic [ref=e228]:
+          - heading "Cloud Storage Service" [level=2] [ref=e232]
+          - generic [ref=e238]:
+            - paragraph [ref=e239]: Safe, scalable cloud solutions for secure data storage and access.
+            - link "Learn More" [ref=e241] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/cloud-storage-service/
+        - generic [ref=e245]:
+          - heading "Software Development" [level=2] [ref=e249]
+          - generic [ref=e255]:
+            - paragraph [ref=e256]: Tailored software applications and solutions to meet specific business needs.
+            - link "Learn More" [ref=e258] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/software-and-application/
+      - link "Become a client" [ref=e265] [cursor=pointer]:
+        - /url: https://rednetworkbd.net/registration/
+      - heading "Our Packages" [level=2] [ref=e272]
+      - generic [ref=e278]:
+        - generic [ref=e292]:
+          - generic [ref=e294]: 35 Mbps
+          - generic [ref=e295]: "@ 499 BDT / Month"
+          - paragraph [ref=e297]:
+            - text: 🚀
+            - strong [ref=e298]: 100 Mbps
+            - text: Facebook📺
+            - strong [ref=e299]: 100 Mbps
+            - text: YouTube🌐
+            - strong [ref=e300]: 100 Mbps
+            - text: BDIX
+          - paragraph [ref=e301]:
+            - link "Register Now" [ref=e302] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/registration/
+          - paragraph [ref=e303]: Additional 5% VAT will apply
+        - generic [ref=e317]:
+          - generic [ref=e319]: 50 Mbps
+          - generic [ref=e320]: "@ 599 BDT / Month"
+          - paragraph [ref=e322]:
+            - text: 🚀
+            - strong [ref=e323]: 100 Mbps
+            - text: Facebook📺
+            - strong [ref=e324]: 100 Mbps
+            - text: YouTube🌐
+            - strong [ref=e325]: 100 Mbps
+            - text: BDIX
+          - paragraph [ref=e326]:
+            - link "Register Now" [ref=e327] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/registration/
+          - paragraph [ref=e328]: Additional 5% VAT will apply
+        - generic [ref=e342]:
+          - generic [ref=e344]: 70 Mbps
+          - generic [ref=e345]: "@ 799 BDT / Month"
+          - paragraph [ref=e347]:
+            - text: 🚀
+            - strong [ref=e348]: 100 Mbps
+            - text: Facebook📺
+            - strong [ref=e349]: 100 Mbps
+            - text: YouTube🌐
+            - strong [ref=e350]: 100 Mbps
+            - text: BDIX
+          - paragraph [ref=e351]:
+            - link "Register Now" [ref=e352] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/registration/
+          - paragraph [ref=e353]: Additional 5% VAT will apply
+      - generic [ref=e355]:
+        - generic [ref=e369]:
+          - generic [ref=e372]: 100 Mbps
+          - generic [ref=e373]: "@ 999 BDT / Month"
+          - paragraph [ref=e375]:
+            - text: 🚀
+            - strong [ref=e376]: 100 Mbps
+            - text: Facebook📺
+            - strong [ref=e377]: 100 Mbps
+            - text: YouTube🌐
+            - strong [ref=e378]: 100 Mbps
+            - text: BDIX
+          - paragraph [ref=e379]:
+            - link "Register Now" [ref=e380] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/registration/
+          - paragraph [ref=e381]: Additional 5% VAT will apply
+        - generic [ref=e382]:
+          - generic [ref=e395]:
+            - generic [ref=e398]: 120 Mbps
+            - generic [ref=e399]: "@ 1199 BDT / Month"
+            - paragraph [ref=e401]:
+              - text: 🚀
+              - strong [ref=e402]: 100 Mbps
+              - text: Facebook📺
+              - strong [ref=e403]: 100 Mbps
+              - text: YouTube🌐
+              - strong [ref=e404]: 100 Mbps
+              - text: BDIX
+            - paragraph [ref=e405]:
+              - link "Register Now" [ref=e406] [cursor=pointer]:
+                - /url: https://rednetworkbd.net/registration/
+            - paragraph [ref=e407]: Additional 5% VAT will apply
+          - generic [ref=e420]:
+            - generic [ref=e423]: 200 Mbps
+            - generic [ref=e424]: "@ 1999 BDT / Month"
+            - paragraph [ref=e426]:
+              - text: 🚀
+              - strong [ref=e427]: 100 Mbps
+              - text: Facebook📺
+              - strong [ref=e428]: 100 Mbps
+              - text: YouTube🌐
+              - strong [ref=e429]: 100 Mbps
+              - text: BDIX
+            - paragraph [ref=e430]:
+              - link "Register Now" [ref=e431] [cursor=pointer]:
+                - /url: https://rednetworkbd.net/registration/
+            - paragraph [ref=e432]: Additional 5% VAT will apply
+        - generic [ref=e446]:
+          - generic [ref=e449]: 150 Mbps
+          - generic [ref=e450]: "@ 1499 BDT / Month"
+          - paragraph [ref=e452]:
+            - text: 🚀
+            - strong [ref=e453]: 100 Mbps
+            - text: Facebook📺
+            - strong [ref=e454]: 100 Mbps
+            - text: YouTube🌐
+            - strong [ref=e455]: 100 Mbps
+            - text: BDIX
+          - paragraph [ref=e456]:
+            - link "Register Now" [ref=e457] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/registration/
+          - paragraph [ref=e458]: Additional 5% VAT will apply
+    - contentinfo [ref=e461]:
+      - generic [ref=e462]:
+        - generic [ref=e464]:
+          - generic [ref=e466]:
+            - heading "Red Network LTD." [level=5] [ref=e467]
+            - paragraph [ref=e469]: Red Network Ltd. provides reliable high-speed internet, security solutions, and custom software services to homes and businesses across Khulna Division. We are committed to delivering exceptional service and seamless connectivity.
+          - generic [ref=e471]:
+            - heading "Our Coverage" [level=5] [ref=e472]
+            - generic [ref=e473]:
+              - list [ref=e474]:
+                - listitem [ref=e475]: Khulna
+                - listitem [ref=e476]: Bagerhat
+                - listitem [ref=e477]: Boyra
+                - listitem [ref=e478]: Tootpara
+                - listitem [ref=e479]: Nirala
+                - listitem [ref=e480]: Sonadanga
+              - paragraph [ref=e481]:
+                - link "See our full coverage area" [ref=e482] [cursor=pointer]:
+                  - /url: https://rednetworkbd.net/coverage-areas/
+          - generic [ref=e484]:
+            - heading "About" [level=5] [ref=e485]
+            - list [ref=e487]:
+              - listitem [ref=e488]:
+                - link "About Us" [ref=e489] [cursor=pointer]:
+                  - /url: https://rednetworkbd.net/about-us/
+              - listitem [ref=e490]:
+                - link "Contact Us" [ref=e491] [cursor=pointer]:
+                  - /url: https://rednetworkbd.net/contact-us/
+              - listitem [ref=e492]:
+                - link "Online User Portal" [ref=e493] [cursor=pointer]:
+                  - /url: https://billing.rednetworkbd.net/
+              - listitem [ref=e494]:
+                - link "New User Registration" [ref=e495] [cursor=pointer]:
+                  - /url: https://rednetworkbd.net/registration/
+        - generic [ref=e497]:
+          - generic [ref=e499]:
+            - text: All Rights Reserved - By
+            - link "Red Network LTD" [ref=e500] [cursor=pointer]:
+              - /url: https://rednetworkbd.net/
+          - generic [ref=e501]:
+            - navigation
+    - generic [ref=e502] [cursor=pointer]: 
+  - generic [ref=e503]: desktop

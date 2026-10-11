@@ -8,12 +8,13 @@ export type McpServerDef =
 
 /**
  * Where an employee's brain runs.
+ * - antigravity: Google Antigravity CLI (`agy`). Your Google AI Pro subscription login.
  * - claude: Claude Code via the Agent SDK. Your Claude subscription login by default, or an API key.
  * - codex:  OpenAI Codex CLI (`codex exec`). Your ChatGPT/Codex subscription login.
  * - gemini: Google Gemini CLI. Your Google account (the same one Antigravity uses).
  * - openai: any OpenAI-compatible chat API: Kimi/Moonshot, OpenRouter, DeepSeek, Groq, xAI, Ollama…
  */
-export type ProviderKind = 'claude' | 'codex' | 'gemini' | 'openai'
+export type ProviderKind = 'antigravity' | 'claude' | 'codex' | 'gemini' | 'openai'
 
 export interface ProviderDef {
   kind: ProviderKind
@@ -244,6 +245,34 @@ export interface ProviderStatus {
   models?: string[]
 }
 
+export type LeadVerificationStatus = 'verified' | 'partially-verified' | 'unverified'
+export type LeadOutreachStatus = 'not-contacted' | 'review-needed' | 'contacted' | 'qualified' | 'not-a-fit'
+
+/** A local, public-business lead. Empty strings mean the source did not publish that field. */
+export interface Lead {
+  id: string
+  businessName: string
+  industry: string
+  districtLocation: string
+  publicBusinessPhone: string
+  officialWebsite: string
+  facebookPageUrl: string
+  sourceUrl: string
+  marketingOpportunity: string
+  verificationStatus: LeadVerificationStatus
+  collectionDate: string
+  outreachStatus: LeadOutreachStatus
+  createdAt: number
+  updatedAt: number
+}
+
+export interface LeadSummary {
+  total: number
+  verified: number
+  partiallyVerified: number
+  unverified: number
+}
+
 export interface AppState {
   team: Team
   conversations: Conversation[]
@@ -269,3 +298,61 @@ export type ServerEvent =
   | { type: 'approval:request'; request: ApprovalRequest }
   | { type: 'approval:resolved'; id: string; allowed: boolean }
   | { type: 'routines'; routines: Routine[] }
+
+export interface ApprovalHistoryItem {
+  id: string
+  conversationId: string
+  agentId: string
+  tool: string
+  summary: string
+  status: 'approved' | 'rejected' | 'auto-approved'
+  autoRule?: string
+  timestamp: number
+}
+
+export interface BotTask {
+  id: string
+  title: string
+  workspace: 'workspace-lead-hunt' | 'workspace-marketing'
+  status: 'queued' | 'running' | 'completed' | 'failed' | 'cancelled' | 'waiting-approval'
+  prompt: string
+  progress?: string
+  logs: string[]
+  createdAt: number
+  startedAt?: number
+  completedAt?: number
+  resultSummary?: string
+  error?: string
+}
+
+export interface MemoryItem {
+  id: string
+  scope: 'lead-hunt' | 'marketing' | 'shared'
+  category: 'preference' | 'instruction' | 'fact' | 'history' | 'task'
+  title: string
+  content: string
+  updatedAt: number
+}
+
+export interface OutputFile {
+  id: string
+  name: string
+  category: 'Lead-Hunt' | 'Marketing'
+  path: string
+  size: number
+  updatedAt: number
+  ext: string
+}
+
+export interface BrowserProfileInfo {
+  id: 'lead-hunt' | 'marketing'
+  name: string
+  purpose: string
+  path: string
+  exists: boolean
+  sizeBytes: number
+  active: boolean
+  lastActivity: number
+  status: 'idle' | 'running' | 'uninitialized'
+}
+

@@ -10,6 +10,10 @@ import { CRON_PRESETS, nextRun } from './cron.js'
 import { emit, subscribe } from './events.js'
 import { mimeOf } from './files.js'
 import { Memory } from './memory.js'
+import { LeadStore, LeadStoreError } from './leads.js'
+import { OutputManager } from './outputs.js'
+import { TaskManager } from './tasks.js'
+import { BrowserManager } from './browser.js'
 import { Orchestrator } from './orchestrator.js'
 import { providerStatuses } from './providers/index.js'
 import { Routines } from './routines.js'
@@ -41,9 +45,14 @@ let team = loadTeam(teamFile)
 const store = new Store(dataDir)
 store.seed(team)
 const account = new Account(path.join(dataDir, 'account.json'))
-const approvals = new Approvals()
+const approvals = new Approvals(dataDir)
 const memory = new Memory(dataDir)
-const orchestrator = new Orchestrator(() => team, store, account, approvals, memory, (p) => allowedFile(p))
+const leads = new LeadStore(dataDir)
+const outputs = new OutputManager(dataDir)
+const browserManager = new BrowserManager(team.workspace)
+let orchestrator: Orchestrator
+const tasks = new TaskManager(dataDir, () => orchestrator, () => approvals)
+orchestrator = new Orchestrator(() => team, store, account, approvals, memory, leads, (p) => allowedFile(p))
 const routines = new Routines(dataDir, (r) => orchestrator.runRoutine(r))
 routines.start()
 
@@ -114,6 +123,319 @@ function allowedFile(p: string): boolean {
 app.get('/api/state', (_req, res) => {
   res.json(state())
 })
+
+// ---- local lead database ----
+
+app.get('/api/leads', (_req, res) => {
+  try {
+    res.json({ leads: leads.list(), summary: leads.summary() })
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.post('/api/leads', (req, res) => {
+  try {
+    res.json(leads.upsert(req.body))
+  } catch (err) {
+    const status = err instanceof LeadStoreError ? 400 : 500
+    res.status(status).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.post('/api/leads/import', (req, res) => {
+  try {
+    res.json(leads.import(req.body))
+  } catch (err) {
+    const status = err instanceof LeadStoreError ? 400 : 500
+    res.status(status).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.delete('/api/leads/:id', (req, res) => {
+  try {
+    if (!leads.remove(String(req.params.id))) {
+      res.status(404).json({ error: 'lead not found' })
+      return
+    }
+    res.status(204).end()
+  } catch (err) {
+    const status = err instanceof LeadStoreError ? 400 : 500
+    res.status(status).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.get('/api/leads/export.csv', (_req, res) => {
+  try {
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8')
+    res.setHeader('Content-Disposition', 'attachment; filename="opengrokbot-leads.csv"')
+    res.send(leads.csv())
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.get('/api/leads/:id', (req, res) => {
+  const item = leads.get(String(req.params.id))
+  if (!item) {
+    res.status(404).json({ error: 'lead not found' })
+    return
+  }
+  res.json({ lead: item })
+})
+
+app.put('/api/leads/:id', (req, res) => {
+  try {
+    const item = leads.update(String(req.params.id), req.body)
+    if (!item) {
+      res.status(404).json({ error: 'lead not found' })
+      return
+    }
+    res.json({ lead: item })
+  } catch (err) {
+    res.status(400).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.post('/api/leads/to-marketing', (req, res) => {
+  try {
+    const { leadIds } = (req.body ?? {}) as { leadIds?: string[] }
+    if (!Array.isArray(leadIds) || leadIds.length === 0) {
+      res.status(400).json({ error: 'leadIds array required' })
+      return
+    }
+    const all = leads.list()
+    const selected = all.filter((l) => leadIds.includes(l.id))
+    if (selected.length === 0) {
+      res.status(404).json({ error: 'No matching leads found' })
+      return
+    }
+
+    const leadList = selected
+      .map(
+        (l) =>
+          `• **${l.businessName}** (${l.industry || 'Business'}, ${l.districtLocation || 'Bangladesh'})\n  Phone: ${l.publicBusinessPhone || 'N/A'} | Website: ${l.officialWebsite || 'N/A'} | FB: ${l.facebookPageUrl || 'N/A'}\n  Opportunity: ${l.marketingOpportunity || 'New lead'}`
+      )
+      .join('\n\n')
+
+    const messageText = `[Sent from Lead Manager] Here are ${selected.length} qualified lead(s) for marketing outreach review:\n\n${leadList}\n\nPlease analyze their business profile and draft personalized Bengali outreach messages for approval.`
+
+    orchestrator.post('workspace-marketing', messageText, { authorId: 'user' })
+    res.json({ ok: true, count: selected.length })
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+// ---- dashboard ----
+
+app.get('/api/dashboard', async (_req, res) => {
+  try {
+    const leadAgent = team.agents.find((a) => a.id === 'lead_collection_specialist')
+    const activeProvider = leadAgent?.provider || 'antigravity'
+    let agyStatus
+    let codexStatus
+    try {
+      const provStatuses = await providerStatuses(team, false)
+      agyStatus = provStatuses.find((p) => p.kind === 'antigravity')
+      codexStatus = provStatuses.find((p) => p.kind === 'codex')
+    } catch {
+      // ignore probe failures
+    }
+
+    const allTasks = tasks.list()
+    const runningTasks = allTasks.filter((t) => t.status === 'running')
+    const queuedTasks = allTasks.filter((t) => t.status === 'queued')
+    const completedTasks = allTasks.filter((t) => t.status === 'completed')
+    const failedTasks = allTasks.filter((t) => t.status === 'failed')
+
+    const leadSummary = leads.summary()
+    const pendingApprovals = approvals.list()
+    const approvalHistory = approvals.getHistory().slice(0, 8)
+    const recentOutputs = outputs.list().slice(0, 6)
+    const browserProfiles = browserManager.getProfiles()
+
+    res.json({
+      activeProvider,
+      providerDetails: {
+        antigravity: agyStatus,
+        codex: codexStatus,
+      },
+      tasks: {
+        running: runningTasks.length,
+        queued: queuedTasks.length,
+        completed: completedTasks.length,
+        failed: failedTasks.length,
+        recent: allTasks.slice(0, 5),
+      },
+      leads: leadSummary,
+      approvals: {
+        pendingCount: pendingApprovals.length,
+        pending: pendingApprovals,
+        recentHistory: approvalHistory,
+      },
+      outputs: {
+        baseDir: outputs.getBaseDir(),
+        recent: recentOutputs,
+      },
+      browsers: browserProfiles,
+    })
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+// ---- tasks ----
+
+app.get('/api/tasks', (_req, res) => {
+  res.json(tasks.list())
+})
+
+app.post('/api/tasks', (req, res) => {
+  try {
+    const { title, workspace, prompt } = req.body ?? {}
+    if (!prompt || typeof prompt !== 'string') {
+      res.status(400).json({ error: 'prompt text is required' })
+      return
+    }
+    const ws = workspace === 'workspace-marketing' ? 'workspace-marketing' : 'workspace-lead-hunt'
+    const t = tasks.create({ title: String(title || 'Task'), workspace: ws, prompt })
+    res.json(t)
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.post('/api/tasks/:id/cancel', (req, res) => {
+  res.json({ ok: tasks.cancel(String(req.params.id)) })
+})
+
+app.post('/api/tasks/:id/retry', (req, res) => {
+  res.json({ ok: tasks.retry(String(req.params.id)) })
+})
+
+app.delete('/api/tasks/:id', (req, res) => {
+  res.json({ ok: tasks.delete(String(req.params.id)) })
+})
+
+app.delete('/api/tasks', (_req, res) => {
+  tasks.clearFinished()
+  res.json({ ok: true })
+})
+
+// ---- memory ----
+
+app.get('/api/memory', (req, res) => {
+  const scope = typeof req.query.scope === 'string' ? (req.query.scope as 'lead-hunt' | 'marketing' | 'shared') : undefined
+  res.json(memory.list(scope))
+})
+
+app.post('/api/memory', (req, res) => {
+  try {
+    const { scope, category, title, content } = req.body ?? {}
+    if (!title || !content) {
+      res.status(400).json({ error: 'title and content are required' })
+      return
+    }
+    const item = memory.add({
+      scope: scope === 'marketing' || scope === 'lead-hunt' ? scope : 'shared',
+      category: ['preference', 'instruction', 'fact', 'history', 'task'].includes(category) ? category : 'fact',
+      title: String(title),
+      content: String(content),
+    })
+    res.json(item)
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.put('/api/memory/:id', (req, res) => {
+  const updated = memory.updateItem(String(req.params.id), req.body ?? {})
+  if (!updated) {
+    res.status(404).json({ error: 'memory item not found' })
+    return
+  }
+  res.json(updated)
+})
+
+app.delete('/api/memory/:id', (req, res) => {
+  res.json({ ok: memory.delete(String(req.params.id)) })
+})
+
+app.get('/api/memory/search', (req, res) => {
+  res.json(memory.search(String(req.query.q || '')))
+})
+
+app.delete('/api/memory', (req, res) => {
+  const scope = typeof req.query.scope === 'string' ? req.query.scope : undefined
+  memory.clear(scope)
+  res.json({ ok: true })
+})
+
+
+// ---- outputs ----
+
+app.get('/api/outputs', (_req, res) => {
+  res.json({ dir: outputs.getBaseDir(), files: outputs.list() })
+})
+
+app.post('/api/outputs/open', (req, res) => {
+  const targetPath = typeof req.body?.path === 'string' ? req.body.path : ''
+  res.json({ ok: outputs.openPath(targetPath) })
+})
+
+app.post('/api/outputs/open-folder', (req, res) => {
+  const category = req.body?.category === 'Marketing' ? 'Marketing' : req.body?.category === 'Lead-Hunt' ? 'Lead-Hunt' : undefined
+  res.json({ ok: outputs.openFolder(category) })
+})
+
+app.get('/api/outputs/preview', (req, res) => {
+  const targetPath = typeof req.query.path === 'string' ? req.query.path : ''
+  const preview = outputs.readFilePreview(targetPath)
+  if (!preview) {
+    res.status(404).json({ error: 'file not found or unreadable' })
+    return
+  }
+  res.json(preview)
+})
+
+app.post('/api/outputs/config', (req, res) => {
+  const newDir = typeof req.body?.dir === 'string' ? req.body.dir : ''
+  if (!newDir) {
+    res.status(400).json({ error: 'dir path required' })
+    return
+  }
+  const ok = outputs.setBaseDir(newDir)
+  res.json({ ok, dir: outputs.getBaseDir() })
+})
+
+// ---- browser manager ----
+
+app.get('/api/browsers', (_req, res) => {
+  res.json(browserManager.getProfiles())
+})
+
+app.post('/api/browsers/:id/open', (req, res) => {
+  const id = req.params.id === 'marketing' ? 'marketing' : 'lead-hunt'
+  res.json(browserManager.openProfile(id))
+})
+
+app.post('/api/browsers/:id/restart', (req, res) => {
+  const id = req.params.id === 'marketing' ? 'marketing' : 'lead-hunt'
+  res.json(browserManager.restartProfile(id))
+})
+
+// ---- approval history ----
+
+app.get('/api/approvals/history', (_req, res) => {
+  res.json(approvals.getHistory())
+})
+
+app.delete('/api/approvals/history', (_req, res) => {
+  approvals.clearHistory()
+  res.json({ ok: true })
+})
+
 
 // ---- conversations ----
 

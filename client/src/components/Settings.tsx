@@ -7,11 +7,12 @@ import { MARKETPLACE, type MarketplaceItem } from '../marketplace'
 import { conversationTitle, personFor } from '../people'
 import { Avatar } from './Avatar'
 import { Providers } from './Providers'
+import { Leads } from './Leads'
 import { Routines } from './Routines'
 import { Skills } from './Skills'
 import { exportAgentUrl, importAgent } from '../api'
 
-export type SettingsSection = 'general' | 'team' | 'providers' | 'marketplace' | 'routines' | 'skills' | 'usage' | 'account'
+export type SettingsSection = 'general' | 'team' | 'providers' | 'leads' | 'marketplace' | 'routines' | 'skills' | 'usage' | 'account'
 
 interface SettingsProps {
   team: Team
@@ -26,6 +27,7 @@ interface SettingsProps {
 }
 
 const NAV: { id: SettingsSection; label: string; icon: string }[] = [
+  { id: 'leads', label: 'Leads', icon: '\\u{1F4CB}' },
   { id: 'general', label: 'General', icon: '⚙️' },
   { id: 'team', label: 'Team', icon: '👥' },
   { id: 'providers', label: 'Providers', icon: '🔌' },
@@ -36,13 +38,21 @@ const NAV: { id: SettingsSection; label: string; icon: string }[] = [
   { id: 'account', label: 'Claude account', icon: '🔑' },
 ]
 
+// The full configuration remains in the local project data, but the day-to-day
+// workspace exposes only the controls needed to use the two chats.
+const SIMPLE_NAV: { id: SettingsSection; label: string; icon: string }[] = [
+  { id: 'providers', label: 'Providers', icon: '' },
+  { id: 'leads', label: 'Leads', icon: '' },
+  { id: 'usage', label: 'Usage', icon: '' },
+]
+
 export function Settings(props: SettingsProps) {
   const { section, onSection, onClose } = props
   return (
     <div className="modal-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="modal settings" role="dialog" aria-label="Settings">
         <nav className="settings-nav">
-          {NAV.map((n) => (
+          {SIMPLE_NAV.map((n) => (
             <button key={n.id} type="button" className={section === n.id ? 'is-active' : ''} onClick={() => onSection(n.id)}>
               <span className="settings-nav-icon">{n.icon}</span>
               {n.label}
@@ -58,6 +68,7 @@ export function Settings(props: SettingsProps) {
           {section === 'general' && <General {...props} />}
           {section === 'team' && <TeamSection {...props} />}
           {section === 'providers' && <Providers team={props.team} />}
+          {section === 'leads' && <Leads />}
           {section === 'marketplace' && <Marketplace {...props} />}
           {section === 'routines' && <Routines team={props.team} conversations={props.conversations} routines={props.routines} />}
           {section === 'skills' && <Skills team={props.team} />}

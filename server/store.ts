@@ -61,6 +61,34 @@ export class Store {
         })
       }
     }
+    // These are the two persistent, user-facing workspaces. Other conversations
+    // remain on disk and are intentionally not removed; the simple desktop UI
+    // merely does not surface them.
+    const workspaces: { id: string; name: string; agentId: string }[] = [
+      { id: 'workspace-lead-hunt', name: 'LEAD HUNT', agentId: 'lead_collection_specialist' },
+      { id: 'workspace-marketing', name: 'MARKETING', agentId: 'marketing' },
+    ]
+    for (const workspace of workspaces) {
+      const members = ['user', ...agentIds.filter((id) => id === workspace.agentId)]
+      const existing = this.conversations.get(workspace.id)
+      if (existing) {
+        existing.name = workspace.name
+        existing.memberIds = members
+        existing.hidden = false
+        existing.pinned = true
+      } else {
+        this.conversations.set(workspace.id, {
+          id: workspace.id,
+          kind: 'group',
+          name: workspace.name,
+          memberIds: members,
+          messages: [],
+          sessions: {},
+          pinned: true,
+          createdAt: Date.now(),
+        })
+      }
+    }
     for (const c of this.conversations.values()) this.flush(c)
   }
 

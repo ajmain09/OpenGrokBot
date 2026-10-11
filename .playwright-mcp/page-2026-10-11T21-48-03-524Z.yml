@@ -1,0 +1,1996 @@
+- generic [ref=f1e12]:
+  - generic [ref=f1e15]:
+    - link "Meta Ad Library" [ref=f1e18] [cursor=pointer]:
+      - /url: /ads/library/?source=fb-logo
+    - generic [ref=f1e21]: Ad Library
+    - menuitem "Ad Library report" [ref=f1e24] [cursor=pointer]
+    - menuitem "Ad Library API" [ref=f1e27] [cursor=pointer]
+    - menuitem "Branded content" [ref=f1e30] [cursor=pointer]
+    - menuitem "Open navigation panel" [ref=f1e33] [cursor=pointer]
+  - generic [ref=f1e41]:
+    - combobox "Bangladesh" [ref=f1e45] [cursor=pointer]
+    - combobox "All ads" [ref=f1e59] [cursor=pointer]
+    - generic [ref=f1e80]:
+      - generic [ref=f1e81]: Search by keyword or advertiser
+      - generic [ref=f1e92]:
+        - searchbox "Search by keyword or advertiser" [ref=f1e100]: t-shirt
+        - button "Clear" [ref=f1e102] [cursor=pointer]
+  - dialog [ref=f1e106]:
+    - generic [ref=f1e107]:
+      - link [ref=f1e108] [cursor=pointer]:
+        - /url: /
+        - heading [level=4] [ref=f1e109]: Log in
+      - menuitem [ref=f1e110] [cursor=pointer]
+    - generic [ref=f1e114]:
+      - generic [ref=f1e115]:
+        - heading [level=4] [ref=f1e117]: Ad Library
+        - menuitem [ref=f1e119] [cursor=pointer]:
+          - heading [level=4] [ref=f1e121]: Ad Library report
+        - menuitem [ref=f1e123] [cursor=pointer]:
+          - heading [level=4] [ref=f1e125]: Ad Library API
+        - menuitem [ref=f1e127] [cursor=pointer]:
+          - heading [level=4] [ref=f1e129]: Branded content
+      - separator [ref=f1e130]
+      - generic [ref=f1e131]:
+        - menuitem [ref=f1e133] [cursor=pointer]:
+          - heading [level=4] [ref=f1e135]: System status
+        - menuitem [ref=f1e137] [cursor=pointer]:
+          - heading [level=4] [ref=f1e139]: Subscribe to email updates
+        - menuitem [ref=f1e141] [cursor=pointer]:
+          - heading [level=4] [ref=f1e143]: FAQ
+        - menuitem [ref=f1e145] [cursor=pointer]:
+          - heading [level=4] [ref=f1e147]: About ads and data use
+        - menuitem [ref=f1e149] [cursor=pointer]:
+          - heading [level=4] [ref=f1e151]: Privacy
+        - menuitem [ref=f1e153] [cursor=pointer]:
+          - heading [level=4] [ref=f1e155]: Terms
+        - menuitem [ref=f1e157] [cursor=pointer]:
+          - heading [level=4] [ref=f1e159]: Cookies
+  - generic [ref=f1e160]:
+    - generic [ref=f1e174]:
+      - generic [ref=f1e180]:
+        - heading "~21,000 results" [level=3] [ref=f1e182]
+        - generic [ref=f1e184]:
+          - text: These results include ads that match your
+          - strong [ref=f1e185]: keyword search.
+      - generic [ref=f1e186]:
+        - generic [ref=f1e195]:
+          - generic [ref=f1e196]:
+            - button "Filters" [ref=f1e197] [cursor=pointer]
+            - generic [ref=f1e206]:
+              - generic [ref=f1e207]: Sort
+              - combobox "Sort" [ref=f1e217] [cursor=pointer]:
+                - generic [ref=f1e218]: Sort by
+          - generic [ref=f1e228]:
+            - generic [ref=f1e230]:
+              - generic [ref=f1e231]:
+                - strong [ref=f1e232]: Active status
+                - text: ": Active ads"
+              - button "Remove" [ref=f1e233] [cursor=pointer]
+            - generic [ref=f1e242]:
+              - generic [ref=f1e243]:
+                - strong [ref=f1e244]: Media type
+                - text: ": Videos"
+              - button "Remove" [ref=f1e245] [cursor=pointer]
+            - button [ref=f1e254] [cursor=pointer]:
+              - strong [ref=f1e259]: Clear All
+        - generic [ref=f1e261]:
+          - generic [ref=f1e263]:
+            - generic [ref=f1e265]:
+              - generic [ref=f1e266]:
+                - generic [ref=f1e267]: Active
+                - generic [ref=f1e277]: "Library ID: 1694147955093644"
+                - generic [ref=f1e280]: Started running on 28 Apr 2026
+                - generic [ref=f1e282]: Platforms
+              - button "Open Drop-down" [ref=f1e328] [cursor=pointer]
+            - button "See ad details" [ref=f1e335] [cursor=pointer]
+            - separator [ref=f1e340]
+            - generic [ref=f1e345]:
+              - generic [ref=f1e347]:
+                - img "UrbanClub" [ref=f1e348]
+                - generic [ref=f1e350]:
+                  - link "UrbanClub" [ref=f1e351] [cursor=pointer]:
+                    - /url: https://www.facebook.com/urbanclubbd/
+                  - generic [ref=f1e355]:
+                    - strong [ref=f1e357]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e358]:
+                - button [ref=f1e361]:
+                  - generic [ref=f1e362]: "৫ পিস ৮৫০ টাকা, ৫০% ডিস্কাউন্টেChina PP fabrics t-shirt. year ending discount offer on t-shirtsSize: M to 2XLChina fabrics t-shirt, sports t-shirt, winter t-shirt, full sleeve t-shirt, best winter collection, Hoodie, Hoodie t-shirt"
+                - group "Video player" [ref=f1e374]:
+                  - button "Play Video" [ref=f1e376] [cursor=pointer]
+                  - generic [ref=f1e378]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:15
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e380] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Furbanclubbd.xyz%2Findex.php%2Fstep%2Fchina-pp-5pcs%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e381]:
+                    - generic [ref=f1e382]:
+                      - button "URBANCLUBBD.XYZ" [ref=f1e384]
+                      - button "৫ পিস ৮৫০ টাকা, ৫০% ডিস্কাউন্টে" [ref=f1e387]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e390]
+          - generic [ref=f1e396]:
+            - generic [ref=f1e398]:
+              - generic [ref=f1e399]:
+                - generic [ref=f1e400]: Active
+                - generic [ref=f1e410]: "Library ID: 2732337427116093"
+                - generic [ref=f1e413]: Started running on 23 Dec 2025
+                - generic [ref=f1e415]: Platforms
+              - button "Open Drop-down" [ref=f1e461] [cursor=pointer]
+            - button "See ad details" [ref=f1e468] [cursor=pointer]
+            - separator [ref=f1e473]
+            - generic [ref=f1e478]:
+              - generic [ref=f1e480]:
+                - img "Menfit" [ref=f1e481]
+                - generic [ref=f1e483]:
+                  - link "Menfit" [ref=f1e484] [cursor=pointer]:
+                    - /url: https://www.facebook.com/61582705838411/
+                  - generic [ref=f1e488]:
+                    - strong [ref=f1e490]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e491]:
+                - button [ref=f1e494]:
+                  - generic [ref=f1e495]: "৭০% ছাড়: ৩ পিস্ ৭৫০ টাকা Unique 3 pcs full sleeve drop shoulder T-Shirt 750 tkSize: M to 2XLChina fabrics t-shirt, sports t-shirt, full sleeve tshirt for winter, winter t-shirt, winter full sleeve unique tshirts"
+                - group "Video player" [ref=f1e507]:
+                  - button "Play Video" [ref=f1e509] [cursor=pointer]
+                  - generic [ref=f1e511]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:12
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e513] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fmenfit.xyz%2Findex.php%2Fstep%2Ffull-sleeve-tshirt-p2%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e514]:
+                    - generic [ref=f1e515]:
+                      - button "MENFIT.XYZ" [ref=f1e517]
+                      - 'button "৭০% ছাড়: ৩ পিস্ ৭৫০ টাকা" [ref=f1e520]'
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e523]
+          - generic [ref=f1e529]:
+            - generic [ref=f1e531]:
+              - generic [ref=f1e532]:
+                - generic [ref=f1e533]: Active
+                - generic [ref=f1e543]: "Library ID: 921471083999867"
+                - generic [ref=f1e546]: Started running on 12 Apr 2026
+                - generic [ref=f1e548]: Platforms
+              - button "Open Drop-down" [ref=f1e594] [cursor=pointer]
+            - button "See ad details" [ref=f1e601] [cursor=pointer]
+            - separator [ref=f1e606]
+            - generic [ref=f1e611]:
+              - generic [ref=f1e613]:
+                - img "Identic Outfit" [ref=f1e614]
+                - generic [ref=f1e616]:
+                  - link "Identic Outfit" [ref=f1e617] [cursor=pointer]:
+                    - /url: https://www.facebook.com/identicoutfit/
+                  - generic [ref=f1e621]:
+                    - strong [ref=f1e623]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e624]:
+                - button [ref=f1e627]:
+                  - generic [ref=f1e628]: মাত্র ৬৯০ টাকায় ৩ পিস Drop Shoulder T-Shirt — এমন সুযোগ বারবার আসে না!এই অফার মিস করলে সত্যিই আফসোস করবেন 😮‍💨কারণ এই দামে এই কোয়ালিটি আর পাবেন না।✔ China Mesh Fabric — আরামদায়ক ও breathable✔ শীতের জামার নিচে পরার জন্য perfect✔ Jacket / Hoodie এর নিচে পরলে looks super stylish✔ Daily wear + winter layering—দুইটাই cover✔ Limited stock — শেষ হলে আর আসবে না📦 Cash on Delivery Available⏳ Stock limited — এখনই অর্ডার করুন!👉 Order Now বাটনে ক্লিক করুনMen’s T-Shirt Combo, Stock Clearance Offer, Tshirt, Mens Fashion , offer
+                - group "Video player" [ref=f1e641]:
+                  - button "Play Video" [ref=f1e643] [cursor=pointer]
+                  - generic [ref=f1e645]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:17
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e647] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fidenticbd.com%2Fstep%2Fstock-offer-combo-b%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e648]:
+                    - generic [ref=f1e649]:
+                      - button "IDENTICBD.COM" [ref=f1e651]
+                      - button "এই দামে আর পাবেন না — ৩ পিস ৬৯০ টাকা" [ref=f1e654]
+                      - button "বছরের সেরা অফার" [ref=f1e657]
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e660]
+          - generic [ref=f1e666]:
+            - generic [ref=f1e668]:
+              - generic [ref=f1e669]:
+                - generic [ref=f1e670]: Active
+                - generic [ref=f1e680]: "Library ID: 984805620898207"
+                - generic [ref=f1e683]: Started running on 23 Apr 2026
+                - generic [ref=f1e685]: Platforms
+              - button "Open Drop-down" [ref=f1e731] [cursor=pointer]
+            - button "See ad details" [ref=f1e738] [cursor=pointer]
+            - separator [ref=f1e743]
+            - generic [ref=f1e748]:
+              - generic [ref=f1e750]:
+                - img "Identic" [ref=f1e751]
+                - generic [ref=f1e753]:
+                  - link "Identic" [ref=f1e754] [cursor=pointer]:
+                    - /url: https://www.facebook.com/identicbd/
+                  - generic [ref=f1e758]:
+                    - strong [ref=f1e760]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e761]:
+                - button [ref=f1e764]:
+                  - generic [ref=f1e765]: মাত্র ৬৯০ টাকায় ৩ পিস Drop Shoulder T-Shirt — এমন সুযোগ বারবার আসে না!এই অফার মিস করলে সত্যিই আফসোস করবেন 😮‍💨কারণ এই দামে এই কোয়ালিটি আর পাবেন না।✔ China Mesh Fabric — আরামদায়ক ও breathable✔ শীতের জামার নিচে পরার জন্য perfect✔ Jacket / Hoodie এর নিচে পরলে looks super stylish✔ Daily wear + winter layering—দুইটাই cover✔ Limited stock — শেষ হলে আর আসবে না📦 Cash on Delivery Available⏳ Stock limited — এখনই অর্ডার করুন!👉 Order Now বাটনে ক্লিক করুনMen’s T-Shirt Combo, Stock Clearance Offer, Tshirt, Mens Fashion , offer
+                - group "Video player" [ref=f1e778]:
+                  - button "Play Video" [ref=f1e780] [cursor=pointer]
+                  - generic [ref=f1e782]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:38
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e784] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fidenticbd.com%2Fstep%2Fstock-offer-combo-b%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e785]:
+                    - generic [ref=f1e786]:
+                      - button "IDENTICBD.COM" [ref=f1e788]
+                      - button "এই দামে আর পাবেন না — ৩ পিস ৬৯০ টাকা" [ref=f1e791]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e794]
+          - generic [ref=f1e800]:
+            - generic [ref=f1e802]:
+              - generic [ref=f1e803]:
+                - generic [ref=f1e804]: Active
+                - generic [ref=f1e814]: "Library ID: 1742062173796847"
+                - generic [ref=f1e817]: Started running on 25 Jul 2026
+                - generic [ref=f1e819]: Platforms
+              - button "Open Drop-down" [ref=f1e865] [cursor=pointer]
+            - button "See ad details" [ref=f1e872] [cursor=pointer]
+            - separator [ref=f1e877]
+            - generic [ref=f1e882]:
+              - generic [ref=f1e884]:
+                - img "Menz Line BD" [ref=f1e885]
+                - generic [ref=f1e887]:
+                  - link "Menz Line BD" [ref=f1e888] [cursor=pointer]:
+                    - /url: https://www.facebook.com/100063792684925/
+                  - generic [ref=f1e892]:
+                    - strong [ref=f1e894]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e895]:
+                - button [ref=f1e898]:
+                  - generic [ref=f1e899]: 🔥 স্টক ক্লিয়ারেন্স অফার!মাত্র ৯৯০ টাকায় ৪ পিস Imported Cross Terry Drop Shoulder T-Shirt!যারা কম দামে প্রিমিয়াম কোয়ালিটি খুঁজছেন, তাদের জন্য সীমিত সময়ের এই অফার।✅ Imported Cross Terry Fabric✅ Premium Oversized Drop Shoulder Fit✅ নরম, আরামদায়ক ও Breathable✅ দীর্ঘদিন ব্যবহারযোগ্য✅ দৈনন্দিন ব্যবহার ও আউটিংয়ের জন্য পারফেক্ট⚠️ স্টক সীমিত!সাইজ বেছে নিন, বাকি আমরা স্টক অনুযায়ী পাঠিয়ে দেব।📦 সারা বাংলাদেশে Cash on Delivery👉 অর্ডার করতে নিচের Order Now বাটনে ক্লিক করুন।
+                - group "Video player" [ref=f1e912]:
+                  - button "Play Video" [ref=f1e914] [cursor=pointer]
+                  - generic [ref=f1e916]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 0:59
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e918] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fmenzline.com%2Fstep%2Fds5%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e919]:
+                    - generic [ref=f1e920]:
+                      - button "MENZLINE.COM" [ref=f1e922]
+                      - button "🔥 মাত্র ৯৯০ টাকা ৪ পিস Imported Cross Terry টি-শার্ট" [ref=f1e925]
+                      - button "স্টক শেষ হওয়ার আগেই অর্ডার করুন!" [ref=f1e928]
+                      - generic:
+                        - button
+                    - button "Shop now" [ref=f1e931]
+          - generic [ref=f1e937]:
+            - generic [ref=f1e939]:
+              - generic [ref=f1e940]:
+                - generic [ref=f1e941]: Active
+                - generic [ref=f1e951]: "Library ID: 1927728171230471"
+                - generic [ref=f1e954]: Started running on 13 Aug 2026
+                - generic [ref=f1e956]: Platforms
+              - button "Open Drop-down" [ref=f1e1011] [cursor=pointer]
+            - button "See ad details" [ref=f1e1018] [cursor=pointer]
+            - separator [ref=f1e1023]
+            - generic [ref=f1e1028]:
+              - generic [ref=f1e1030]:
+                - img "UrbanClub" [ref=f1e1031]
+                - generic [ref=f1e1033]:
+                  - link "UrbanClub" [ref=f1e1034] [cursor=pointer]:
+                    - /url: https://www.facebook.com/urbanclubbd/
+                  - generic [ref=f1e1038]:
+                    - strong [ref=f1e1040]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e1041]:
+                - button [ref=f1e1044]:
+                  - generic [ref=f1e1045]: "৫ পিস ৮৫০ টাকা, ৫০% ডিস্কাউন্টেChina PP fabrics t-shirt. year ending discount offer on t-shirtsSize: M to 2XLChina fabrics t-shirt, sports t-shirt, winter t-shirt, full sleeve t-shirt, best winter collection, Hoodie, Hoodie t-shirt"
+                - group "Video player" [ref=f1e1057]:
+                  - button "Play Video" [ref=f1e1059] [cursor=pointer]
+                  - generic [ref=f1e1061]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:27
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e1063] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Furbanclubbd.xyz%2Findex.php%2Fstep%2Fchina-pp-t-shirt-5pcs-m2%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e1064]:
+                    - generic [ref=f1e1065]:
+                      - button "URBANCLUBBD.XYZ" [ref=f1e1067]
+                      - button "৫ পিস ৮৫০ টাকা, ৫০% ডিস্কাউন্টে" [ref=f1e1070]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e1073]
+          - generic [ref=f1e1079]:
+            - generic [ref=f1e1081]:
+              - generic [ref=f1e1082]:
+                - generic [ref=f1e1083]: Active
+                - generic [ref=f1e1093]: "Library ID: 1698518034556272"
+                - generic [ref=f1e1096]: Started running on 9 Aug 2026
+                - generic [ref=f1e1098]: Platforms
+              - button "Open Drop-down" [ref=f1e1144] [cursor=pointer]
+            - button "See ad details" [ref=f1e1151] [cursor=pointer]
+            - separator [ref=f1e1156]
+            - generic [ref=f1e1161]:
+              - generic [ref=f1e1163]:
+                - img "𝗙𝗮𝗯𝗿𝗶𝘀𝘁𝘆𝗹𝗲" [ref=f1e1164]
+                - generic [ref=f1e1166]:
+                  - link "𝗙𝗮𝗯𝗿𝗶𝘀𝘁𝘆𝗹𝗲" [ref=f1e1167] [cursor=pointer]:
+                    - /url: https://www.facebook.com/fabristyle.bd/
+                  - generic [ref=f1e1171]:
+                    - strong [ref=f1e1173]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e1174]:
+                - button [ref=f1e1177]:
+                  - generic [ref=f1e1178]: "৫ পিস টি-শার্ট মাত্র ৮৫০ টাকায় !!Best Quality 5pcs T-Shirt 850 tk.👉 Imported Chine PP- টেকসই, কুল ও আরামদায়ক👉 ফ্যাশনেবল & ট্রেন্ডি👉 Multiple Colors & Sizes Available 👉 Cash on Delivery 🚚 বাংলাদেশে যেকোন জায়গায়👉 Hurry! Limited Stock – পরে আফসোস করবেন না।#TshirtCollection #MensFashion #SportsTshirt"
+                - group "Video player" [ref=f1e1191]:
+                  - button "Play Video" [ref=f1e1193] [cursor=pointer]
+                  - generic [ref=f1e1195]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:39
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e1197] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Ffabristylebd.com%2Fstep%2Ft-shirt-5pcs-combo%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e1198]:
+                    - generic [ref=f1e1199]:
+                      - button "FABRISTYLEBD.COM" [ref=f1e1201]
+                      - button "৫ পিস ৮৫০ টাকা, সুপার ডিসকাউন্ট" [ref=f1e1204]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e1207]
+          - generic [ref=f1e1213]:
+            - generic [ref=f1e1215]:
+              - generic [ref=f1e1216]:
+                - generic [ref=f1e1217]: Active
+                - generic [ref=f1e1227]: "Library ID: 2497072287375570"
+                - generic [ref=f1e1230]: Started running on 17 Apr 2026
+                - generic [ref=f1e1232]: Platforms
+              - button "Open Drop-down" [ref=f1e1278] [cursor=pointer]
+            - button "See ad details" [ref=f1e1285] [cursor=pointer]
+            - separator [ref=f1e1290]
+            - generic [ref=f1e1295]:
+              - generic [ref=f1e1297]:
+                - img "Mentek" [ref=f1e1298]
+                - generic [ref=f1e1300]:
+                  - link "Mentek" [ref=f1e1301] [cursor=pointer]:
+                    - /url: https://www.facebook.com/61583340166281/
+                  - generic [ref=f1e1305]:
+                    - strong [ref=f1e1307]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e1308]:
+                - button [ref=f1e1311]:
+                  - generic [ref=f1e1312]: "ধামাকা অফার ৩ পিস ৬৯০ টাকা, স্টক ক্লিয়ারেন্স সেল চলছেBest Quality 3pcs drop shoulder T-Shirt 690 tkSize: M to 2XLChina fabrics t-shirt, sports t-shirt"
+                - group "Video player" [ref=f1e1324]:
+                  - button "Play Video" [ref=f1e1326] [cursor=pointer]
+                  - generic [ref=f1e1328]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:04
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e1330] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fmentek.xyz%2Findex.php%2Fstep%2Ft-shirt-3pcs-combo-p2&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e1331]:
+                    - generic [ref=f1e1332]:
+                      - button "MENTEK.XYZ" [ref=f1e1334]
+                      - button "ক্লিয়ারেন্স অফার ৩ পিস ৬৯০ টাকা - ৭০% ডিস্কাউন্ট" [ref=f1e1337]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e1340]
+          - generic [ref=f1e1346]:
+            - generic [ref=f1e1348]:
+              - generic [ref=f1e1349]:
+                - generic [ref=f1e1350]: Active
+                - generic [ref=f1e1360]: "Library ID: 673577779147908"
+                - generic [ref=f1e1363]: Started running on 22 Oct 2025
+                - generic [ref=f1e1365]: Platforms
+              - button "Open Drop-down" [ref=f1e1411] [cursor=pointer]
+            - button "See ad details" [ref=f1e1418] [cursor=pointer]
+            - separator [ref=f1e1423]
+            - generic [ref=f1e1428]:
+              - generic [ref=f1e1430]:
+                - img "HALAL Fashion Mart" [ref=f1e1431]
+                - generic [ref=f1e1433]:
+                  - link "HALAL Fashion Mart" [ref=f1e1434] [cursor=pointer]:
+                    - /url: https://www.facebook.com/HALALFashionMart/
+                  - generic [ref=f1e1438]:
+                    - strong [ref=f1e1440]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e1441]:
+                - button [ref=f1e1444]:
+                  - generic [ref=f1e1445]: "💥 ২ পিস নিলেই পাচ্ছেন 𝐅𝐑𝐄𝐄 𝐃𝐄𝐋𝐈𝐕𝐄𝐑𝐘 💥📌 এই অফার সীমিত সময়ের জন্য.....▫️ নেওয়ার সময় খুলে দেখে পেমেন্ট করতে পারবেন। দাম অনুযায়ী কোয়ালিটি ঠিক থাকলে এবং ছবির সাথে মিল থাকলে রাখবেন, না হলে রিটার্ন করে দিতে পারবেন।তবে দাম অনুযায়ী বেস্ট কোয়ালিটি পাবেন ইন শা আল্লাহ।🥰🧿 আমরা দিচ্ছি দাম অনুযায়ী কোয়ালিটি সম্পন্ন পণ্য। দাম অনুযায়ী কোয়ালিটি সম্পন্ন পণ্য যদি না পান, তাহলে অবশ্যই রিটার্ন করে দিতে পারবেন।👉 আপনার সঠিক সাইজটি নিশ্চিত করুনঃ-🔹M - Length 28\", Chest 40\"🔹L - Length 29\", Chest 42\"🔹XL - Length 30\", Chest 44\"🔹XXL - Length 31\", Chest 46\"💠 কোন বিষয়ে জানতে চাইলে অথবা পাইকারী নিতে চাইলে যোগাযোগ করুন এই নাম্বারগুলোতে:- 📞 +8801628-686851 (bKash, What's App)▫️আমাদের আপডেট কালেকশন গুলো দেখতে What's App এ নক দিন।☎️ Customer Service Number: 01840-398999🎯আমরা দিচ্ছি,👉১০০% কালার এবং কোয়ালিটি গ্যারান্টি।👉 ক্যাশ অন ডেলিভারীর সুবিধা। 🚚 ডেলিভারি টাইম পাঠাও কুরিয়ারে ৩/৪ দিন সারা বাংলাদেশ।📱আপনার মোবাইল এর ডিসপ্লের জন্য ছবির কালার কিছুটা ভিন্ন দেখাতে পারে, তাই অবশ্যই ম্যাসেজে কালার জিজ্ঞেস করে নিবেন। এবং সিউর হয়ে অর্ডার করবেন।#newcollection2025 #cloth #clothing #bangladesh #onlineshop #onlineshopping #trend #brand #item #branding #offer #bigsale #bigoffer #onlinemarketing #shirt #tshirt #eidoffer #officialshirt #formalshirt #casualshirt"
+                - group "Video player" [ref=f1e1458]:
+                  - button "Play Video" [ref=f1e1460] [cursor=pointer]
+                  - generic [ref=f1e1462]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 0:56
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e1464] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fhalalfashionmart.com%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e1465]:
+                    - generic [ref=f1e1466]:
+                      - button "HALALFASHIONMART.COM" [ref=f1e1468]
+                      - button "নেওয়ার সময় খুলে দেখে পেমেন্ট করতে পারবেন" [ref=f1e1471]
+                      - button "👉১০০% কালার এবং কোয়ালিটি গ্যারান্টি। 👉 ক্যাশ অন ডেলিভারীর সুবিধা।" [ref=f1e1474]
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e1477]
+          - generic [ref=f1e1483]:
+            - generic [ref=f1e1485]:
+              - generic [ref=f1e1486]:
+                - generic [ref=f1e1487]: Active
+                - generic [ref=f1e1497]: "Library ID: 1754142812575423"
+                - generic [ref=f1e1500]: Started running on 2 Sep 2026
+                - generic [ref=f1e1502]: Platforms
+              - button "Open Drop-down" [ref=f1e1557] [cursor=pointer]
+            - button "See ad details" [ref=f1e1564] [cursor=pointer]
+            - separator [ref=f1e1569]
+            - generic [ref=f1e1574]:
+              - generic [ref=f1e1576]:
+                - img "Menzline" [ref=f1e1577]
+                - generic [ref=f1e1579]:
+                  - link "Menzline" [ref=f1e1580] [cursor=pointer]:
+                    - /url: https://www.facebook.com/61566922887862/
+                  - generic [ref=f1e1584]:
+                    - strong [ref=f1e1586]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e1587]:
+                - button [ref=f1e1590]:
+                  - generic [ref=f1e1591]: 🔥 স্টক ক্লিয়ারেন্স অফার!মাত্র ৯৯০ টাকায় ৪ পিস Imported Cross Terry Drop Shoulder T-Shirt!যারা কম দামে প্রিমিয়াম কোয়ালিটি খুঁজছেন, তাদের জন্য সীমিত সময়ের এই অফার।✅ Imported Cross Terry Fabric✅ Premium Oversized Drop Shoulder Fit✅ নরম, আরামদায়ক ও Breathable✅ দীর্ঘদিন ব্যবহারযোগ্য✅ দৈনন্দিন ব্যবহার ও আউটিংয়ের জন্য পারফেক্ট⚠️ স্টক সীমিত!সাইজ বেছে নিন, বাকি আমরা স্টক অনুযায়ী পাঠিয়ে দেব।📦 সারা বাংলাদেশে Cash on Delivery👉 অর্ডার করতে নিচের Order Now বাটনে ক্লিক করুন।DropShoulder, Tshirt, Solid-Tshirt, Mensfashion, Clothing, Mensclothing.
+                - group "Video player" [ref=f1e1604]:
+                  - button "Play Video" [ref=f1e1606] [cursor=pointer]
+                  - generic [ref=f1e1608]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 0:54
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e1610] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fmenzlinebd.com%2Fstep%2F4-pcs-combo-t-shirt%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e1611]:
+                    - generic [ref=f1e1612]:
+                      - button "MENZLINEBD.COM" [ref=f1e1614]
+                      - button "🔥 মাত্র ৯৯০ টাকা ৪ পিস Dropshoulder Tshirt" [ref=f1e1617]
+                      - button "স্টক শেষ হওয়ার আগেই অর্ডার করুন!" [ref=f1e1620]
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e1623]
+          - generic [ref=f1e1629]:
+            - generic [ref=f1e1631]:
+              - generic [ref=f1e1632]:
+                - generic [ref=f1e1633]: Active
+                - generic [ref=f1e1643]: "Library ID: 1577261850229287"
+                - generic [ref=f1e1646]: Started running on 9 Mar 2026
+                - generic [ref=f1e1648]: Platforms
+              - button "Open Drop-down" [ref=f1e1686] [cursor=pointer]
+            - button "See ad details" [ref=f1e1693] [cursor=pointer]
+            - separator [ref=f1e1698]
+            - generic [ref=f1e1703]:
+              - generic [ref=f1e1705]:
+                - img "Narana Lifestyle" [ref=f1e1706]
+                - generic [ref=f1e1708]:
+                  - link "Narana Lifestyle" [ref=f1e1709] [cursor=pointer]:
+                    - /url: https://www.facebook.com/NaranaLifestyle/
+                  - generic [ref=f1e1713]:
+                    - strong [ref=f1e1715]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e1716]:
+                - button [ref=f1e1719]:
+                  - generic [ref=f1e1720]: "Flat 20% OFF this Eid! 🔥Upgrade your style at Narana Lifestyle.📍 Agrabad Badamtoli More, Chattogram+880 1828 536666#EidOffer #NaranaLifestyle #Chattogram #FashionBD #EidCollection"
+                - group "Video player" [ref=f1e1732]:
+                  - button "Play Video" [ref=f1e1734] [cursor=pointer]
+                  - generic [ref=f1e1736]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:52
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - generic [ref=f1e1737]:
+                  - generic [ref=f1e1738]:
+                    - generic:
+                      - button
+                    - button "Narana Lifestyle" [ref=f1e1740]
+                    - button "Clothing, Women's Clothing, Men's Clothing" [ref=f1e1743]
+                    - generic:
+                      - button
+                  - button "Send message" [disabled] [ref=f1e1746]
+          - generic [ref=f1e1752]:
+            - generic [ref=f1e1754]:
+              - generic [ref=f1e1755]:
+                - generic [ref=f1e1756]: Active
+                - generic [ref=f1e1766]: "Library ID: 1021527930509619"
+                - generic [ref=f1e1769]: Started running on 25 Jul 2026
+                - generic [ref=f1e1771]: Platforms
+                - generic [ref=f1e1791]: This ad has multiple versions
+              - button "Open Drop-down" [ref=f1e1802] [cursor=pointer]
+            - button "See ad details" [ref=f1e1809] [cursor=pointer]
+            - separator [ref=f1e1814]
+            - generic [ref=f1e1819]:
+              - generic [ref=f1e1822]:
+                - img "Fabrilife" [ref=f1e1823]
+                - generic [ref=f1e1825]:
+                  - link "Fabrilife" [ref=f1e1826] [cursor=pointer]:
+                    - /url: https://www.facebook.com/fabrilife/
+                  - generic [ref=f1e1830]:
+                    - strong [ref=f1e1832]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e1834]:
+                - button "৯ লাখ+ মানুষ এমনি এমনি Fabrilife-কে ভরসা করে না 💛 এবার উইমেন্স কালেকশনেও সেই একই কোয়ালিটি। পছন্দেরটা বেছে নিন Shop Now থেকে।" [ref=f1e1837]
+                - link "FABRILIFE.COM Fabrilife Shop Now" [ref=f1e1841] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Ffabrilife.com%2Fproduct%2F71678-woman-premium-trouser-aurora-red&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e1843]:
+                    - generic [ref=f1e1844]:
+                      - button "FABRILIFE.COM" [ref=f1e1846]
+                      - button "Fabrilife" [ref=f1e1849]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Shop Now" [ref=f1e1852]
+          - generic [ref=f1e1858]:
+            - generic [ref=f1e1860]:
+              - generic [ref=f1e1861]:
+                - generic [ref=f1e1862]: Active
+                - generic [ref=f1e1872]: "Library ID: 1072703358458786"
+                - generic [ref=f1e1875]: Started running on 10 Aug 2026
+                - generic [ref=f1e1877]: Platforms
+                - generic [ref=f1e1905]: This ad has multiple versions
+                - generic [ref=f1e1914]: EU transparency
+              - button "Open Drop-down" [ref=f1e1925] [cursor=pointer]
+            - button "See ad details" [ref=f1e1932] [cursor=pointer]
+            - separator [ref=f1e1937]
+            - generic [ref=f1e1942]:
+              - generic [ref=f1e1945]:
+                - img "Learn A New Language" [ref=f1e1946]
+                - generic [ref=f1e1948]:
+                  - link "Learn A New Language" [ref=f1e1949] [cursor=pointer]:
+                    - /url: https://www.facebook.com/learnlanguagenew/
+                  - generic [ref=f1e1953]:
+                    - strong [ref=f1e1955]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e1957]:
+                - button "Speak more confidently with AI lessons, chat, and voice practice." [ref=f1e1960]
+                - group "Video player" [ref=f1e1972]:
+                  - button "Play Video" [ref=f1e1974] [cursor=pointer]
+                  - generic [ref=f1e1976]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 0:18
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e1978] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.ailanguage.learnlanguage.speaklanguage&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e1979]:
+                    - generic [ref=f1e1980]:
+                      - generic:
+                        - button
+                      - button "Try it now" [ref=f1e1982]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Install Now" [ref=f1e1985]
+          - generic [ref=f1e1991]:
+            - generic [ref=f1e1993]:
+              - generic [ref=f1e1994]:
+                - generic [ref=f1e1995]: Active
+                - generic [ref=f1e2005]: "Library ID: 4285957324882139"
+                - generic [ref=f1e2008]: Started running on 17 May 2026
+                - generic [ref=f1e2010]: Platforms
+              - button "Open Drop-down" [ref=f1e2048] [cursor=pointer]
+            - button "See ad details" [ref=f1e2055] [cursor=pointer]
+            - separator [ref=f1e2060]
+            - generic [ref=f1e2065]:
+              - generic [ref=f1e2067]:
+                - img "Narana Lifestyle" [ref=f1e2068]
+                - generic [ref=f1e2070]:
+                  - link "Narana Lifestyle" [ref=f1e2071] [cursor=pointer]:
+                    - /url: https://www.facebook.com/NaranaLifestyle/
+                  - generic [ref=f1e2075]:
+                    - strong [ref=f1e2077]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e2078]:
+                - button [ref=f1e2081]:
+                  - generic [ref=f1e2082]: 🎥 “চট্টগ্রামে শপিং মানেই এখন Narana Lifestyle!”ফ্যাশন, অ্যাক্সেসরিজ, লাইফস্টাইল প্রোডাক্ট — সব এক জায়গায় 🛍️📍 3193/3665 শেখ মুজিব রোড, বাদামতলী সার্কেল, আগ্রাবাদ, চট্টগ্রাম।
+                - group "Video player" [ref=f1e2094]:
+                  - button "Play Video" [ref=f1e2096] [cursor=pointer]
+                  - generic [ref=f1e2098]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 2:56
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+          - generic [ref=f1e2100]:
+            - generic [ref=f1e2102]:
+              - generic [ref=f1e2103]:
+                - generic [ref=f1e2104]: Active
+                - generic [ref=f1e2114]: "Library ID: 1437291364175338"
+                - generic [ref=f1e2117]: Started running on 17 Jul 2025
+                - generic [ref=f1e2119]: Platforms
+              - button "Open Drop-down" [ref=f1e2157] [cursor=pointer]
+            - button "See ad details" [ref=f1e2164] [cursor=pointer]
+            - separator [ref=f1e2169]
+            - generic [ref=f1e2174]:
+              - generic [ref=f1e2176]:
+                - img "ZAIAX" [ref=f1e2177]
+                - generic [ref=f1e2179]:
+                  - link "ZAIAX" [ref=f1e2180] [cursor=pointer]:
+                    - /url: https://www.facebook.com/zaiaxofficial/
+                  - generic [ref=f1e2184]:
+                    - strong [ref=f1e2186]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e2187]:
+                - 'button "কম্বো অফারে সেরা দামে এই প্রিমিয়াম এই টিশার্ট গুলো কেনার সুযোগ হাতছাড়া না করতে চাইলে এখনই ইনবক্স করুন... ধন্যবাদ ... #zaiax #premium #tshirt" [ref=f1e2190]'
+                - group "Video player" [ref=f1e2203]:
+                  - button "Play Video" [ref=f1e2205] [cursor=pointer]
+                  - generic [ref=f1e2207]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:42
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - generic [ref=f1e2208]:
+                  - generic [ref=f1e2209]:
+                    - generic:
+                      - button
+                    - button "ZAIAX" [ref=f1e2211]
+                    - button "Clothing (brand)" [ref=f1e2214]
+                    - generic:
+                      - button
+                  - button "Send message" [disabled] [ref=f1e2217]
+          - generic [ref=f1e2223]:
+            - generic [ref=f1e2225]:
+              - generic [ref=f1e2226]:
+                - generic [ref=f1e2227]: Active
+                - generic [ref=f1e2237]: "Library ID: 28241980458732631"
+                - generic [ref=f1e2240]: Started running on 25 Jul 2026
+                - generic [ref=f1e2242]: Platforms
+              - button "Open Drop-down" [ref=f1e2288] [cursor=pointer]
+            - button "See ad details" [ref=f1e2295] [cursor=pointer]
+            - separator [ref=f1e2300]
+            - generic [ref=f1e2305]:
+              - generic [ref=f1e2307]:
+                - img "Menz Line BD" [ref=f1e2308]
+                - generic [ref=f1e2310]:
+                  - link "Menz Line BD" [ref=f1e2311] [cursor=pointer]:
+                    - /url: https://www.facebook.com/100063792684925/
+                  - generic [ref=f1e2315]:
+                    - strong [ref=f1e2317]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e2318]:
+                - button [ref=f1e2321]:
+                  - generic [ref=f1e2322]: 🔥 স্টক ক্লিয়ারেন্স অফার!মাত্র ৯৯০ টাকায় ৪ পিস Imported Cross Terry Drop Shoulder T-Shirt!যারা কম দামে প্রিমিয়াম কোয়ালিটি খুঁজছেন, তাদের জন্য সীমিত সময়ের এই অফার।✅ Imported Cross Terry Fabric✅ Premium Oversized Drop Shoulder Fit✅ নরম, আরামদায়ক ও Breathable✅ দীর্ঘদিন ব্যবহারযোগ্য✅ দৈনন্দিন ব্যবহার ও আউটিংয়ের জন্য পারফেক্ট⚠️ স্টক সীমিত!সাইজ বেছে নিন, বাকি আমরা স্টক অনুযায়ী পাঠিয়ে দেব।📦 সারা বাংলাদেশে Cash on Delivery👉 অর্ডার করতে নিচের Order Now বাটনে ক্লিক করুন।
+                - group "Video player" [ref=f1e2335]:
+                  - button "Play Video" [ref=f1e2337] [cursor=pointer]
+                  - generic [ref=f1e2339]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:00
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e2341] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fmenzline.com%2Fstep%2Fds5%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e2342]:
+                    - generic [ref=f1e2343]:
+                      - button "MENZLINE.COM" [ref=f1e2345]
+                      - button "🔥 মাত্র ৯৯০ টাকা ৪ পিস Imported Cross Terry টি-শার্ট" [ref=f1e2348]
+                      - button "স্টক শেষ হওয়ার আগেই অর্ডার করুন!" [ref=f1e2351]
+                      - generic:
+                        - button
+                    - button "Shop now" [ref=f1e2354]
+          - generic [ref=f1e2360]:
+            - generic [ref=f1e2362]:
+              - generic [ref=f1e2363]:
+                - generic [ref=f1e2364]: Active
+                - generic [ref=f1e2374]: "Library ID: 1019630997368977"
+                - generic [ref=f1e2377]: Started running on 2 Aug 2026
+                - generic [ref=f1e2379]: Platforms
+              - button "Open Drop-down" [ref=f1e2434] [cursor=pointer]
+            - button "See ad details" [ref=f1e2441] [cursor=pointer]
+            - separator [ref=f1e2446]
+            - generic [ref=f1e2451]:
+              - generic [ref=f1e2453]:
+                - img "Branzzo Outfit" [ref=f1e2454]
+                - generic [ref=f1e2456]:
+                  - link "Branzzo Outfit" [ref=f1e2457] [cursor=pointer]:
+                    - /url: https://www.facebook.com/61590687501106/
+                  - generic [ref=f1e2461]:
+                    - strong [ref=f1e2463]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e2464]:
+                - button [ref=f1e2467]:
+                  - generic [ref=f1e2468]: "৫ পিস টি-শার্ট মাত্র ৯৯০ টাকা 😎এমন অফার বারবার আসে না, ✨ বিশেষত্ব:✅ হালকা, নরম ও ব্রিদেবল ফ্যাব্রিক✅ ঘাম ও অস্বস্তি কম অনুভূত হয়✅ দীর্ঘ সময় পরেও ভারী লাগে না✅ কাপড়ে ছোট ছোট ছিদ্র থাকায় সহজে বাতাস চলাচল করে✅ বাসা, আড্ডা, ভ্রমণ ও দৈনন্দিন ব্যবহারের জন্য উপযোগী 📦 Stock Limited📞 অর্ডার করতে কল করুন: 09617576762👉 অথবা এখনই Order Now চাপে অর্ডার করুন স্টক শেষ হওয়ার আগেই! Premium T-Shirt, Ultra Soft Tshirt, Summer Fashion, Summer Wear, Cool Fabrics, Light Wear Style, Daily Wear, Mens Style"
+                - group "Video player" [ref=f1e2481]:
+                  - button "Play Video" [ref=f1e2483] [cursor=pointer]
+                  - generic [ref=f1e2485]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:38
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e2487] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fbranzzobd.com%2Fpages%2F5-pis-ti-sart-matr-990-taka&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e2488]:
+                    - generic [ref=f1e2489]:
+                      - button "BRANZZOBD.COM" [ref=f1e2491]
+                      - button "৫ পিস টি-শার্ট ৯৯০ টাকা, স্টক প্রায়ই শেষ" [ref=f1e2494]
+                      - 'button "🔥 ৫ পিস টি-শার্ট মাত্র ৯৯০ টাকায় 😍 গরমে আরামদায়ক, হালকা ও ব্রিদেবল ফ্যাব্রিক, জিম, জগিং, খেলাধুলা ও ডেইলি ইউজের জন্য পারফেক্ট। 📦 স্টক শেষ হওয়ার আগেই 👉 অর্ডার করতে: Order Now চাপুন! 📞 কল করুন : 09617576762 নাম্বারে।" [ref=f1e2497]'
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e2500]
+          - generic [ref=f1e2506]:
+            - generic [ref=f1e2508]:
+              - generic [ref=f1e2509]:
+                - generic [ref=f1e2510]: Active
+                - generic [ref=f1e2520]: "Library ID: 2181259182673202"
+                - generic [ref=f1e2523]: Started running on 12 Jun 2026
+                - generic [ref=f1e2525]: Platforms
+              - button "Open Drop-down" [ref=f1e2563] [cursor=pointer]
+            - button "See ad details" [ref=f1e2570] [cursor=pointer]
+            - separator [ref=f1e2575]
+            - generic [ref=f1e2580]:
+              - generic [ref=f1e2582]:
+                - img "ZAIAX" [ref=f1e2583]
+                - generic [ref=f1e2585]:
+                  - link "ZAIAX" [ref=f1e2586] [cursor=pointer]:
+                    - /url: https://www.facebook.com/zaiaxofficial/
+                  - generic [ref=f1e2590]:
+                    - strong [ref=f1e2592]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e2593]:
+                - 'button "সর্বনিন্ম দামে প্রিমিয়াম এই ২৫ টা😮 ডিজাইন থেকে যে কোন ২, ৩, ৪টা পছন্দ করে কম্বো অফারে নিতে পারবেন। ✅✅ স্টক সীমিত। #zaiax #premium #tshirt #contest #menslifestyle #fun #raglan #upcoming" [ref=f1e2596]'
+                - group "Video player" [ref=f1e2609]:
+                  - button "Play Video" [ref=f1e2611] [cursor=pointer]
+                  - generic [ref=f1e2613]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:26
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - generic [ref=f1e2614]:
+                  - generic [ref=f1e2615]:
+                    - generic:
+                      - button
+                    - button "Combo Offer Running" [ref=f1e2617]
+                    - button "Clothing (Brand)" [ref=f1e2620]
+                    - generic:
+                      - button
+                  - button "Send message" [disabled] [ref=f1e2623]
+          - generic [ref=f1e2629]:
+            - generic [ref=f1e2631]:
+              - generic [ref=f1e2632]:
+                - generic [ref=f1e2633]: Active
+                - generic [ref=f1e2643]: "Library ID: 1536095801161382"
+                - generic [ref=f1e2646]: Started running on 18 Aug 2026
+                - generic [ref=f1e2648]: Platforms
+                - generic [ref=f1e2692]: EU transparency
+              - button "Open Drop-down" [ref=f1e2703] [cursor=pointer]
+            - button "See ad details" [ref=f1e2710] [cursor=pointer]
+            - separator [ref=f1e2715]
+            - generic [ref=f1e2720]:
+              - generic [ref=f1e2722]:
+                - img "IMVU" [ref=f1e2723]
+                - generic [ref=f1e2725]:
+                  - link "IMVU" [ref=f1e2726] [cursor=pointer]:
+                    - /url: https://www.facebook.com/IMVU/
+                  - generic [ref=f1e2730]:
+                    - strong [ref=f1e2732]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e2733]:
+                - button "Are you ready?" [ref=f1e2736]
+                - group "Video player" [ref=f1e2748]:
+                  - button "Play Video" [ref=f1e2750] [cursor=pointer]
+                  - generic [ref=f1e2752]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 0:50
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e2754] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=http%3A%2F%2Fitunes.apple.com%2Fapp%2Fid919745844&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e2755]:
+                    - generic [ref=f1e2756]:
+                      - button "ITUNES.APPLE.COM" [ref=f1e2758]
+                      - button "IMVU" [ref=f1e2761]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Play game" [ref=f1e2764]
+          - generic [ref=f1e2770]:
+            - generic [ref=f1e2772]:
+              - generic [ref=f1e2773]:
+                - generic [ref=f1e2774]: Active
+                - generic [ref=f1e2784]: "Library ID: 1540971307706263"
+                - generic [ref=f1e2787]: Started running on 18 Jun 2026
+                - generic [ref=f1e2789]: Platforms
+              - button "Open Drop-down" [ref=f1e2835] [cursor=pointer]
+            - button "See ad details" [ref=f1e2842] [cursor=pointer]
+            - separator [ref=f1e2847]
+            - generic [ref=f1e2852]:
+              - generic [ref=f1e2854]:
+                - img "The Brand Factory" [ref=f1e2855]
+                - generic [ref=f1e2857]:
+                  - link "The Brand Factory" [ref=f1e2858] [cursor=pointer]:
+                    - /url: https://www.facebook.com/thebrandfactorybd/
+                  - generic [ref=f1e2862]:
+                    - strong [ref=f1e2864]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e2865]:
+                - button [ref=f1e2868]:
+                  - generic [ref=f1e2869]: 🔥 ৬৯০ টাকায় ৩ পিস Drop Shoulder T-Shirt! 😳এই দামে এমন কোয়ালিটি — মার্কেটে খুঁজে পাবেন না!❗ স্টক ক্লিয়ারেন্স চলছেআজকে আছে, কালকে নাও থাকতে পারে...📦 Cash on Delivery Available⏳ Stock limited — এখনই অর্ডার করুন!👉 Order Now বাটনে ক্লিক করুনMen’s T-Shirt Combo, Stock Clearance Offer, Tshirt, Mens Fashion , offer
+                - group "Video player" [ref=f1e2882]:
+                  - button "Play Video" [ref=f1e2884] [cursor=pointer]
+                  - generic [ref=f1e2886]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 0:44
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e2888] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fthebrandfactorybd.com%2Fstep%2Fstockclearanceofferds1%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e2889]:
+                    - generic [ref=f1e2890]:
+                      - button "THEBRANDFACTORYBD.COM" [ref=f1e2892]
+                      - button "৬৯০ টাকায় ৩ পিস! 😱 স্টক শেষ হলে আর পাবেন না" [ref=f1e2895]
+                      - button "স্টক শেষ হলে অফার বন্ধ" [ref=f1e2898]
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e2901]
+          - generic [ref=f1e2907]:
+            - generic [ref=f1e2909]:
+              - generic [ref=f1e2910]:
+                - generic [ref=f1e2911]: Active
+                - generic [ref=f1e2921]: "Library ID: 2591229004673604"
+                - generic [ref=f1e2924]: Started running on 27 Sep 2026
+                - generic [ref=f1e2926]: Platforms
+                - generic [ref=f1e2954]: This ad has multiple versions
+                - generic [ref=f1e2963]: EU transparency
+              - button "Open Drop-down" [ref=f1e2974] [cursor=pointer]
+            - button "See ad details" [ref=f1e2981] [cursor=pointer]
+            - separator [ref=f1e2986]
+            - generic [ref=f1e2991]:
+              - generic [ref=f1e2994]:
+                - 'img "LingoSpeak: AI English Tutor" [ref=f1e2995]'
+                - generic [ref=f1e2997]:
+                  - 'link "LingoSpeak: AI English Tutor" [ref=f1e2998] [cursor=pointer]':
+                    - /url: https://www.facebook.com/61591668344490/
+                  - generic [ref=f1e3002]:
+                    - strong [ref=f1e3004]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e3006]:
+                - button "Want to speak English with confidence? Let’s practice!" [ref=f1e3009]
+                - group "Video player" [ref=f1e3021]:
+                  - button "Play Video" [ref=f1e3023] [cursor=pointer]
+                  - generic [ref=f1e3025]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:07
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e3027] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dlingospeak.english.learnlanguage.speak&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e3028]:
+                    - generic [ref=f1e3029]:
+                      - generic:
+                        - button
+                      - button "Your AI tutor is ready." [ref=f1e3031]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Download" [ref=f1e3034]
+          - generic [ref=f1e3040]:
+            - generic [ref=f1e3042]:
+              - generic [ref=f1e3043]:
+                - generic [ref=f1e3044]: Active
+                - generic [ref=f1e3054]: "Library ID: 1773153120495998"
+                - generic [ref=f1e3057]: Started running on 2 Sep 2026
+                - generic [ref=f1e3059]: Platforms
+              - button "Open Drop-down" [ref=f1e3114] [cursor=pointer]
+            - button "See ad details" [ref=f1e3121] [cursor=pointer]
+            - separator [ref=f1e3126]
+            - generic [ref=f1e3131]:
+              - generic [ref=f1e3133]:
+                - img "Menzline" [ref=f1e3134]
+                - generic [ref=f1e3136]:
+                  - link "Menzline" [ref=f1e3137] [cursor=pointer]:
+                    - /url: https://www.facebook.com/61566922887862/
+                  - generic [ref=f1e3141]:
+                    - strong [ref=f1e3143]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e3144]:
+                - button [ref=f1e3147]:
+                  - generic [ref=f1e3148]: 🔥 স্টক ক্লিয়ারেন্স অফার!মাত্র ৯৯০ টাকায় ৪ পিস Imported Cross Terry Drop Shoulder T-Shirt!যারা কম দামে প্রিমিয়াম কোয়ালিটি খুঁজছেন, তাদের জন্য সীমিত সময়ের এই অফার।✅ Imported Cross Terry Fabric✅ Premium Oversized Drop Shoulder Fit✅ নরম, আরামদায়ক ও Breathable✅ দীর্ঘদিন ব্যবহারযোগ্য✅ দৈনন্দিন ব্যবহার ও আউটিংয়ের জন্য পারফেক্ট⚠️ স্টক সীমিত!সাইজ বেছে নিন, বাকি আমরা স্টক অনুযায়ী পাঠিয়ে দেব।📦 সারা বাংলাদেশে Cash on Delivery👉 অর্ডার করতে নিচের Order Now বাটনে ক্লিক করুন।DropShoulder, Tshirt, Solid-Tshirt, Mensfashion, Clothing, Mensclothing.
+                - group "Video player" [ref=f1e3161]:
+                  - button "Play Video" [ref=f1e3163] [cursor=pointer]
+                  - generic [ref=f1e3165]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 0:57
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e3167] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fmenzlinebd.com%2Fstep%2F4-pcs-combo-t-shirt%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e3168]:
+                    - generic [ref=f1e3169]:
+                      - button "MENZLINEBD.COM" [ref=f1e3171]
+                      - button "🔥 মাত্র ৯৯০ টাকা ৪ পিস Dropshoulder Tshirt" [ref=f1e3174]
+                      - button "স্টক শেষ হওয়ার আগেই অর্ডার করুন!" [ref=f1e3177]
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e3180]
+          - generic [ref=f1e3186]:
+            - generic [ref=f1e3188]:
+              - generic [ref=f1e3189]:
+                - generic [ref=f1e3190]: Active
+                - generic [ref=f1e3200]: "Library ID: 1599998451004513"
+                - generic [ref=f1e3203]: Started running on 20 Jan 2026
+                - generic [ref=f1e3205]: Platforms
+                - generic [ref=f1e3250]:
+                  - strong [ref=f1e3251]: 2 ads
+                  - text: use this creative and text
+              - button "Open Drop-down" [ref=f1e3254] [cursor=pointer]
+            - button "See summary details" [ref=f1e3261] [cursor=pointer]
+            - separator [ref=f1e3266]
+            - generic [ref=f1e3271]:
+              - generic [ref=f1e3273]:
+                - img "Yegg" [ref=f1e3274]
+                - generic [ref=f1e3276]:
+                  - link "Yegg" [ref=f1e3277] [cursor=pointer]:
+                    - /url: https://www.facebook.com/yeggofficial/
+                  - generic [ref=f1e3281]:
+                    - strong [ref=f1e3283]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e3284]:
+                - button [ref=f1e3287]:
+                  - generic [ref=f1e3288]: New arrival ⚜️YEGG | PREMIUM CLASSIC T-SHIRT‼️Spandex cotton fabric T-shirt featuring a textured, stretchable design for a comfortable and stylish fit. Soft, breathable, and durable, perfect for casual and semi-formal wear.▪️Fabric:- Spandex cotton fabrics▪️Gsm:- 200+ GSM
+                - group "Video player" [ref=f1e3301]:
+                  - button "Play Video" [ref=f1e3303] [cursor=pointer]
+                  - generic [ref=f1e3305]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 0:24
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - generic:
+                  - link:
+                    - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fyegglifestyle.com%2Fproduct-category%2Ft-shirt%2Fpremium-t-shirt%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+          - generic [ref=f1e3307]:
+            - generic [ref=f1e3309]:
+              - generic [ref=f1e3310]:
+                - generic [ref=f1e3311]: Active
+                - generic [ref=f1e3321]: "Library ID: 1611452030489622"
+                - generic [ref=f1e3324]: Started running on 9 Sep 2026
+                - generic [ref=f1e3326]: Platforms
+              - button "Open Drop-down" [ref=f1e3372] [cursor=pointer]
+            - button "See ad details" [ref=f1e3379] [cursor=pointer]
+            - separator [ref=f1e3384]
+            - generic [ref=f1e3389]:
+              - generic [ref=f1e3391]:
+                - img "Mark Zero" [ref=f1e3392]
+                - generic [ref=f1e3394]:
+                  - link "Mark Zero" [ref=f1e3395] [cursor=pointer]:
+                    - /url: https://www.facebook.com/markzerobd/
+                  - generic [ref=f1e3399]:
+                    - strong [ref=f1e3401]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e3402]:
+                - button [ref=f1e3405]:
+                  - generic [ref=f1e3406]: "Discount + Discount + Discount3 pcs 490 tk. Best summer tank top t-shirt50% discount in tank topSize: M to 2XLChina mash fabrics, too much breathableBest tank top t-shirt for summer"
+                - group "Video player" [ref=f1e3418]:
+                  - button "Play Video" [ref=f1e3420] [cursor=pointer]
+                  - generic [ref=f1e3422]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:07
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e3424] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fmarkzero.xyz%2Fstep%2Ftank-top-p2%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e3425]:
+                    - generic [ref=f1e3426]:
+                      - button "MARKZERO.XYZ" [ref=f1e3428]
+                      - button "3 pcs 490 tk - 60% discount" [ref=f1e3431]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e3434]
+          - generic [ref=f1e3440]:
+            - generic [ref=f1e3442]:
+              - generic [ref=f1e3443]:
+                - generic [ref=f1e3444]: Active
+                - generic [ref=f1e3454]: "Library ID: 1981119495932442"
+                - generic [ref=f1e3457]: Started running on 10 Sep 2026
+                - generic [ref=f1e3459]: Platforms
+              - button "Open Drop-down" [ref=f1e3497] [cursor=pointer]
+            - button "See ad details" [ref=f1e3504] [cursor=pointer]
+            - separator [ref=f1e3509]
+            - generic [ref=f1e3514]:
+              - generic [ref=f1e3516]:
+                - img "Muntley Hench" [ref=f1e3517]
+                - generic [ref=f1e3519]:
+                  - link "Muntley Hench" [ref=f1e3520] [cursor=pointer]:
+                    - /url: https://www.facebook.com/100086558294110/
+                  - generic [ref=f1e3524]:
+                    - strong [ref=f1e3526]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e3527]:
+                - button [ref=f1e3530]:
+                  - generic [ref=f1e3531]: মাত্র ৯৯৯ টাকায় ৪ পিস polo T-shirt 🔥Polo টিশার্ট গুলো অনায়াসে অনেক দিন ব্যবহার করতে পারবেন।ডেলিভার ম্যান এর সামনে খুলে দেখে চেক করে নিতে পারবেন।
+                - group "Video player" [ref=f1e3543]:
+                  - button "Play Video" [ref=f1e3545] [cursor=pointer]
+                  - generic [ref=f1e3547]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:05
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e3549] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Festich.com%2Fstep%2Fgucci-2pcs-combo-2%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e3550]:
+                    - generic [ref=f1e3551]:
+                      - button "ESTICH.COM" [ref=f1e3553]
+                      - button "৪ পিস polo T-shirt মাত্র ৯৯৯ টাকায় 🔥" [ref=f1e3556]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e3559]
+          - generic [ref=f1e3565]:
+            - generic [ref=f1e3567]:
+              - generic [ref=f1e3568]:
+                - generic [ref=f1e3569]: Active
+                - generic [ref=f1e3579]: "Library ID: 1192273083071424"
+                - generic [ref=f1e3582]: Started running on 14 Feb 2026
+                - generic [ref=f1e3584]: Platforms
+              - button "Open Drop-down" [ref=f1e3630] [cursor=pointer]
+            - button "See ad details" [ref=f1e3637] [cursor=pointer]
+            - separator [ref=f1e3642]
+            - generic [ref=f1e3647]:
+              - generic [ref=f1e3649]:
+                - img "Trouser & T-Shirt Store" [ref=f1e3650]
+                - generic [ref=f1e3652]:
+                  - link "Trouser & T-Shirt Store" [ref=f1e3653] [cursor=pointer]:
+                    - /url: https://www.facebook.com/StyleFashion24bd/
+                  - generic [ref=f1e3657]:
+                    - strong [ref=f1e3659]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e3660]:
+                - button [ref=f1e3663]:
+                  - generic [ref=f1e3666]:
+                    - text: "আমাদের ট্রাউজার গুলোতে যা থাকছে:✅ বড় সাইজের সাইড পকেট (জিপারসহ) – মোবাইল, মানিব্যাগ রাখতে একদম পারফেক্ট✅ উন্নত মানের সেলাই ও ফিনিশিং – ১০০% কালার গ্যারান্টি✅ ঢিলেঢালা আরামদায়ক কাট – উঠা-বসায় কোনো অস্বস্তি নেই✅ নিজস্ব প্রোডাকশন হওয়ায় – সেরা মানে পাচ্ছেন কম দামেআমাদের প্রতিটি পণ্য QC (Quality Check) করে তবেই বাজারে ছাড়া হয়।🔘 অর্ডার করতে ইনবক্স করুন:"
+                    - link "https://newroyalnobel.xyz/" [ref=f1e3668] [cursor=pointer]:
+                      - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fnewroyalnobel.xyz%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                    - text: "📦 ঢাকা সিটির ডেলিভারি চার্জ: ৭০ টাকা📦 ঢাকার বাইরে: ১৩০ টাকা📞 WhatsApp: 01841-829544"
+                - group "Video player" [ref=f1e3678]:
+                  - button "Play Video" [ref=f1e3680] [cursor=pointer]
+                  - generic [ref=f1e3682]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 4:05
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e3684] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fnewroyalnobel.xyz%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e3685]:
+                    - generic [ref=f1e3686]:
+                      - button "NEWROYALNOBEL.XYZ" [ref=f1e3688]
+                      - button "৩৯০ টাকায় সুতি ট্রাউজার" [ref=f1e3691]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e3694]
+          - generic [ref=f1e3700]:
+            - generic [ref=f1e3702]:
+              - generic [ref=f1e3703]:
+                - generic [ref=f1e3704]: Active
+                - generic [ref=f1e3714]: "Library ID: 1329858862632404"
+                - generic [ref=f1e3717]: Started running on 11 Jul 2026
+                - generic [ref=f1e3719]: Platforms
+                - generic [ref=f1e3763]: This ad has multiple versions
+              - button "Open Drop-down" [ref=f1e3774] [cursor=pointer]
+            - button "See ad details" [ref=f1e3781] [cursor=pointer]
+            - separator [ref=f1e3786]
+            - generic [ref=f1e3791]:
+              - generic [ref=f1e3794]:
+                - img "RIZA by TRYLO" [ref=f1e3795]
+                - generic [ref=f1e3797]:
+                  - link "RIZA by TRYLO" [ref=f1e3798] [cursor=pointer]:
+                    - /url: https://www.facebook.com/tryloindia/
+                  - generic [ref=f1e3802]:
+                    - strong [ref=f1e3804]: Sponsored
+                    - generic:
+                      - strong
+              - link [ref=f1e3807] [cursor=pointer]:
+                - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.tryloindia.com%2Friza-superfit.html&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                - generic [ref=f1e3808]:
+                  - generic:
+                    - generic:
+                      - button
+                    - generic:
+                      - button
+                    - generic:
+                      - button
+                    - generic:
+                      - button
+                  - button "Shop Now" [ref=f1e3810]
+          - generic [ref=f1e3816]:
+            - generic [ref=f1e3818]:
+              - generic [ref=f1e3819]:
+                - generic [ref=f1e3820]: Active
+                - generic [ref=f1e3830]: "Library ID: 1612499360399523"
+                - generic [ref=f1e3833]: Started running on 4 Sep 2026
+                - generic [ref=f1e3835]: Platforms
+              - button "Open Drop-down" [ref=f1e3890] [cursor=pointer]
+            - button "See ad details" [ref=f1e3897] [cursor=pointer]
+            - separator [ref=f1e3902]
+            - generic [ref=f1e3907]:
+              - generic [ref=f1e3909]:
+                - img "Identic Outfit" [ref=f1e3910]
+                - generic [ref=f1e3912]:
+                  - link "Identic Outfit" [ref=f1e3913] [cursor=pointer]:
+                    - /url: https://www.facebook.com/identicoutfit/
+                  - generic [ref=f1e3917]:
+                    - strong [ref=f1e3919]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e3920]:
+                - button [ref=f1e3923]:
+                  - generic [ref=f1e3924]: 🔥 স্টক ক্লিয়ারেন্স অফার!মাত্র ৯৯০ টাকায় ৪ পিস Imported Cross Terry Drop Shoulder T-Shirt!যারা কম দামে প্রিমিয়াম কোয়ালিটি খুঁজছেন, তাদের জন্য সীমিত সময়ের এই অফার।✅ Imported Cross Terry Fabric✅ Premium Oversized Drop Shoulder Fit✅ নরম, আরামদায়ক ও Breathable✅ দীর্ঘদিন ব্যবহারযোগ্য✅ দৈনন্দিন ব্যবহার ও আউটিংয়ের জন্য পারফেক্ট⚠️ স্টক সীমিত!সাইজ বেছে নিন, বাকি আমরা স্টক অনুযায়ী পাঠিয়ে দেব।📦 সারা বাংলাদেশে Cash on Delivery👉 অর্ডার করতে নিচের Order Now বাটনে ক্লিক করুন।DropShoulder, Tshirt, Solid-Tshirt, Mensfashion, Clothing, Mensclothing.
+                - group "Video player" [ref=f1e3937]:
+                  - button "Play Video" [ref=f1e3939] [cursor=pointer]
+                  - generic [ref=f1e3941]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 1:19
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e3943] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fidenticbd.com%2Fstep%2Fdropsholder-combo%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e3944]:
+                    - generic [ref=f1e3945]:
+                      - button "IDENTICBD.COM" [ref=f1e3947]
+                      - button "🔥 মাত্র ৯৯০ টাকা ৪ পিস Dropshoulder Tshirt" [ref=f1e3950]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e3953]
+          - generic [ref=f1e3959]:
+            - generic [ref=f1e3961]:
+              - generic [ref=f1e3962]:
+                - generic [ref=f1e3963]: Active
+                - generic [ref=f1e3973]: "Library ID: 2283238979105546"
+                - generic [ref=f1e3976]: Started running on 28 Aug 2026
+                - generic [ref=f1e3978]: Platforms
+              - button "Open Drop-down" [ref=f1e4016] [cursor=pointer]
+            - button "See ad details" [ref=f1e4023] [cursor=pointer]
+            - separator [ref=f1e4028]
+            - generic [ref=f1e4033]:
+              - generic [ref=f1e4035]:
+                - img "ZyloMen" [ref=f1e4036]
+                - generic [ref=f1e4038]:
+                  - link "ZyloMen" [ref=f1e4039] [cursor=pointer]:
+                    - /url: https://www.facebook.com/zylomenbd/
+                  - generic [ref=f1e4043]:
+                    - strong [ref=f1e4045]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e4046]:
+                - button [ref=f1e4049]:
+                  - generic [ref=f1e4050]: 🔥 স্টক ক্লিয়ারেন্স অফার!মাত্র ৯৯০ টাকায় ৪ পিস Imported Cross Terry Drop Shoulder T-Shirt!যারা কম দামে প্রিমিয়াম কোয়ালিটি খুঁজছেন, তাদের জন্য সীমিত সময়ের এই অফার।✅ Imported Cross Terry Fabric✅ Premium Oversized Drop Shoulder Fit✅ নরম, আরামদায়ক ও Breathable✅ দীর্ঘদিন ব্যবহারযোগ্য✅ দৈনন্দিন ব্যবহার ও আউটিংয়ের জন্য পারফেক্ট⚠️ স্টক সীমিত!সাইজ বেছে নিন, বাকি আমরা স্টক অনুযায়ী পাঠিয়ে দেব।📦 সারা বাংলাদেশে Cash on Delivery👉 অর্ডার করতে নিচের Order Now বাটনে ক্লিক করুন।DropShoulder, Tshirt, Solid-Tshirt, Mensfashion, Clothing, Mensclothing.
+                - group "Video player" [ref=f1e4063]:
+                  - button "Play Video" [ref=f1e4065] [cursor=pointer]
+                  - generic [ref=f1e4067]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 0:51
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e4069] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fzylomenbd.com%2Fstep%2Fdropsholder-combo%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e4070]:
+                    - generic [ref=f1e4071]:
+                      - button "ZYLOMENBD.COM" [ref=f1e4073]
+                      - button "🔥 মাত্র ৯৯০ টাকা ৪ পিস Dropshoulder Tshirt" [ref=f1e4076]
+                      - generic:
+                        - button
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e4079]
+          - generic [ref=f1e4085]:
+            - generic [ref=f1e4087]:
+              - generic [ref=f1e4088]:
+                - generic [ref=f1e4089]: Active
+                - generic [ref=f1e4099]: "Library ID: 35334677512843835"
+                - generic [ref=f1e4102]: Started running on 6 May 2026
+                - generic [ref=f1e4104]: Platforms
+              - button "Open Drop-down" [ref=f1e4150] [cursor=pointer]
+            - button "See ad details" [ref=f1e4157] [cursor=pointer]
+            - separator [ref=f1e4162]
+            - generic [ref=f1e4167]:
+              - generic [ref=f1e4169]:
+                - img "Daily Wear" [ref=f1e4170]
+                - generic [ref=f1e4172]:
+                  - link "Daily Wear" [ref=f1e4173] [cursor=pointer]:
+                    - /url: https://www.facebook.com/61587032324446/
+                  - generic [ref=f1e4177]:
+                    - strong [ref=f1e4179]: Sponsored
+                    - generic:
+                      - strong
+              - generic [ref=f1e4180]:
+                - button [ref=f1e4183]:
+                  - generic [ref=f1e4184]: "🎁 কম্বো অফার প্রাইসে দুর্দান্ত বেবি কালেকশন!💥 ৫ সেট ৯৯০ টাকা👕 এক্সপোর্ট কোয়ালিটির সুতি কাপড় – একদম সফট ও আরামদায়ক📝 বিস্তারিত সাইজ চার্ট (৬ মাস – ৬ বছর)👶 6 মাস- 1 বছর 👕 T-Shirt: Chest – 21\", Length – 13.5\" 👖 Pant: Waist – 14\", Length – 10\"👶 1 বছর - 2 বছর 👕 T-Shirt: Chest – 22\", Length – 14.5\" 👖 Pant: Waist – 15\", Length – 10.5\"👧 2 বছর - 3 বছর 👕 T-Shirt: Chest – 24\", Length – 15.5\" 👖 Pant: Waist – 16\", Length – 11\"👦 3 বছর - 4 বছর 👕 T-Shirt: Chest – 25\", Length – 16.5\" 👖 Pant: Waist – 17\", Length – 11.5\"👧 4 বছর - 5 বছর 👕 T-Shirt: Chest – 26\", Length – 17.5\" 👖 Pant: Waist – 18\", Length – 12.5\"👦 5 বছর - 6 বছর 👕 T-Shirt: Chest – 27\", Length – 19\" 👖 Pant: Waist – 19\", Length – 13\"📝 বয়স অনুযায়ী উপযুক্ত সাইজ: 6 মাস থেকে 6 বছর পর্যন্ত ☎ অর্ডারের জন্য কল করুন অথবা ইনবক্স করুন: 01841829544🚛 ঢাকার ভিতরে ডেলিভারি চার্জ ৭০ টাকাঢাকার বাহিরে ১৩০টাকা।"
+                - group "Video player" [ref=f1e4197]:
+                  - button "Play Video" [ref=f1e4199] [cursor=pointer]
+                  - generic [ref=f1e4201]:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Play"
+                      - generic: 0:00 / 0:30
+                    - generic:
+                      - generic:
+                        - slider "Change Position"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Settings"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button "Enter full-screen"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - slider "Change volume"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Unmute"
+                - link [ref=f1e4203] [cursor=pointer]:
+                  - /url: https://l.facebook.com/l.php?u=http%3A%2F%2Fdailywear.shop%2F&h=AUA5m9q94CvDebwoB_hXa2Qh6WHx12GNJWw9pW5BOM7E3eBo6JFSgKh0yGhfET5JvpLNd1wN8PaFuOj_9F9riRrB4l_jAtRbJAIFxZ3Z-5fwisoPl6W1O7uRbJ2h70Bf64FIjRY8YtALgDjdXPhuDw
+                  - generic [ref=f1e4204]:
+                    - generic [ref=f1e4205]:
+                      - button "DAILYWEAR.SHOP" [ref=f1e4207]
+                      - button "৫ সেট ৯৯০ টাকা" [ref=f1e4210]
+                      - button "কম্বো অফার প্রাইসে দুর্দান্ত বেবি কালেকশন" [ref=f1e4213]
+                      - generic:
+                        - button
+                    - button "Order now" [ref=f1e4216]
+        - button "See more" [ref=f1e4221] [cursor=pointer]
+    - generic [ref=f1e4226]:
+      - generic [ref=f1e4227]: System status
+      - generic [ref=f1e4241]:
+        - list [ref=f1e4242]:
+          - listitem [ref=f1e4243]:
+            - heading [level=3] [ref=f1e4244]:
+              - link "Ad Library API" [ref=f1e4245] [cursor=pointer]:
+                - /url: /ads/library/api/?source=archive-landing-page
+          - listitem [ref=f1e4246]:
+            - heading [level=3] [ref=f1e4247]:
+              - link "About ads and data use" [ref=f1e4248] [cursor=pointer]:
+                - /url: /ads/about/?entry_product=ad_library
+          - listitem [ref=f1e4249]:
+            - heading [level=3] [ref=f1e4250]:
+              - link "Privacy" [ref=f1e4251] [cursor=pointer]:
+                - /url: /privacy/center/?entry_point=privacy_basics_redirect
+          - listitem [ref=f1e4252]:
+            - heading [level=3] [ref=f1e4253]:
+              - link "Terms" [ref=f1e4254] [cursor=pointer]:
+                - /url: /policies/
+          - listitem [ref=f1e4255]:
+            - heading [level=3] [ref=f1e4256]:
+              - link "Cookies" [ref=f1e4257] [cursor=pointer]:
+                - /url: /policies/cookies/
+        - heading [level=3] [ref=f1e4259]:
+          - link "English (UK)" [ref=f1e4260] [cursor=pointer]:
+            - /url: /language/

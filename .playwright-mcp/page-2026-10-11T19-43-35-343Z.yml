@@ -1,0 +1,216 @@
+- main [ref=f3e2]:
+  - generic [ref=f3e5]:
+    - generic [ref=f3e6]:
+      - link "16577" [ref=f3e9] [cursor=pointer]:
+        - /url: tel:16577
+      - text: or
+      - link "09677111999" [ref=f3e10] [cursor=pointer]:
+        - /url: tel:09677111999
+      - link "support@bracmail.net" [ref=f3e13] [cursor=pointer]:
+        - /url: mailto:support@bracmail.net
+    - list [ref=f3e14]:
+      - listitem [ref=f3e15]:
+        - link "BTRC APPROVED TARIFF" [ref=f3e16] [cursor=pointer]:
+          - /url: /btrc-approved-tariff.pdf
+      - listitem [ref=f3e17]:
+        - link "SELF CARE" [ref=f3e18] [cursor=pointer]:
+          - /url: https://selfcare.bracnet.net/
+  - navigation [ref=f3e19]:
+    - generic [ref=f3e20]:
+      - 'link "Logo: click to to go homepage" [ref=f3e21] [cursor=pointer]':
+        - /url: https://bracnet.net
+      - generic [ref=f3e25]:
+        - button "Services & Solutions" [ref=f3e27] [cursor=pointer]
+        - button "Company" [ref=f3e31] [cursor=pointer]
+        - button "Career" [ref=f3e35] [cursor=pointer]
+        - button "Media" [ref=f3e39] [cursor=pointer]
+        - link "Contact" [ref=f3e42] [cursor=pointer]:
+          - /url: https://bracnet.net/contact
+        - link "Get Quote" [ref=f3e43] [cursor=pointer]:
+          - /url: https://bracnet.net/request-for-quote
+  - generic [ref=f3e45]:
+    - generic [ref=f3e46]:
+      - heading "HOME INTERNET CONNECTIVITY" [level=1] [ref=f3e47]
+      - paragraph [ref=f3e48]: When your connection is everything
+      - paragraph [ref=f3e49]: BRACNet offers you with Fiber optic internet connection transforming your daily broadband connection experience with high-speed internet. Our FTTH (Fiber to the Home) technology provides you with different internet packages with fully-dedicated Fiber optic cable which connect up to 60 devices via a professional-grade Wi-Fi router modem. These internet packages offer faster HD video streaming, heavy file downloads, and uploads.
+      - link "Explore packages at BRACNet Connect" [ref=f3e51] [cursor=pointer]:
+        - /url: https://bracnetconnect.net#target-section
+    - img "HOME INTERNET CONNECTIVITY" [ref=f3e57]
+  - complementary [ref=f3e58]:
+    - generic [ref=f3e59]:
+      - paragraph [ref=f3e60]: SERVICE & SOLUTIONS
+      - generic [ref=f3e61]:
+        - link "Corporate Internet" [ref=f3e63] [cursor=pointer]:
+          - /url: https://bracnet.net/corporate-internet
+        - link "Data Connectivity" [ref=f3e65] [cursor=pointer]:
+          - /url: https://bracnet.net/data-connectivity
+        - link "Home Internet" [ref=f3e67] [cursor=pointer]:
+          - /url: https://bracnet.net/home-internet
+        - link "Cyber Security" [ref=f3e69] [cursor=pointer]:
+          - /url: https://bracnet.net/cyber-security
+        - link "Network Security" [ref=f3e71] [cursor=pointer]:
+          - /url: https://bracnet.net/network-security
+        - link "Surveillance" [ref=f3e73] [cursor=pointer]:
+          - /url: https://bracnet.net/surveillance
+        - link "Network Infrastructure" [ref=f3e75] [cursor=pointer]:
+          - /url: https://bracnet.net/network-infrastructure
+        - link "Cloud Solutions" [ref=f3e77] [cursor=pointer]:
+          - /url: https://bracnet.net/cloud-solutions
+        - link "IPTSP" [ref=f3e79] [cursor=pointer]:
+          - /url: https://bracnet.net/voice-and-sms
+        - link "Software development" [ref=f3e81] [cursor=pointer]:
+          - /url: https://bracnet.net/software-development
+        - link "IoT Solutions" [ref=f3e83] [cursor=pointer]:
+          - /url: https://bracnet.net/iot-solutions
+        - link "Hosting & Servers" [ref=f3e85] [cursor=pointer]:
+          - /url: https://bracnet.net/web-hosting
+        - link "Business Suite" [ref=f3e87] [cursor=pointer]:
+          - /url: https://bracnet.net/business-suite
+        - link "Managed Service" [ref=f3e89] [cursor=pointer]:
+          - /url: https://bracnet.net/managed-service
+      - paragraph [ref=f3e90]: COMPANY
+      - generic [ref=f3e91]:
+        - link "About us" [ref=f3e93] [cursor=pointer]:
+          - /url: /about-us
+        - link "Board of Directors" [ref=f3e95] [cursor=pointer]:
+          - /url: /board-of-directors
+        - link "Leadership Team" [ref=f3e97] [cursor=pointer]:
+          - /url: /leadership-team
+        - link "Career" [ref=f3e99] [cursor=pointer]:
+          - /url: https://bracnet.net/career
+        - link "Brand guidelines" [ref=f3e101] [cursor=pointer]:
+          - /url: https://bracnet.net/brand-guidelines
+        - link "Contact" [ref=f3e103] [cursor=pointer]:
+          - /url: https://bracnet.net/contact
+        - link "Gallery" [ref=f3e105] [cursor=pointer]:
+          - /url: https://bracnet.net/gallery
+        - link "News & events" [ref=f3e107] [cursor=pointer]:
+          - /url: https://bracnet.net/news-events
+        - link "Clients" [ref=f3e109] [cursor=pointer]:
+          - /url: https://bracnet.net/clients
+        - link "Awards & certifications" [ref=f3e111] [cursor=pointer]:
+          - /url: https://bracnet.net/awards-certifications
+        - link "FAQ" [ref=f3e113] [cursor=pointer]:
+          - /url: https://bracnet.net/faq
+        - link "Self care" [ref=f3e115] [cursor=pointer]:
+          - /url: https://selfcare.bracnet.net
+        - link "Employee portal" [ref=f3e117] [cursor=pointer]:
+          - /url: https://attendance.bracnet.net
+        - link "BTRC approved tariff" [ref=f3e119] [cursor=pointer]:
+          - /url: https://bracnet.net/btrc-approved-tariff.pdf
+      - generic [ref=f3e120]:
+        - generic [ref=f3e121]:
+          - paragraph [ref=f3e122]:
+            - text: 24 / 7 / 365 Support
+            - link "Contact Us" [ref=f3e123] [cursor=pointer]:
+              - /url: /contact
+          - generic [ref=f3e124]:
+            - link "16577" [ref=f3e125] [cursor=pointer]:
+              - /url: tel:16577
+            - link "09677111999" [ref=f3e126] [cursor=pointer]:
+              - /url: tel:09677111999
+            - link "support@bracmail.net" [ref=f3e127] [cursor=pointer]:
+              - /url: mailto:support@bracmail.net
+            - paragraph [ref=f3e128]:
+              - link "Linkedin page" [ref=f3e129] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/bracnet-limited
+              - link "Facebook page" [ref=f3e132] [cursor=pointer]:
+                - /url: https://www.facebook.com/bracnetlimited/
+              - link "Instagram ID" [ref=f3e135] [cursor=pointer]:
+                - /url: https://www.instagram.com/bracnet_limited/
+              - link "Youtube page" [ref=f3e138] [cursor=pointer]:
+                - /url: https://www.youtube.com/@bracnetlimited3772
+        - generic [ref=f3e141]:
+          - generic [ref=f3e142]: Corporate Office
+          - text: Navana Yusuf Infinity (Level-7),16 Mohakhali C/ A, Dhaka - 1212
+        - generic [ref=f3e146]:
+          - generic [ref=f3e147]:
+            - generic [ref=f3e148]: Chattagram Office
+            - text: Azadi Tower (Level-7),Momin Road, Chattagram- 4000
+            - paragraph [ref=f3e152]:
+              - text: "Call:"
+              - link "+880312854596" [ref=f3e153] [cursor=pointer]:
+                - /url: tel:+880312854596
+              - text: or
+              - link "+880312854597" [ref=f3e154] [cursor=pointer]:
+                - /url: tel:+880312854597
+          - generic [ref=f3e155]:
+            - generic [ref=f3e156]: Sylhet Office
+            - text: Sylhet City Center (Level-9),Zindabazar, Sylhet- 3100
+            - paragraph [ref=f3e160]:
+              - text: "Call:"
+              - link "+8809677111803" [ref=f3e161] [cursor=pointer]:
+                - /url: tel:+8809677111803
+          - generic [ref=f3e162]:
+            - generic [ref=f3e163]: Khulna Office
+            - text: 129 Sir Iqbal Road (Arafat Goli),Khulna Sadar, Khulna- 9100
+            - paragraph [ref=f3e167]:
+              - text: "Call:"
+              - link "+8801894974011" [ref=f3e168] [cursor=pointer]:
+                - /url: tel:+8801894974011
+          - generic [ref=f3e169]:
+            - generic [ref=f3e170]: Rajshahi Office
+            - text: Abdus Sobhan Tower 139/2, Darikharbona,Greater Road, Boalia Rajshahi
+            - paragraph [ref=f3e174]:
+              - text: "Call:"
+              - link "+880241080481" [ref=f3e175] [cursor=pointer]:
+                - /url: tel:+880241080481
+          - generic [ref=f3e176]:
+            - generic [ref=f3e177]: Rangpur Office
+            - text: "Polli Pran, Holding No # 89,Road # 01 South Gupto Para, AT Lahari Road, Rangpur-5400"
+            - paragraph [ref=f3e181]:
+              - text: "Call:"
+              - link "+8801620010992" [ref=f3e182] [cursor=pointer]:
+                - /url: tel:+8801620010992
+          - generic [ref=f3e183]:
+            - generic [ref=f3e184]: Kushtia Office
+            - text: Safiron Tower 2nd Floor,50 Chand Mohammad Road, 6 Street Junction, Kushtia 7000
+            - paragraph [ref=f3e188]:
+              - text: "Call:"
+              - link "+8801325095476" [ref=f3e189] [cursor=pointer]:
+                - /url: tel:+8801325095476
+          - generic [ref=f3e190]:
+            - generic [ref=f3e191]: Bogura Office
+            - text: House -326/359, 6th floor Nurul haque tower, borogolla mor, Bogura
+            - paragraph [ref=f3e195]:
+              - text: "Call:"
+              - link "+8801325095470" [ref=f3e196] [cursor=pointer]:
+                - /url: tel:+8801325095470
+          - generic [ref=f3e197]:
+            - generic [ref=f3e198]: Cumilla Office
+            - text: Chathipotti, Bismillah House (Ground Floor) Beside of Ojudgoho College, Cumilla
+            - paragraph [ref=f3e202]:
+              - text: "Call:"
+              - link "+8801678074959" [ref=f3e203] [cursor=pointer]:
+                - /url: tel:+8801678074959
+          - generic [ref=f3e204]:
+            - generic [ref=f3e205]: Dinajpur Office
+            - text: Begum Plaza (5th floor), Maldha Patty, Dinajpur-5200
+            - paragraph [ref=f3e209]:
+              - text: "Call:"
+              - link "+8801620012333" [ref=f3e210] [cursor=pointer]:
+                - /url: tel:+8801620012333
+      - paragraph [ref=f3e211]:
+        - img "ISO" [ref=f3e212]
+        - img "Basis" [ref=f3e213]
+        - img "ISPAB" [ref=f3e214]
+        - img "APNIC" [ref=f3e215]
+        - img "BCS" [ref=f3e216]
+        - img "DCCI" [ref=f3e217]
+  - generic [ref=f3e220]:
+    - paragraph [ref=f3e221]:
+      - link "Terms of service" [ref=f3e222] [cursor=pointer]:
+        - /url: /terms-of-service
+      - link "Privacy policy" [ref=f3e223] [cursor=pointer]:
+        - /url: /privacy-policy
+    - generic [ref=f3e224]:
+      - paragraph [ref=f3e225]: © 2026 - All rights reserved
+      - paragraph [ref=f3e226]:
+        - text: "A Joint Venture of:"
+        - img "kddi" [ref=f3e227]
+        - img "DEFTA" [ref=f3e228]
+        - img "brac" [ref=f3e229]
+  - generic [ref=f3e230]:
+    - button "Toggle light or dark mode" [ref=f3e231] [cursor=pointer]
+    - link "back to top" [ref=f3e234] [cursor=pointer]:
+      - /url: "#page-top"

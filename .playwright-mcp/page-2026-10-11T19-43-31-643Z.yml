@@ -1,0 +1,452 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e5]:
+      - list [ref=f1e8]:
+        - listitem [ref=f1e9]:
+          - generic [ref=f1e10]: 
+          - link "09639123123" [ref=f1e12] [cursor=pointer]:
+            - /url: tel:09639123123
+        - listitem [ref=f1e13]:
+          - generic [ref=f1e14]: 
+          - link "support@icc-communication.com" [ref=f1e15] [cursor=pointer]:
+            - /url: mailto:support@icc-communication.com
+      - list [ref=f1e18]:
+        - listitem [ref=f1e19]:
+          - generic [ref=f1e20]: 
+          - link "BTRC Approved Tariff" [ref=f1e21] [cursor=pointer]:
+            - /url: BTRC-Approved-Tariff.html
+    - generic [ref=f1e25]:
+      - text: 
+      - navigation [ref=f1e27]:
+        - link [ref=f1e29] [cursor=pointer]:
+          - /url: /
+          - img "ICC Communication" [ref=f1e30]
+        - list [ref=f1e32]:
+          - listitem [ref=f1e33]:
+            - link "Home" [ref=f1e34] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f1e35]:
+            - link "About us" [ref=f1e36] [cursor=pointer]:
+              - /url: /#about
+          - listitem [ref=f1e37]:
+            - link "Packages" [ref=f1e38] [cursor=pointer]:
+              - /url: /#home-packages
+          - listitem [ref=f1e39]:
+            - link "BRANDS" [ref=f1e40] [cursor=pointer]:
+              - /url: /#group-services
+          - listitem [ref=f1e41]:
+            - link "Solutions & Services " [ref=f1e42] [cursor=pointer]:
+              - /url: /#services
+            - text: 
+          - listitem [ref=f1e43]:
+            - generic [ref=f1e44]: Customer Care 
+            - text: 
+          - listitem [ref=f1e45]:
+            - link "FTP" [ref=f1e46] [cursor=pointer]:
+              - /url: http://10.16.100.244/
+          - listitem [ref=f1e47]:
+            - link "Registration" [ref=f1e48] [cursor=pointer]:
+              - /url: https://wa.me/8801958021047?text=Hello%20I%20am%20interested%20in%20your%20service
+          - listitem [ref=f1e49]:
+            - link "Partners" [ref=f1e50] [cursor=pointer]:
+              - /url: partners.html
+          - listitem [ref=f1e51]:
+            - link "contacts" [ref=f1e52] [cursor=pointer]:
+              - /url: contact.html
+  - generic [ref=f1e57]:
+    - heading "Contact us" [level=3] [ref=f1e58]
+    - navigation "breadcrumb" [ref=f1e59]:
+      - list [ref=f1e60]:
+        - listitem [ref=f1e61]:
+          - link "Home" [ref=f1e62] [cursor=pointer]:
+            - /url: index.html
+        - listitem [ref=f1e63]: Contact us
+  - generic [ref=f1e64]:
+    - generic [ref=f1e66]:
+      - generic [ref=f1e67]:
+        - generic [ref=f1e68]: Contact us 24/7
+        - generic "ICC hotline number" [ref=f1e70]:
+          - generic [aria-hidden] [ref=f1e71]: 
+          - generic [ref=f1e72]: "Hotline:"
+          - link "09639 123 123" [ref=f1e73]:
+            - /url: tel:09639123123
+          - generic "Copy number" [ref=f1e74] [cursor=pointer]: 
+        - generic [ref=f1e75]:
+          - generic [aria-hidden] [ref=f1e76]: 
+          - generic [ref=f1e77]: "Email:"
+          - generic [ref=f1e78]: support@icc-communication.com
+        - paragraph [ref=f1e79]: For urgent issues, use the hotline. Branch numbers are for local service requests.
+      - status: Copied
+    - generic [ref=f1e80]:
+      - heading "Our Branches & Contact Details" [level=2] [ref=f1e81]
+      - generic [ref=f1e82]:
+        - generic [ref=f1e84]:
+          - heading " Barishal Service Office" [level=2] [ref=f1e85]:
+            - generic [ref=f1e86]: 
+            - text: Barishal Service Office
+          - list [ref=f1e87]:
+            - listitem [ref=f1e88]:
+              - generic [ref=f1e89]: 
+              - text: "Address: 416 Police Line Rd, Barisal."
+            - listitem [ref=f1e90]:
+              - generic [ref=f1e91]: 
+              - text: "For service/support:"
+              - link "01322907136" [ref=f1e92] [cursor=pointer]:
+                - /url: tel:01322907136
+        - generic [ref=f1e94]:
+          - heading " Bheramara Service Office" [level=2] [ref=f1e95]:
+            - generic [ref=f1e96]: 
+            - text: Bheramara Service Office
+          - list [ref=f1e97]:
+            - listitem [ref=f1e98]:
+              - generic [ref=f1e99]: 
+              - text: "Address: 1st floor, halam bisswash super market, Bheramara."
+            - listitem [ref=f1e100]:
+              - generic [ref=f1e101]: 
+              - text: "For service/support:"
+              - link "09639123141" [ref=f1e102] [cursor=pointer]:
+                - /url: tel:09639123141
+        - generic [ref=f1e104]:
+          - heading " Bogura Service Office" [level=2] [ref=f1e105]:
+            - generic [ref=f1e106]: 
+            - text: Bogura Service Office
+          - list [ref=f1e107]:
+            - listitem [ref=f1e108]:
+              - generic [ref=f1e109]: 
+              - text: "Address: Aziz Ahmed Taki Road, Bogra."
+            - listitem [ref=f1e110]:
+              - generic [ref=f1e111]: 
+              - text: "For service/support:"
+              - link "01322907154" [ref=f1e112] [cursor=pointer]:
+                - /url: tel:01322907154
+        - generic [ref=f1e114]:
+          - heading " Chattogram Service Office" [level=2] [ref=f1e115]:
+            - generic [ref=f1e116]: 
+            - text: Chattogram Service Office
+          - list [ref=f1e117]:
+            - listitem [ref=f1e118]:
+              - generic [ref=f1e119]: 
+              - text: "Address: 318 Sheikh Mujib Rd, Chittagong."
+            - listitem [ref=f1e120]:
+              - generic [ref=f1e121]: 
+              - text: "For service/support:"
+              - link "01322907132" [ref=f1e122] [cursor=pointer]:
+                - /url: tel:01322907132
+        - generic [ref=f1e124]:
+          - heading " Cox's Bazar Service Office" [level=2] [ref=f1e125]:
+            - generic [ref=f1e126]: 
+            - text: Cox's Bazar Service Office
+          - list [ref=f1e127]:
+            - listitem [ref=f1e128]:
+              - generic [ref=f1e129]: 
+              - text: "Address: Holding No# 405, Word No # 01,Tower Goli, Chor."
+            - listitem [ref=f1e130]:
+              - generic [ref=f1e131]: 
+              - text: "For service/support:"
+              - link "09639123140," [ref=f1e132] [cursor=pointer]:
+                - /url: tel:09639123140
+              - link "01671454177" [ref=f1e133] [cursor=pointer]:
+                - /url: tel:01671454177
+        - generic [ref=f1e135]:
+          - heading " Cumilla Service Office" [level=2] [ref=f1e136]:
+            - generic [ref=f1e137]: 
+            - text: Cumilla Service Office
+          - list [ref=f1e138]:
+            - listitem [ref=f1e139]:
+              - generic [ref=f1e140]: 
+              - text: "Address: Artisan Nasir Center, 8-C Nazrul Ave, Comilla."
+            - listitem [ref=f1e141]:
+              - generic [ref=f1e142]: 
+              - text: "For service/support:"
+              - link "01322907144" [ref=f1e143] [cursor=pointer]:
+                - /url: tel:01322907144
+        - generic [ref=f1e145]:
+          - heading " Faridpur Service Office" [level=2] [ref=f1e146]:
+            - generic [ref=f1e147]: 
+            - text: Faridpur Service Office
+          - list [ref=f1e148]:
+            - listitem [ref=f1e149]:
+              - generic [ref=f1e150]: 
+              - text: "Address: House-39,(2nd floor),Kobi, Kabi Jasim Uddin Rd, Faridpur."
+            - listitem [ref=f1e151]:
+              - generic [ref=f1e152]: 
+              - text: "For service/support:"
+              - link "01322907147" [ref=f1e153] [cursor=pointer]:
+                - /url: tel:01322907147
+        - generic [ref=f1e155]:
+          - heading " Jashore Service Office" [level=2] [ref=f1e156]:
+            - generic [ref=f1e157]: 
+            - text: Jashore Service Office
+          - list [ref=f1e158]:
+            - listitem [ref=f1e159]:
+              - generic [ref=f1e160]: 
+              - text: "Address: Shanti Kuthir, 394 Kazipara Road, Puraton Kosbah, Jessore."
+            - listitem [ref=f1e161]:
+              - generic [ref=f1e162]: 
+              - text: "For service/support:"
+              - link "01322907137" [ref=f1e163] [cursor=pointer]:
+                - /url: tel:01322907137
+        - generic [ref=f1e165]:
+          - heading " Jhenaidah Service Office" [level=2] [ref=f1e166]:
+            - generic [ref=f1e167]: 
+            - text: Jhenaidah Service Office
+          - list [ref=f1e168]:
+            - listitem [ref=f1e169]:
+              - generic [ref=f1e170]: 
+              - text: "Address: Jhenaidah."
+            - listitem [ref=f1e171]:
+              - generic [ref=f1e172]: 
+              - text: "For service/support:"
+              - link "01322907299" [ref=f1e173] [cursor=pointer]:
+                - /url: tel:01322907299
+        - generic [ref=f1e175]:
+          - heading " Khulna Service Office" [level=2] [ref=f1e176]:
+            - generic [ref=f1e177]: 
+            - text: Khulna Service Office
+          - list [ref=f1e178]:
+            - listitem [ref=f1e179]:
+              - generic [ref=f1e180]: 
+              - text: "Address: 55 KDA Ave, Khulna."
+            - listitem [ref=f1e181]:
+              - generic [ref=f1e182]: 
+              - text: "For service/support:"
+              - link "01322907209" [ref=f1e183] [cursor=pointer]:
+                - /url: tel:01322907209
+        - generic [ref=f1e185]:
+          - heading " Kushtia Service Office" [level=2] [ref=f1e186]:
+            - generic [ref=f1e187]: 
+            - text: Kushtia Service Office
+          - list [ref=f1e188]:
+            - listitem [ref=f1e189]:
+              - generic [ref=f1e190]: 
+              - text: "Address: Halim Biswas Super Market, High Road, Moddho Bazar, Bheramara, Kushtia."
+            - listitem [ref=f1e191]:
+              - generic [ref=f1e192]: 
+              - text: "For service/support:"
+              - link "01322907128" [ref=f1e193] [cursor=pointer]:
+                - /url: tel:01322907128
+        - generic [ref=f1e195]:
+          - heading " Mirpur Service Office" [level=2] [ref=f1e196]:
+            - generic [ref=f1e197]: 
+            - text: Mirpur Service Office
+          - list [ref=f1e198]:
+            - listitem [ref=f1e199]:
+              - generic [ref=f1e200]: 
+              - text: "Address: 12/D, Road: 6, Plot: I/15-18, Pallabi, Mirpur, Dhaka."
+            - listitem [ref=f1e201]:
+              - generic [ref=f1e202]: 
+              - text: "For service/support:"
+              - link "01948221122" [ref=f1e203] [cursor=pointer]:
+                - /url: tel:01948221122
+        - generic [ref=f1e205]:
+          - heading " Mymensingh Service Office" [level=2] [ref=f1e206]:
+            - generic [ref=f1e207]: 
+            - text: Mymensingh Service Office
+          - list [ref=f1e208]:
+            - listitem [ref=f1e209]:
+              - generic [ref=f1e210]: 
+              - text: "Address: 38 Choto Bazar Rd, Mymensingh."
+            - listitem [ref=f1e211]:
+              - generic [ref=f1e212]: 
+              - text: "For service/support:"
+              - link "01322907139" [ref=f1e213] [cursor=pointer]:
+                - /url: tel:01322907139
+        - generic [ref=f1e215]:
+          - heading " Pabna Service Office" [level=2] [ref=f1e216]:
+            - generic [ref=f1e217]: 
+            - text: Pabna Service Office
+          - list [ref=f1e218]:
+            - listitem [ref=f1e219]:
+              - generic [ref=f1e220]: 
+              - text: "Address: Dr. Imran Biswas Mansion 2nd Floor, A.Hamid Road, Gopalpur, Pabna."
+            - listitem [ref=f1e221]:
+              - generic [ref=f1e222]: 
+              - text: "For service/support:"
+              - link "01322907135" [ref=f1e223] [cursor=pointer]:
+                - /url: tel:01322907135
+        - generic [ref=f1e225]:
+          - heading " Rajbari Service Office" [level=2] [ref=f1e226]:
+            - generic [ref=f1e227]: 
+            - text: Rajbari Service Office
+          - list [ref=f1e228]:
+            - listitem [ref=f1e229]:
+              - generic [ref=f1e230]: 
+              - text: "Address: House# 70, R# 710, Manik Mansion, Rajbari."
+            - listitem [ref=f1e231]:
+              - generic [ref=f1e232]: 
+              - text: "For service/support:"
+              - link "01322907138" [ref=f1e233] [cursor=pointer]:
+                - /url: tel:01322907138
+        - generic [ref=f1e235]:
+          - heading " Rajshahi Service Office" [level=2] [ref=f1e236]:
+            - generic [ref=f1e237]: 
+            - text: Rajshahi Service Office
+          - list [ref=f1e238]:
+            - listitem [ref=f1e239]:
+              - generic [ref=f1e240]: 
+              - text: "Address: H, 340 Veripara Mor, Rajshahi."
+            - listitem [ref=f1e241]:
+              - generic [ref=f1e242]: 
+              - text: "For service/support:"
+              - link "01322907134" [ref=f1e243] [cursor=pointer]:
+                - /url: tel:01322907134
+        - generic [ref=f1e245]:
+          - heading " Rangpur Service Office" [level=2] [ref=f1e246]:
+            - generic [ref=f1e247]: 
+            - text: Rangpur Service Office
+          - list [ref=f1e248]:
+            - listitem [ref=f1e249]:
+              - generic [ref=f1e250]: 
+              - text: "Address: Shapla Road, Rangpur."
+            - listitem [ref=f1e251]:
+              - generic [ref=f1e252]: 
+              - text: "For service/support:"
+              - link "01322907142" [ref=f1e253] [cursor=pointer]:
+                - /url: tel:01322907142
+        - generic [ref=f1e255]:
+          - heading " Savar Service Office" [level=2] [ref=f1e256]:
+            - generic [ref=f1e257]: 
+            - text: Savar Service Office
+          - list [ref=f1e258]:
+            - listitem [ref=f1e259]:
+              - generic [ref=f1e260]: 
+              - text: "Address: Savar."
+            - listitem [ref=f1e261]:
+              - generic [ref=f1e262]: 
+              - text: "For service/support:"
+              - link "01322907169" [ref=f1e263] [cursor=pointer]:
+                - /url: tel:01322907169
+        - generic [ref=f1e265]:
+          - heading " Sylhet Service Office" [level=2] [ref=f1e266]:
+            - generic [ref=f1e267]: 
+            - text: Sylhet Service Office
+          - list [ref=f1e268]:
+            - listitem [ref=f1e269]:
+              - generic [ref=f1e270]: 
+              - text: "Address: Al-Hamra Shopping City, Zindabazar Sylhet."
+            - listitem [ref=f1e271]:
+              - generic [ref=f1e272]: 
+              - text: "For service/support:"
+              - link "01322907168" [ref=f1e273] [cursor=pointer]:
+                - /url: tel:01322907168
+  - iframe [ref=f1e275]
+  - contentinfo [ref=f1e276]:
+    - generic [ref=f1e278]:
+      - generic [ref=f1e279]:
+        - generic [ref=f1e281]:
+          - link [ref=f1e283] [cursor=pointer]:
+            - /url: /
+            - img "ICC Communication" [ref=f1e284]
+          - paragraph [ref=f1e285]: ICC Communication is a nationwide ISP, providing high-speed internet, corporate solutions, VPN, and IP Telephony with 24/7 support across Bangladesh.
+          - heading "Address" [level=6] [ref=f1e286]
+          - paragraph [ref=f1e287]: "12/D, Road: 6, Plot: I/15-18, Pallabi, Mirpur, Dhaka-1216."
+          - paragraph [ref=f1e288]: "E-TIN: 259574727994"
+          - generic [ref=f1e289]:
+            - link "facebook" [ref=f1e290] [cursor=pointer]:
+              - /url: https://www.facebook.com/iccbroadband/
+              - generic [ref=f1e291]: 
+            - link "linkedin" [ref=f1e292] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/icc-communication-ltd/?originalSubdomain=bd
+              - generic [ref=f1e293]: 
+            - link "youtube" [ref=f1e294] [cursor=pointer]:
+              - /url: https://www.youtube.com/c/icccommunicationltd
+              - generic [ref=f1e295]: 
+        - list [ref=f1e298]:
+          - listitem [ref=f1e299]:
+            - link "About us" [ref=f1e300] [cursor=pointer]:
+              - /url: /#about
+          - listitem [ref=f1e301]:
+            - link "Packages" [ref=f1e302] [cursor=pointer]:
+              - /url: /#home-packages
+          - listitem [ref=f1e303]:
+            - link "Brands" [ref=f1e304] [cursor=pointer]:
+              - /url: /#group-services
+          - listitem [ref=f1e305]:
+            - link "Services" [ref=f1e306] [cursor=pointer]:
+              - /url: /#services
+          - listitem [ref=f1e307]:
+            - link "SME" [ref=f1e308] [cursor=pointer]:
+              - /url: /sme-internet.html
+          - listitem [ref=f1e309]:
+            - link "IP-PABX" [ref=f1e310] [cursor=pointer]:
+              - /url: /ip-pabx.html
+          - listitem [ref=f1e311]:
+            - link "FTP" [ref=f1e312] [cursor=pointer]:
+              - /url: http://10.16.100.244/
+          - listitem [ref=f1e313]:
+            - link "Registration" [ref=f1e314] [cursor=pointer]:
+              - /url: https://wa.me/8801958021047?text=Hello%20I%20am%20interested%20in%20your%20service
+          - listitem [ref=f1e315]:
+            - link "IP Telephony Registration" [ref=f1e316] [cursor=pointer]:
+              - /url: reg-iptsp.html
+        - list [ref=f1e319]:
+          - listitem [ref=f1e320]:
+            - link "Graph" [ref=f1e321] [cursor=pointer]:
+              - /url: http://graph.icccommunication.com/cacti/
+          - listitem [ref=f1e322]:
+            - link "Resellers" [ref=f1e323] [cursor=pointer]:
+              - /url: resellers.html
+          - listitem [ref=f1e324]:
+            - link "Portal" [ref=f1e325] [cursor=pointer]:
+              - /url: https://portal.iccbd.com/customer/login
+          - listitem [ref=f1e326]:
+            - link "Privacy Policy" [ref=f1e327] [cursor=pointer]:
+              - /url: privacy-policy.html
+          - listitem [ref=f1e328]:
+            - link "Return & Refund Policy" [ref=f1e329] [cursor=pointer]:
+              - /url: refund-policy.html
+          - listitem [ref=f1e330]:
+            - link "Terms and Conditions" [ref=f1e331] [cursor=pointer]:
+              - /url: terms-conditions.html
+          - listitem [ref=f1e332]:
+            - link "BTRC Approved Tariff" [ref=f1e333] [cursor=pointer]:
+              - /url: BTRC-Approved-Tariff.html
+          - listitem [ref=f1e334]:
+            - link "Partners" [ref=f1e335] [cursor=pointer]:
+              - /url: partners.html
+          - listitem [ref=f1e336]:
+            - link "Contacts" [ref=f1e337] [cursor=pointer]:
+              - /url: contact.html
+        - generic [ref=f1e340]:
+          - heading "Contact us 24/7" [level=3] [ref=f1e341]
+          - generic [ref=f1e343]:
+            - list [ref=f1e344]:
+              - listitem [ref=f1e345]:
+                - link " 09639123123" [ref=f1e346] [cursor=pointer]:
+                  - /url: tel:09639123123
+                  - generic [ref=f1e347]: 
+                  - generic [ref=f1e348]: "09639123123"
+              - listitem [ref=f1e349]:
+                - link " support@icc-communication.com" [ref=f1e350] [cursor=pointer]:
+                  - /url: mailto:support@icc-communication.com
+                  - generic [ref=f1e351]: 
+                  - generic [ref=f1e352]: support@icc-communication.com
+              - listitem [ref=f1e353]:
+                - paragraph [ref=f1e354]: IP Phone Support
+                - link " iptspsupport@icc-communication.com" [ref=f1e355] [cursor=pointer]:
+                  - /url: mailto:iptspsupport@icc-communication.com
+                  - generic [ref=f1e356]: 
+                  - generic [ref=f1e357]: iptspsupport@icc-communication.com
+              - listitem [ref=f1e358]:
+                - paragraph [ref=f1e359]: Network & Operations (NOC)
+                - link " noc@icc-communication.com" [ref=f1e360] [cursor=pointer]:
+                  - /url: mailto:noc@icc-communication.com
+                  - generic [ref=f1e361]: 
+                  - generic [ref=f1e362]: noc@icc-communication.com
+            - generic [ref=f1e363]:
+              - img "iso certified" [ref=f1e364]
+              - link [ref=f1e365] [cursor=pointer]:
+                - /url: https://ispab.org/member-details/Mzk=
+                - img "iso certified" [ref=f1e366]
+              - link " Download ICC Talk" [ref=f1e368] [cursor=pointer]:
+                - /url: download-icctalk.html
+                - generic [ref=f1e369]:
+                  - generic [ref=f1e370]: 
+                  - generic [ref=f1e372]:
+                    - paragraph [ref=f1e373]: Download
+                    - paragraph [ref=f1e374]: ICC Talk
+      - img "ssl prtners" [ref=f1e376]
+    - paragraph [ref=f1e380]: Copyright © 2026 ICC Communication Limited. All rights reserved.
+  - link "Chat on WhatsApp" [ref=f1e381] [cursor=pointer]:
+    - /url: https://wa.me/8801958021047?text=Hello%20I%20am%20interested%20in%20your%20service
+    - generic [ref=f1e382]: 

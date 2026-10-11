@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { buildTurnPrompt } from './agent.js'
 import { findMentions } from './mentions.js'
-import { expandSkills, initialQueue } from './orchestrator.js'
+import { expandSkills, extractLeadArtifact, initialQueue } from './orchestrator.js'
 import { nextRun, parseCron } from './cron.js'
 import { reviewByRules } from './approvals.js'
 import { __test as routerTest } from './router.js'
@@ -79,6 +79,13 @@ test('@everyone mentions every member except the speaker', () => {
 test('expandSkills replaces /skill tokens and leaves unknown ones', () => {
   assert.equal(expandSkills(team, '/standup please'), '[Skill "Standup": List what shipped, what is blocked, what is next.] please')
   assert.equal(expandSkills(team, 'see /unknown and a/b'), 'see /unknown and a/b')
+})
+
+test('extractLeadArtifact removes only valid lead payloads from the visible reply', () => {
+  const artifact = extractLeadArtifact('Collected two leads.\n<opengrokbot-leads>{"leads":[{"businessName":"Example"}]}</opengrokbot-leads>')
+  assert.equal(artifact.text, 'Collected two leads.')
+  assert.deepEqual(artifact.payload, { leads: [{ businessName: 'Example' }] })
+  assert.deepEqual(extractLeadArtifact('<opengrokbot-leads>{not json}</opengrokbot-leads>'), { text: '<opengrokbot-leads>{not json}</opengrokbot-leads>' })
 })
 
 test('cron: parse, next run, and bad input', () => {

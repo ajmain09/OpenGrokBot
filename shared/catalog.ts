@@ -10,6 +10,16 @@ export const MODELS: { id: string; label: string; hint: string }[] = [
 
 /** Suggested model ids per provider kind (free text is always allowed). */
 export const MODEL_SUGGESTIONS: Record<ProviderKind, string[]> = {
+  antigravity: [
+    'default',
+    'gemini-3.8-flash-high',
+    'gemini-3.8-flash-medium',
+    'gemini-3.8-flash-low',
+    'gemini-3.7-flash-high',
+    'gemini-3.1-pro-high',
+    'claude-sonnet-4-6',
+    'claude-opus-4-6-thinking',
+  ],
   claude: MODELS.map((m) => m.id),
   codex: ['default', 'gpt-6-astra', 'gpt-5.6-sol', 'gpt-5.6-terra', 'gpt-5.6-luna', 'gpt-5.5'],
   gemini: ['default', 'gemini-3-pro-preview', 'gemini-3-flash-preview', 'gemini-2.5-pro', 'gemini-2.5-flash'],
@@ -17,6 +27,7 @@ export const MODEL_SUGGESTIONS: Record<ProviderKind, string[]> = {
 }
 
 export const PROVIDER_KINDS: { id: ProviderKind; label: string; hint: string }[] = [
+  { id: 'antigravity', label: 'Antigravity CLI (agy)', hint: 'Google Antigravity CLI. Uses your existing Google AI Pro subscription login. Full tools, browser & MCP.' },
   { id: 'claude', label: 'Claude Code', hint: 'Anthropic. Uses your Claude subscription login, or an API key if you add one. Full tools + MCP.' },
   { id: 'codex', label: 'Codex CLI', hint: 'OpenAI. Uses your ChatGPT / Codex subscription login (`codex login`). Full coding tools.' },
   { id: 'gemini', label: 'Gemini CLI', hint: 'Google. Signs in with your Google account, the same one Antigravity uses. Full coding tools.' },
@@ -25,6 +36,7 @@ export const PROVIDER_KINDS: { id: ProviderKind; label: string; hint: string }[]
 
 /** Built-in defaults that always exist in team.providers. */
 export const DEFAULT_PROVIDERS: Record<string, ProviderDef> = {
+  antigravity: { kind: 'antigravity', label: 'Google Antigravity (Google AI Pro)' },
   claude: { kind: 'claude', label: 'Claude (subscription)' },
   codex: { kind: 'codex', label: 'Codex (ChatGPT subscription)' },
   gemini: { kind: 'gemini', label: 'Gemini (Google account)' },
@@ -51,16 +63,16 @@ export const EFFORTS: { id: Effort; label: string }[] = [
 ]
 
 export const TOOLS: { id: string; label: string; hint: string; kinds: ProviderKind[] }[] = [
-  { id: 'Read', label: 'Read', hint: 'Read files', kinds: ['claude', 'codex', 'gemini', 'openai'] },
-  { id: 'Glob', label: 'Glob', hint: 'Find files by pattern', kinds: ['claude', 'codex', 'gemini', 'openai'] },
-  { id: 'Grep', label: 'Grep', hint: 'Search file contents', kinds: ['claude', 'codex', 'gemini', 'openai'] },
-  { id: 'Edit', label: 'Edit', hint: 'Edit files', kinds: ['claude', 'codex', 'gemini', 'openai'] },
-  { id: 'Write', label: 'Write', hint: 'Create files', kinds: ['claude', 'codex', 'gemini', 'openai'] },
-  { id: 'Bash', label: 'Bash', hint: 'Run shell commands', kinds: ['claude', 'codex', 'gemini', 'openai'] },
-  { id: 'WebSearch', label: 'Web search', hint: 'Search the web', kinds: ['claude', 'codex', 'gemini'] },
-  { id: 'WebFetch', label: 'Web fetch', hint: 'Read web pages', kinds: ['claude', 'openai'] },
-  { id: 'Task', label: 'Subagents', hint: 'Spawn Claude Code subagents for big jobs', kinds: ['claude'] },
-  { id: 'NotebookEdit', label: 'Notebooks', hint: 'Edit Jupyter notebooks', kinds: ['claude'] },
+  { id: 'Read', label: 'Read', hint: 'Read files', kinds: ['antigravity', 'claude', 'codex', 'gemini', 'openai'] },
+  { id: 'Glob', label: 'Glob', hint: 'Find files by pattern', kinds: ['antigravity', 'claude', 'codex', 'gemini', 'openai'] },
+  { id: 'Grep', label: 'Grep', hint: 'Search file contents', kinds: ['antigravity', 'claude', 'codex', 'gemini', 'openai'] },
+  { id: 'Edit', label: 'Edit', hint: 'Edit files', kinds: ['antigravity', 'claude', 'codex', 'gemini', 'openai'] },
+  { id: 'Write', label: 'Write', hint: 'Create files', kinds: ['antigravity', 'claude', 'codex', 'gemini', 'openai'] },
+  { id: 'Bash', label: 'Bash', hint: 'Run shell commands', kinds: ['antigravity', 'claude', 'codex', 'gemini', 'openai'] },
+  { id: 'WebSearch', label: 'Web search', hint: 'Search the web', kinds: ['antigravity', 'claude', 'codex', 'gemini'] },
+  { id: 'WebFetch', label: 'Web fetch', hint: 'Read web pages', kinds: ['antigravity', 'claude', 'openai'] },
+  { id: 'Task', label: 'Subagents', hint: 'Spawn Claude Code subagents for big jobs', kinds: ['antigravity', 'claude'] },
+  { id: 'NotebookEdit', label: 'Notebooks', hint: 'Edit Jupyter notebooks', kinds: ['antigravity', 'claude'] },
 ]
 
 export const PERMISSION_MODES: { id: PermissionMode; label: string; hint: string }[] = [

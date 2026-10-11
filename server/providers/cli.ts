@@ -14,15 +14,16 @@ export interface CliRun {
 export function runCli(
   command: string,
   args: string[],
-  opts: { cwd: string; env: NodeJS.ProcessEnv; stdin: string; signal: AbortSignal; onLine?: (line: string) => void },
+  opts: { cwd: string; env: NodeJS.ProcessEnv; stdin: string; signal: AbortSignal; onLine?: (line: string) => void; shell?: boolean },
 ): Promise<CliRun> {
   return new Promise((resolve) => {
+    const useShell = opts.shell ?? process.platform === 'win32'
     // With shell:true on Windows the args are concatenated, so protect paths that contain spaces.
-    const safeArgs = process.platform === 'win32' ? args.map((a) => (/\s/.test(a) && !a.startsWith('"') ? `"${a}"` : a)) : args
+    const safeArgs = useShell && process.platform === 'win32' ? args.map((a) => (/\s/.test(a) && !a.startsWith('"') ? `"${a}"` : a)) : args
     const child = spawn(command, safeArgs, {
       cwd: opts.cwd,
       env: opts.env,
-      shell: process.platform === 'win32',
+      shell: useShell,
       windowsHide: true,
       stdio: ['pipe', 'pipe', 'pipe'],
     })

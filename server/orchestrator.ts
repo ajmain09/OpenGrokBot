@@ -1,9 +1,13 @@
 import { randomUUID } from 'node:crypto'
+import { mkdirSync, writeFileSync } from 'node:fs'
+import path from 'node:path'
 import type { Account } from './account.js'
+
 import { providerKeepsSession, runAgentTurn } from './agent.js'
 import { reviewByRules, type Approvals } from './approvals.js'
 import { emit } from './events.js'
 import { collectAttachments } from './files.js'
+import type { LeadStore } from './leads.js'
 import type { Memory } from './memory.js'
 import { findMentions } from './mentions.js'
 import { routeSpeakers, type RouteMode } from './router.js'
@@ -46,6 +50,17 @@ const ROUTINE_NOTE = 'This is a scheduled routine, not a live chat. Do the job f
 
 const FALLBACK_PROVIDER: ProviderDef = { kind: 'claude', label: 'Claude (subscription)' }
 
+/** A lead specialist may return a validated JSON artifact for the app to persist. */
+export function extractLeadArtifact(text: string): { text: string; payload?: unknown } {
+  const match = text.match(/<opengrokbot-leads>\s*([\s\S]*?)\s*<\/opengrokbot-leads>/i)
+  if (!match?.[1]) return { text }
+  try {
+    return { text: text.replace(match[0], '').replace(/\n{3,}/g, '\n\n').trim(), payload: JSON.parse(match[1]) as unknown }
+  } catch {
+    return { text }
+  }
+}
+
 export interface PostOptions {
   attachments?: Attachment[]
   replyTo?: Message['replyTo']
@@ -65,6 +80,7 @@ export class Orchestrator {
     private readonly account: Account,
     private readonly approvals: Approvals,
     private readonly memory: Memory,
+    private readonly leads: LeadStore,
     /** Whether a file path may be shown in the chat (inside the workspace, an employee folder, or uploads). */
     private readonly allowedFile: (p: string) => boolean,
   ) {}
@@ -287,7 +303,11 @@ export class Orchestrator {
     // Sessions are per provider kind: switching an employee to another provider starts fresh.
     const sessionKey = `${agent.id}@${provider.kind}`
     const sessionId = providerKeepsSession(provider.kind) ? conversation.sessions[sessionKey] : undefined
-    const notes = this.memory.read(agent.id)
+    const rawNotes = this.memory.read(agent.id)
+    const lastUserMsg = conversation.messages.filter((m) => m.authorId === 'user').slice(-1)[0]?.text || ''
+    const relevantMem = this.memory.getRelevantContext(agent.id, lastUserMsg)
+    const notes = [rawNotes, relevantMem ? `Relevant Memory Facts:\n${relevantMem}` : ''].filter(Boolean).join('\n\n')
+
 
     const result = await runAgentTurn({
       team,
@@ -361,11 +381,43 @@ export class Orchestrator {
     }
 
     start()
-    const attachments = collectAttachments(result.text, message.activity ?? [], this.allowedFile)
-    const done = this.store.updateMessage(conversationId, message.id, { text: result.text, status: 'done', ...usagePatch, ...(attachments.length ? { attachments } : {}) }) ?? { ...message, text: result.text, status: 'done' as const }
+    const text = this.persistLeadArtifact(agent, result.text, conversationId, message)
+    const attachments = collectAttachments(text, message.activity ?? [], this.allowedFile)
+    const done = this.store.updateMessage(conversationId, message.id, { text, status: 'done', ...usagePatch, ...(attachments.length ? { attachments } : {}) }) ?? { ...message, text, status: 'done' as const }
     emit({ type: 'message:done', message: done })
     this.emitUsage()
-    return result.text
+    return text
+  }
+
+  private persistLeadArtifact(agent: Agent, resultText: string, conversationId: string, message: Message): string {
+    // Only the dedicated collector can cause database writes, and LeadStore applies
+    // strict field validation, public-URL checks, and duplicate merging.
+    if (agent.id !== 'lead_collection_specialist') return resultText
+    const artifact = extractLeadArtifact(resultText)
+    if (artifact.payload === undefined) return resultText
+    try {
+      const imported = this.leads.import(artifact.payload)
+      const csv = this.leads.exportCsv()
+      try {
+        const userProfile = process.env.USERPROFILE || process.env.HOME || ''
+        const outDir = path.join(userProfile, 'Documents', 'OpenGrokBot', 'Outputs', 'Lead-Hunt')
+        mkdirSync(outDir, { recursive: true })
+        writeFileSync(path.join(outDir, `leads-${new Date().toISOString().slice(0, 10)}.csv`), this.leads.csv(), 'utf8')
+      } catch {
+        // non-critical
+      }
+      const line = `Leads saved locally: ${imported.created} new, ${imported.updated} updated. CSV: ${csv}`
+
+      message.activity?.push(line)
+      emit({ type: 'message:activity', conversationId, messageId: message.id, line })
+      const summary = `Local lead database updated (${imported.total} total). CSV: ${csv}`
+      return artifact.text ? `${artifact.text}\n\n${summary}` : summary
+    } catch (err) {
+      const line = `Lead import was not saved: ${err instanceof Error ? err.message : String(err)}`
+      message.activity?.push(line)
+      emit({ type: 'message:activity', conversationId, messageId: message.id, line })
+      return artifact.text || resultText
+    }
   }
 
   private emitUsage(): void {

@@ -1,4 +1,4 @@
-import type { AccountStatus, Agent, AppState, Attachment, Conversation, McpServerDef, Message, ProviderDef, ProviderStatus, Routine, RoutineRun, Skill, TeamSettings } from '../../shared/types'
+import type { AccountStatus, Agent, AppState, Attachment, Conversation, Lead, LeadSummary, McpServerDef, Message, ProviderDef, ProviderStatus, Routine, RoutineRun, Skill, TeamSettings } from '../../shared/types'
 
 async function call<T>(url: string, init?: RequestInit): Promise<T> {
   const res = await fetch(url, init)
@@ -42,6 +42,14 @@ export function deleteConversation(id: string): Promise<unknown> {
 
 export function exportUrl(id: string): string {
   return `/api/conversations/${encodeURIComponent(id)}/export.md`
+}
+
+export async function listLeads(): Promise<{ leads: Lead[]; summary: LeadSummary }> {
+  return call('/api/leads')
+}
+
+export function leadExportUrl(): string {
+  return '/api/leads/export.csv'
 }
 
 export type AgentPatch = Partial<Omit<Agent, 'id'>>
@@ -168,3 +176,138 @@ export function exportAgentUrl(id: string): string {
 export function importAgent(agent: unknown): Promise<{ agent: Agent }> {
   return call('/api/team/agents/import', json('POST', { agent }))
 }
+
+// ---- Management Systems APIs ----
+
+export function fetchDashboard(): Promise<{
+  activeProvider: string
+  providerDetails: {
+    antigravity?: ProviderStatus
+    codex?: ProviderStatus
+  }
+  tasks: {
+    running: number
+    queued: number
+    completed: number
+    failed: number
+    recent: any[]
+  }
+  leads: LeadSummary
+  approvals: {
+    pendingCount: number
+    pending: any[]
+    recentHistory: any[]
+  }
+  outputs: {
+    baseDir: string
+    recent: any[]
+  }
+  browsers: any[]
+}> {
+  return call('/api/dashboard')
+}
+
+export function listTasks(): Promise<any[]> {
+  return call('/api/tasks')
+}
+
+export function createTask(task: { title: string; workspace: string; prompt: string }): Promise<any> {
+  return call('/api/tasks', json('POST', task))
+}
+
+export function cancelTask(id: string): Promise<{ ok: boolean }> {
+  return call(`/api/tasks/${encodeURIComponent(id)}/cancel`, { method: 'POST' })
+}
+
+export function retryTask(id: string): Promise<{ ok: boolean }> {
+  return call(`/api/tasks/${encodeURIComponent(id)}/retry`, { method: 'POST' })
+}
+
+export function deleteTask(id: string): Promise<{ ok: boolean }> {
+  return call(`/api/tasks/${encodeURIComponent(id)}`, { method: 'DELETE' })
+}
+
+export function clearFinishedTasks(): Promise<{ ok: boolean }> {
+  return call('/api/tasks', { method: 'DELETE' })
+}
+
+export function listMemories(scope?: string): Promise<any[]> {
+  return call(`/api/memory${scope ? `?scope=${encodeURIComponent(scope)}` : ''}`)
+}
+
+export function addMemory(item: { scope: string; category: string; title: string; content: string }): Promise<any> {
+  return call('/api/memory', json('POST', item))
+}
+
+export function updateMemoryItem(id: string, patch: any): Promise<any> {
+  return call(`/api/memory/${encodeURIComponent(id)}`, json('PUT', patch))
+}
+
+export function deleteMemoryItem(id: string): Promise<{ ok: boolean }> {
+  return call(`/api/memory/${encodeURIComponent(id)}`, { method: 'DELETE' })
+}
+
+export function searchMemories(q: string): Promise<any[]> {
+  return call(`/api/memory/search?q=${encodeURIComponent(q)}`)
+}
+
+export function clearMemories(scope?: string): Promise<{ ok: boolean }> {
+  return call(`/api/memory${scope ? `?scope=${encodeURIComponent(scope)}` : ''}`, { method: 'DELETE' })
+}
+
+export function listOutputs(): Promise<{ dir: string; files: any[] }> {
+  return call('/api/outputs')
+}
+
+export function openOutputPath(path: string): Promise<{ ok: boolean }> {
+  return call('/api/outputs/open', json('POST', { path }))
+}
+
+export function openOutputFolder(category?: string): Promise<{ ok: boolean }> {
+  return call('/api/outputs/open-folder', json('POST', { category }))
+}
+
+export function fetchOutputPreview(path: string): Promise<{ content: string; binary: boolean }> {
+  return call(`/api/outputs/preview?path=${encodeURIComponent(path)}`)
+}
+
+export function updateOutputsDir(dir: string): Promise<{ ok: boolean; dir: string }> {
+  return call('/api/outputs/config', json('POST', { dir }))
+}
+
+export function listBrowsers(): Promise<any[]> {
+  return call('/api/browsers')
+}
+
+export function openBrowserProfile(id: 'lead-hunt' | 'marketing'): Promise<{ ok: boolean; message: string }> {
+  return call(`/api/browsers/${encodeURIComponent(id)}/open`, { method: 'POST' })
+}
+
+export function restartBrowserProfile(id: 'lead-hunt' | 'marketing'): Promise<{ ok: boolean; message: string }> {
+  return call(`/api/browsers/${encodeURIComponent(id)}/restart`, { method: 'POST' })
+}
+
+export function fetchApprovalHistory(): Promise<any[]> {
+  return call('/api/approvals/history')
+}
+
+export function clearApprovalHistory(): Promise<{ ok: boolean }> {
+  return call('/api/approvals/history', { method: 'DELETE' })
+}
+
+export function updateLead(id: string, patch: Partial<Lead>): Promise<{ lead: Lead }> {
+  return call(`/api/leads/${encodeURIComponent(id)}`, json('PUT', patch))
+}
+
+export function deleteLead(id: string): Promise<unknown> {
+  return call(`/api/leads/${encodeURIComponent(id)}`, { method: 'DELETE' })
+}
+
+export function importLeads(data: unknown): Promise<{ created: number; updated: number; total: number; processed: number }> {
+  return call('/api/leads/import', json('POST', data))
+}
+
+export function sendLeadsToMarketing(leadIds: string[]): Promise<{ ok: boolean; count: number }> {
+  return call('/api/leads/to-marketing', json('POST', { leadIds }))
+}
+

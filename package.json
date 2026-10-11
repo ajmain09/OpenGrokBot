@@ -12,6 +12,7 @@
     "start": "node dist/server/index.js",
     "typecheck": "tsc -p tsconfig.server.json --noEmit && tsc -p tsconfig.client.json --noEmit",
     "test": "tsc -p tsconfig.server.json && node --test dist/server/*.test.js",
+    "build:verify": "node scripts/build-verify.js",
     "desktop": "node desktop/launch.cjs"
   },
   "dependencies": {
@@ -38,5 +39,10 @@
     "type": "git",
     "url": "https://github.com/Z4YT0N/OpenGrokBotBot"
   },
-  "homepage": "https://github.com/Z4YT0N/OpenGrokBotBot"
+  "homepage": "https://github.com/Z4YT0N/OpenGrokBotBot",
+  "allowScripts": {
+    "electron@38.8.6": true,
+    "esbuild@0.28.2": true,
+    "esbuild@0.25.12": true
+  }
 }

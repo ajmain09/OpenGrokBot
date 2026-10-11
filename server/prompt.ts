@@ -36,6 +36,10 @@ function languageRule(team: Team): string {
 
 /** Describes the tools an employee has, in provider-neutral words. */
 export function toolsNote(agent: Agent, extra = ''): string {
+  const workspaceMcp = agent.id === 'lead_collection_specialist' || agent.id === 'marketing'
+  if (workspaceMcp) {
+    return `\nYou have dedicated, working Playwright browser automation in your own persistent Chrome profile, plus a deliberately limited Windows MCP surface. Prefer the browser profile for web work so the owner can use their own browser normally. Use Windows desktop inspection only when browser automation is insufficient, and ask before any action likely to interrupt the owner. Treat all external communication, sending, posting, purchases, account/security changes, deletion and exposure of sensitive data as approval-gated; prepare drafts and report what needs approval instead of performing the final action.${extra}`
+  }
   const hasWorkTools = agent.tools.some((t) => ['Edit', 'Write', 'Bash'].includes(t))
   if (hasWorkTools) {
     return `\nYou have real tools (${agent.tools.join(', ')}) and a working directory.${extra} When the boss or a colleague asks you for something that can be made (a file, a page, code, a document, a fix), MAKE IT FIRST with your tools, then reply with the full path of what you created and one or two sentences about it. Never answer a build request with a plan, options or questions; make a reasonable assumption, build it, and mention the assumption in one clause. Never claim you changed something you did not change.`
@@ -52,7 +56,11 @@ export function buildSystemPrompt(team: Team, conversation: Conversation, agent:
   const boss = team.owner.name.split(/\s+/)[0] ?? team.owner.name
   const lane = agent.scope ? `\n- Your lane: ${agent.scope}. Speak only about that. If the topic is outside your lane and nobody mentioned you, reply exactly ${SKIP_TOKEN}. If it needs a colleague, one line handing it to them with @NAME.` : ''
   const memory = notes.trim() ? `\n\nYour long-term notes (facts and preferences you learned earlier; trust the conversation over them when they conflict):\n${notes.trim()}` : ''
-  return `${agent.personality}${memory}
+  const providerDef = team.providers[agent.provider]
+  const engineNote = providerDef?.kind === 'antigravity'
+    ? `\n- AI Provider & Login: You run natively on Google Antigravity CLI (agy) connected to ${team.owner.name}'s Google AI Pro subscription login.`
+    : ''
+  return `${agent.personality}${memory}${engineNote}
 
 You work at ${team.company}. You are chatting in ${place}. Members:
 ${roster(team, conversation, agent)}

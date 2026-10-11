@@ -1,4 +1,5 @@
 import { cliVersion, runCli } from './cli.js'
+import { runAntigravityTurn } from './antigravity.js'
 import { runClaudeTurn } from './claude.js'
 import { runCodexTurn } from './codex.js'
 import { runGeminiTurn } from './gemini.js'
@@ -7,6 +8,7 @@ import type { ProviderRunner, RunTurnParams, TurnResult } from './types.js'
 import type { ProviderDef, ProviderKind, ProviderStatus, Team } from '../../shared/types.js'
 
 const RUNNERS: Record<ProviderKind, ProviderRunner> = {
+  antigravity: runAntigravityTurn,
   claude: runClaudeTurn,
   codex: runCodexTurn,
   gemini: runGeminiTurn,
@@ -15,7 +17,7 @@ const RUNNERS: Record<ProviderKind, ProviderRunner> = {
 
 /** Providers whose CLI keeps a resumable session id. */
 export function providerKeepsSession(kind: ProviderKind): boolean {
-  return kind === 'claude' || kind === 'codex'
+  return kind === 'antigravity' || kind === 'claude' || kind === 'codex'
 }
 
 export function runProviderTurn(params: RunTurnParams): Promise<TurnResult> {
@@ -28,6 +30,11 @@ async function probe(id: string, def: ProviderDef): Promise<ProviderStatus> {
   const base = { id, kind: def.kind }
   try {
     switch (def.kind) {
+      case 'antigravity': {
+        const v = await cliVersion('agy')
+        if (!v) return { ...base, ok: false, detail: 'Google Antigravity CLI (agy) not found in PATH.' }
+        return { ...base, ok: true, detail: `${v} · Google AI Pro subscription` }
+      }
       case 'claude': {
         const v = await cliVersion('claude')
         if (!v) return { ...base, ok: false, detail: 'Claude Code CLI not found. Install: npm i -g @anthropic-ai/claude-code, then `claude` to sign in.' }

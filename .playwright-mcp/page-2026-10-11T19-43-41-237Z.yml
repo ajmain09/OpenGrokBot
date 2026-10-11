@@ -1,0 +1,270 @@
+- generic [active] [ref=f4e1]:
+  - link "Skip to content" [ref=f4e2] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f4e4]:
+    - generic [ref=f4e6]:
+      - list [ref=f4e9]:
+        - listitem [ref=f4e10]:
+          - link "09638009244" [ref=f4e11] [cursor=pointer]:
+            - /url: tel:+8801974691133
+        - listitem [ref=f4e16]:
+          - link "info@cogentbroadband.net" [ref=f4e17] [cursor=pointer]:
+            - /url: mailto:%20info@cogentbroadband.com
+      - list [ref=f4e24]:
+        - listitem [ref=f4e25]:
+          - link "Facebook-f" [ref=f4e26] [cursor=pointer]:
+            - /url: https://www.facebook.com/cogentbroadband
+        - listitem [ref=f4e30]:
+          - link "Whatsapp" [ref=f4e31] [cursor=pointer]:
+            - /url: https://wa.me/+8801974691100
+    - generic [ref=f4e36]:
+      - link [ref=f4e40] [cursor=pointer]:
+        - /url: https://cogentbroadband.net
+      - generic [ref=f4e41]:
+        - navigation "Menu" [ref=f4e44]:
+          - list [ref=f4e45]:
+            - listitem [ref=f4e46]:
+              - link "Home" [ref=f4e47] [cursor=pointer]:
+                - /url: https://cogentbroadband.net/
+            - listitem [ref=f4e48]:
+              - link "Blog" [ref=f4e49] [cursor=pointer]:
+                - /url: https://cogentbroadband.net/blog/
+            - listitem [ref=f4e50]:
+              - link "privacy policy" [ref=f4e51] [cursor=pointer]:
+                - /url: https://cogentbroadband.net/privacy-policy/
+        - link "Contact Now" [ref=f4e55] [cursor=pointer]:
+          - /url: https://cogentbroadband.net/contact/
+  - generic [ref=f4e58]:
+    - generic [ref=f4e62]:
+      - heading "Contact" [level=1] [ref=f4e65]
+      - heading "Start the conversation to established good relationship and business." [level=4] [ref=f4e68]
+    - generic [ref=f4e70]:
+      - generic [ref=f4e71]:
+        - heading "If you are facing any issue with your connection, find us here:" [level=2] [ref=f4e74]
+        - heading "Address" [level=5] [ref=f4e77]
+        - paragraph [ref=f4e80]:
+          - strong [ref=f4e81]: Head Office
+          - text: ": Khan Plaza (3rd Floor), A-31 Majid Saroni, Sonadanga, Khulna, Bangladesh."
+        - list [ref=f4e84]:
+          - listitem [ref=f4e85]:
+            - link "info@cogentbroadband.net" [ref=f4e86] [cursor=pointer]:
+              - /url: mailto:info@cogentbroadband.net
+          - listitem [ref=f4e91]:
+            - generic [ref=f4e95]: "09638009244"
+          - listitem [ref=f4e96]:
+            - link "01974-691100" [ref=f4e97] [cursor=pointer]:
+              - /url: https://wa.me/+8801974691100
+        - heading "Support Centers" [level=5] [ref=f4e104]
+        - paragraph [ref=f4e107]:
+          - strong [ref=f4e108]: "Khalishpur:"
+          - text: Lal Hospital More, Road 18, House 03, Khalishpur, Khulna 9000.
+        - heading "Contacts" [level=5] [ref=f4e111]
+        - paragraph [ref=f4e114]:
+          - strong [ref=f4e115]: "Hotline 24/7:"
+          - link "09638009244" [ref=f4e116] [cursor=pointer]:
+            - /url: tel:09638009244
+        - list [ref=f4e119]:
+          - listitem [ref=f4e120]:
+            - link "01901-167171" [ref=f4e121] [cursor=pointer]:
+              - /url: tel:+88001901167171
+              - generic [aria-hidden] [ref=f4e123]: 
+          - listitem [ref=f4e125]:
+            - link "01901-167172" [ref=f4e126] [cursor=pointer]:
+              - /url: tel:+8801901167172
+              - generic [aria-hidden] [ref=f4e128]: 
+          - listitem [ref=f4e130]:
+            - link "01974-691100" [ref=f4e131] [cursor=pointer]:
+              - /url: tel:+8801974691100
+              - generic [aria-hidden] [ref=f4e133]: 
+          - listitem [ref=f4e135]:
+            - link "01974691133" [ref=f4e136] [cursor=pointer]:
+              - /url: tel:+8801974691133
+              - generic [aria-hidden] [ref=f4e138]: 
+      - generic [ref=f4e140]:
+        - heading "Need a new connection? Fill-out the form below:" [level=2] [ref=f4e143]
+        - generic [ref=f4e147]:
+          - generic [ref=f4e148]:
+            - generic [ref=f4e149] [cursor=pointer]: "Name: *"
+            - 'textbox "Name: *" [ref=f4e150]':
+              - /placeholder: Full Name
+          - generic [ref=f4e151]:
+            - generic [ref=f4e152] [cursor=pointer]: "Phone: *"
+            - 'textbox "Phone: *" [ref=f4e153]':
+              - /placeholder: Phone
+          - generic [ref=f4e154]:
+            - generic [ref=f4e155] [cursor=pointer]: "Connection Type: *"
+            - 'combobox "Connection Type: *" [ref=f4e157]':
+              - option "Personal" [selected]
+              - option "Business"
+          - generic [ref=f4e158]:
+            - generic [ref=f4e159] [cursor=pointer]: "Select Area: *"
+            - 'combobox "Select Area: *" [ref=f4e161]':
+              - option "Meherpur" [selected]
+              - option "Kushtia"
+              - option "Chuadanga"
+              - option "Jhenaidah"
+              - option "Jessore"
+              - option "Satkhira"
+              - option "Magura"
+              - option "Narail"
+              - option "Khulna"
+              - option "Faridpur"
+              - option "Gopalganj"
+              - option "Bagerhat"
+              - option "Pirojpur"
+              - option "Madaripur"
+              - option "Barishal"
+          - generic [ref=f4e162]:
+            - generic [ref=f4e163] [cursor=pointer]: "Company/ Home Address:"
+            - textbox "Company/ Home Address:" [ref=f4e164]:
+              - /placeholder: Address
+          - generic [ref=f4e165]:
+            - generic [ref=f4e166] [cursor=pointer]: "Select Package:"
+            - combobox "Select Package:" [ref=f4e168]:
+              - option "15 mbps - 500tk" [selected]
+              - option "20 mbps - 600tk"
+              - option "30 mbps - 750tk"
+              - option "40 mbps - 800tk"
+              - option "55 mbps - 1000tk"
+              - option "80 mbps - 1200tk"
+              - option
+          - generic [ref=f4e169]:
+            - generic [ref=f4e170] [cursor=pointer]: "Email: *"
+            - 'textbox "Email: *" [ref=f4e171]':
+              - /placeholder: Email
+          - generic [ref=f4e172]:
+            - generic [ref=f4e173] [cursor=pointer]: "Message:"
+            - textbox "Message:" [ref=f4e174]:
+              - /placeholder: Message
+          - button "Send Message" [ref=f4e176] [cursor=pointer]
+    - iframe [ref=f4e182]:
+      - generic [ref=f5e2]:
+        - generic [ref=f5e4]:
+          - generic [ref=f5e5]:
+            - generic [ref=f5e7]:
+              - generic [ref=f5e8]:
+                - generic "শেয়ার করুন" [ref=f5e9] [cursor=pointer]:
+                  - button [ref=f5e11]
+                - generic "বৃহত্তর ম্যাপ দেখুন" [ref=f5e15] [cursor=pointer]
+              - generic [ref=f5e18]:
+                - generic [ref=f5e19] [cursor=pointer]
+                - generic "Cogent Broadband" [ref=f5e20]
+                - generic "Google Maps-এ এই ম্যাপটি দেখতে তারা চিহ্নিত করুন" [ref=f5e21]:
+                  - checkbox "Toggle star" [ref=f5e22]
+                - generic [ref=f5e26]:
+                  - text: এই ম্যাপটি Google My Maps ব্যবহার করে তৈরি করা হয়েছে।
+                  - link "নিজের ম্যাপ তৈরি করুন।" [ref=f5e27] [cursor=pointer]:
+                    - /url: //support.google.com/mymaps/answer/3024454?hl=en&amp;ref_topic=3188329
+            - generic [ref=f5e28]:
+              - generic "জুম বাড়ান" [ref=f5e30]
+              - generic "জুম কমান" [ref=f5e32]
+          - generic [ref=f5e34]:
+            - list [ref=f5e35]:
+              - listitem
+              - listitem [ref=f5e36] [cursor=pointer]:
+                - link "শর্তাবলী" [ref=f5e37]:
+                  - /url: //www.google.com/intl/bn/help/terms_maps.html
+            - generic [ref=f5e40] [cursor=pointer]
+        - generic [ref=f5e45]:
+          - generic [ref=f5e47]:
+            - text: কোনও একজন ব্যবহারকারী এই ম্যাপ তৈরি করেছেন।
+            - link "আপনি নিজে কীভাবে ম্যাপ তৈরি করবেন তা জেনে নিন।" [ref=f5e48] [cursor=pointer]:
+              - /url: //support.google.com/mymaps/answer/3024454?hl=en&amp;ref_topic=3188329
+          - generic "বন্ধ" [ref=f5e49] [cursor=pointer]
+        - generic [ref=f5e54]:
+          - generic [ref=f5e55]:
+            - generic [ref=f5e56] [cursor=pointer]: নতুন ম্যাপ বানান
+            - generic [ref=f5e59] [cursor=pointer]: ম্যাপ খুলুন
+            - generic [ref=f5e62] [cursor=pointer]: আপনার সাথে ভাগ করেছে
+          - generic [ref=f5e65]:
+            - generic [ref=f5e66] [cursor=pointer]: সহায়তা
+            - generic [ref=f5e69] [cursor=pointer]: প্রতিক্রিয়া
+            - button "অনুপযুক্ত কন্টেন্টের বিষয়ে অভিযোগ জানান" [ref=f5e75] [cursor=pointer]
+          - generic [ref=f5e76]: Google Drive
+  - generic [ref=f4e183]:
+    - generic [ref=f4e185]:
+      - generic [ref=f4e186]:
+        - heading "Have a question? Call us right now" [level=4] [ref=f4e189]
+        - link "Contact us" [ref=f4e193] [cursor=pointer]:
+          - /url: https://cogentbroadband.net/contact/
+      - generic [ref=f4e199]:
+        - generic [ref=f4e202]:
+          - link "Customer Support" [ref=f4e204] [cursor=pointer]:
+            - /url: tel:+8801974691133
+          - generic [ref=f4e207]:
+            - link "Customer Support" [ref=f4e209] [cursor=pointer]:
+              - /url: tel:+8801974691133
+            - paragraph [ref=f4e210]: "09638009244"
+        - generic [ref=f4e213]:
+          - link "Technical Support" [ref=f4e215] [cursor=pointer]:
+            - /url: tel:+8801974691133
+          - generic [ref=f4e218]:
+            - link "Technical Support" [ref=f4e220] [cursor=pointer]:
+              - /url: tel:+8801974691133
+            - paragraph [ref=f4e221]: (880) 1974691133
+    - generic [ref=f4e223]:
+      - generic [ref=f4e224]:
+        - generic [ref=f4e227]: Cogent is the pioneer of Gigablast internet first time in Khulna zone. Grab this opportunity to one step ahead to future. Visit us anytime in our corporate office in Khulna. We are very much humble to our customer and we hope your footsteps here our workstation for a cup of tea anytime. We appriciate your time to contact with us.
+        - list [ref=f4e232]:
+          - listitem [ref=f4e233]:
+            - link "Facebook-f" [ref=f4e234] [cursor=pointer]:
+              - /url: https://www.facebook.com/cogentbroadband
+          - listitem [ref=f4e238]:
+            - link "Whatsapp" [ref=f4e239] [cursor=pointer]:
+              - /url: https://wa.me/+8801974691100
+      - generic [ref=f4e243]:
+        - heading "Quick Links" [level=5] [ref=f4e246]
+        - list [ref=f4e249]:
+          - listitem [ref=f4e250]:
+            - link "Contact" [ref=f4e251] [cursor=pointer]:
+              - /url: https://cogentbroadband.net/contact/
+          - listitem [ref=f4e253]:
+            - link "Blogs" [ref=f4e254] [cursor=pointer]:
+              - /url: https://cogentbroadband.net/blog/
+          - listitem [ref=f4e256]:
+            - link "Privacy Policy" [ref=f4e257] [cursor=pointer]:
+              - /url: https://cogentbroadband.net/privacy-policy/
+        - heading "Address" [level=5] [ref=f4e261]
+        - paragraph [ref=f4e264]:
+          - strong [ref=f4e265]: Head Office
+          - text: ": Khan Plaza (3rd Floor), A-31 Majid Saroni, Sonadanga, Khulna, Bangladesh"
+        - list [ref=f4e268]:
+          - listitem [ref=f4e269]:
+            - link "info@cogentbroadband.net" [ref=f4e270] [cursor=pointer]:
+              - /url: mailto:info@cogentbroadband.net
+          - listitem [ref=f4e275]:
+            - link "01974-691100" [ref=f4e276] [cursor=pointer]:
+              - /url: https://wa.me/+8801974691100
+      - generic [ref=f4e281]:
+        - heading "Support Centers" [level=5] [ref=f4e284]
+        - paragraph [ref=f4e287]:
+          - strong [ref=f4e288]: "Khalishpur:"
+          - text: Lal Hospital More, Road 18, House 03, Khalishpur, Khulna 9000.
+      - generic [ref=f4e289]:
+        - heading "Contacts" [level=5] [ref=f4e292]
+        - paragraph [ref=f4e295]:
+          - strong [ref=f4e296]: "Hotline 24/7:"
+          - link "09638009244" [ref=f4e297] [cursor=pointer]:
+            - /url: tel:09638009244
+        - list [ref=f4e300]:
+          - listitem [ref=f4e301]:
+            - link "01901-167171" [ref=f4e302] [cursor=pointer]:
+              - /url: tel:+8801901167171
+              - generic [aria-hidden] [ref=f4e304]: 
+          - listitem [ref=f4e306]:
+            - link "01901-167172" [ref=f4e307] [cursor=pointer]:
+              - /url: tel:+8801901167172
+              - generic [aria-hidden] [ref=f4e309]: 
+          - listitem [ref=f4e311]:
+            - link "01974-691100" [ref=f4e312] [cursor=pointer]:
+              - /url: tel:+8801974691100
+              - generic [aria-hidden] [ref=f4e314]: 
+          - listitem [ref=f4e316]:
+            - link "01974-691133" [ref=f4e317] [cursor=pointer]:
+              - /url: tel:+8801974691133
+              - generic [aria-hidden] [ref=f4e319]: 
+      - generic [ref=f4e325]:
+        - text: Copyright© 2025 Cogent Broadband, All rights reserved. Designed by
+        - link "AgiloIT" [ref=f4e326] [cursor=pointer]:
+          - /url: https://agiloit.com/
+  - generic [ref=f4e327]: laptop

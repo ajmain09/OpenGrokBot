@@ -6,7 +6,7 @@ import type { Agent, AutoReviewRule, McpServerDef, ProviderDef, Skill, Team, Tea
 const PERMISSION_MODES = new Set(['default', 'acceptEdits', 'bypassPermissions', 'plan', 'dontAsk'])
 const EFFORTS = new Set(['low', 'medium', 'high', 'xhigh', 'max'])
 const SHAPES = new Set(['blob', 'round', 'triangle', 'hex', 'drop'])
-const PROVIDER_KINDS = new Set(['claude', 'codex', 'gemini', 'openai'])
+const PROVIDER_KINDS = new Set(['antigravity', 'claude', 'codex', 'gemini', 'openai'])
 
 const DEFAULT_SETTINGS: TeamSettings = {
   maxMessagesPerRound: 6,
@@ -103,7 +103,7 @@ export function parseMcpServer(raw: unknown, label = 'mcp server'): McpServerDef
 export function parseProvider(raw: unknown, label = 'provider'): ProviderDef {
   const r = asRecord(raw)
   const kind = asString(r.kind, `${label}.kind`)
-  if (!PROVIDER_KINDS.has(kind)) fail(`${label}.kind must be claude, codex, gemini or openai`)
+  if (!PROVIDER_KINDS.has(kind)) fail(`${label}.kind must be antigravity, claude, codex, gemini or openai`)
   const def: ProviderDef = { kind: kind as ProviderDef['kind'], label: typeof r.label === 'string' && r.label.trim() ? r.label.trim() : kind }
   if (typeof r.apiKey === 'string' && r.apiKey.trim()) def.apiKey = r.apiKey.trim()
   if (typeof r.baseUrl === 'string' && r.baseUrl.trim()) def.baseUrl = r.baseUrl.trim().replace(/\/+$/, '')

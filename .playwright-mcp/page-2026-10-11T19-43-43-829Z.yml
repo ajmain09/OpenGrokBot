@@ -1,0 +1,79 @@
+- generic [active] [ref=f6e1]:
+  - banner [ref=f6e3]:
+    - generic [ref=f6e4]:
+      - link [ref=f6e9] [cursor=pointer]:
+        - /url: https://khulnafiberlink.com/
+        - img "Khulna Fiber Link" [ref=f6e10]
+      - generic [ref=f6e14]:
+        - navigation [ref=f6e15]:
+          - list [ref=f6e16]:
+            - listitem [ref=f6e17]:
+              - link "Home" [ref=f6e18] [cursor=pointer]:
+                - /url: https://khulnafiberlink.com/
+            - listitem [ref=f6e19]:
+              - link "About" [ref=f6e20] [cursor=pointer]:
+                - /url: https://khulnafiberlink.com/about/
+            - listitem [ref=f6e21]:
+              - link "Contact" [ref=f6e22] [cursor=pointer]:
+                - /url: https://khulnafiberlink.com/contact/
+            - listitem [ref=f6e23]:
+              - link "BTRC Approved Tariff" [ref=f6e24] [cursor=pointer]:
+                - /url: https://khulnafiberlink.com/wp-content/uploads/2023/02/Khulna-Fiber-Link-btrc-tariff.pdf
+        - text:  
+      - search [ref=f6e29]:
+        - generic [ref=f6e30] [cursor=pointer]:
+          - generic [aria-hidden] [ref=f6e31]: 
+          - generic [ref=f6e32]: Search
+        - generic:
+          - searchbox "Search"
+          - text: 
+  - generic [ref=f6e33]:
+    - generic [ref=f6e41]:
+      - heading "Go Beyond Your Wildest Dreams" [level=3] [ref=f6e44]
+      - heading "Enjoy Our Super Fast Internet Speed Today" [level=1] [ref=f6e47]
+      - button "about us" [ref=f6e51] [cursor=pointer]:
+        - generic [ref=f6e52]:
+          - generic [aria-hidden] [ref=f6e54]: 
+          - generic [ref=f6e55]: about us
+      - button [ref=f6e59]:
+        - generic [aria-hidden] [ref=f6e62]: 
+    - generic [ref=f6e79]:
+      - heading "The Sky's The Limit" [level=3] [ref=f6e82]
+      - heading "We are a internet service provider company in Khulna" [level=2] [ref=f6e85]
+      - paragraph [ref=f6e88]: Khulna Fiber Link is One Of The Leading Internet Service Provider, Located in Khulna. Provide High Speed Broadband Internet service As Per BTRC Approved Tariff All over Khulna Division.
+  - contentinfo [ref=f6e89]:
+    - generic [ref=f6e92]:
+      - generic [ref=f6e94]:
+        - generic [ref=f6e98]:
+          - navigation [ref=f6e99]:
+            - list [ref=f6e100]:
+              - listitem [ref=f6e101]:
+                - link "Home" [ref=f6e102] [cursor=pointer]:
+                  - /url: https://khulnafiberlink.com/
+              - listitem [ref=f6e103]:
+                - link "About" [ref=f6e104] [cursor=pointer]:
+                  - /url: https://khulnafiberlink.com/about/
+              - listitem [ref=f6e105]:
+                - link "Contact" [ref=f6e106] [cursor=pointer]:
+                  - /url: https://khulnafiberlink.com/contact/
+              - listitem [ref=f6e107]:
+                - link "BTRC Approved Tariff" [ref=f6e108] [cursor=pointer]:
+                  - /url: https://khulnafiberlink.com/wp-content/uploads/2023/02/Khulna-Fiber-Link-btrc-tariff.pdf
+          - text:  
+        - paragraph [ref=f6e113]: 01973-868888
+      - generic [ref=f6e115]:
+        - paragraph [ref=f6e120]: © 2018 All rights Reserved.
+        - generic [ref=f6e125]:
+          - generic [ref=f6e127] [cursor=pointer]:
+            - generic [ref=f6e128]: Facebook
+            - generic [ref=f6e129]: 
+          - generic [ref=f6e131] [cursor=pointer]:
+            - generic [ref=f6e132]: Twitter
+            - generic [ref=f6e133]: 
+          - generic [ref=f6e135] [cursor=pointer]:
+            - generic [ref=f6e136]: Google-plus
+            - generic [ref=f6e137]: 
+          - generic [ref=f6e139] [cursor=pointer]:
+            - generic [ref=f6e140]: Pinterest
+            - generic [ref=f6e141]: 
+  - generic [ref=f6e142]: widescreen
