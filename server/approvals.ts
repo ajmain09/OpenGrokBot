@@ -117,13 +117,18 @@ export function summarizeInput(tool: string, input: Record<string, unknown>): st
   }
 }
 
+import type { AuditLogger } from './audit.js'
+
 /** Holds tool calls that wait for the owner's Allow / Deny in the chat, with auto-approval & persistent history. */
 export class Approvals {
   private readonly pending = new Map<string, Pending>()
   private readonly historyItems: ApprovalHistoryItem[] = []
   private readonly historyFile: string
 
-  constructor(dataDir = path.join(process.cwd(), 'data')) {
+  constructor(
+    dataDir = path.join(process.cwd(), 'data'),
+    private readonly audit?: AuditLogger
+  ) {
     mkdirSync(dataDir, { recursive: true })
     this.historyFile = path.join(dataDir, 'approval-history.json')
     this.loadHistory()
@@ -180,6 +185,16 @@ export class Approvals {
         timestamp: Date.now(),
       })
       this.saveHistory()
+
+      this.audit?.record({
+        agentId,
+        tool,
+        actionSummary: summary,
+        category: 'tool.auto_approved',
+        decision: 'allowed',
+        reason: trusted.reason,
+      })
+
       return Promise.resolve(true)
     }
 
@@ -212,6 +227,15 @@ export class Approvals {
         })
         this.saveHistory()
 
+        this.audit?.record({
+          agentId,
+          tool,
+          actionSummary: summary,
+          category: 'tool.owner_approval',
+          decision: allowed ? 'approved' : 'rejected',
+          reason: allowed ? 'Owner approved tool execution' : 'Owner rejected tool execution',
+        })
+
         emit({ type: 'approval:resolved', id: request.id, allowed })
         resolve(allowed)
       }
@@ -228,5 +252,16 @@ export class Approvals {
     if (!p) return undefined
     p.resolve(allowed)
     return p.request
+  }
+
+  rejectAll(): number {
+    let count = 0
+    for (const [, p] of this.pending) {
+      clearTimeout(p.timer)
+      p.resolve(false)
+      count++
+    }
+    this.pending.clear()
+    return count
   }
 }

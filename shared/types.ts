@@ -360,6 +360,8 @@ export type ServerEvent =
   | { type: 'approval:request'; request: ApprovalRequest }
   | { type: 'approval:resolved'; id: string; allowed: boolean }
   | { type: 'routines'; routines: Routine[] }
+  | { type: 'emergency:triggered'; state: EmergencyStopState }
+  | { type: 'emergency:resumed'; state: EmergencyStopState }
 
 export interface ApprovalHistoryItem {
   id: string
@@ -421,3 +423,71 @@ export interface BrowserProfileInfo {
   status: 'idle' | 'running' | 'uninitialized'
 }
 
+
+export type PermissionCategory =
+  | 'browser.read'
+  | 'browser.navigate'
+  | 'browser.form'
+  | 'file.read'
+  | 'file.write'
+  | 'file.delete'
+  | 'terminal.command'
+  | 'windows.inspect'
+  | 'windows.control'
+  | 'app.launch'
+  | 'lead.database'
+  | 'memory.operate'
+  | 'api.external'
+  | 'messaging.outbound'
+  | 'finance.payment'
+  | 'security.config'
+  | 'credential.access'
+
+export type PermissionLevel = 'allow' | 'ask' | 'deny'
+
+export interface OwnerPermissionsConfig {
+  version: number
+  updatedAt: number
+  defaults: Record<string, PermissionLevel>
+  overrides?: Record<string, PermissionLevel>
+}
+
+export interface AuditLogEntry {
+  id: string
+  timestamp: number
+  brandId?: string
+  agentId?: string
+  taskId?: string
+  category: string
+  tool: string
+  actionSummary: string
+  decision: 'allowed' | 'approved' | 'rejected' | 'denied'
+  reason?: string
+  result?: string
+  error?: string
+  outputRef?: string
+}
+
+export interface WhatsAppBrandConfig {
+  brandId: string
+  enabled: boolean
+  autoReplyEnabled: boolean
+  autoMarketingEnabled: boolean
+  phoneNumberId?: string
+  wabaId?: string
+  accessToken?: string
+  webhookVerifyToken?: string
+  handoverKeywords?: string[]
+  optOutKeywords?: string[]
+  status: 'connected' | 'setup_required' | 'disconnected'
+  lastChecked?: number
+}
+
+export interface EmergencyStopState {
+  active: boolean
+  stoppedAt?: number
+  scope?: 'all' | 'task' | 'bot' | 'pause'
+  reason?: string
+  stoppedTasksCount: number
+  stoppedRoundsCount: number
+}

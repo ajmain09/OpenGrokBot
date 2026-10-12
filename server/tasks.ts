@@ -208,6 +208,23 @@ export class TaskManager {
     return false
   }
 
+  cancelAll(): number {
+    let count = 0
+    for (const task of this.tasks) {
+      if (task.status === 'queued' || task.status === 'running' || task.status === 'waiting-approval') {
+        const abort = this.activeAbortControllers.get(task.id)
+        if (abort) abort.abort()
+        task.status = 'cancelled'
+        task.completedAt = Date.now()
+        task.logs.push(`[${new Date().toLocaleTimeString()}] Cancelled by Emergency Stop.`)
+        count++
+      }
+    }
+    this.activeAbortControllers.clear()
+    this.save()
+    return count
+  }
+
   retry(id: string): boolean {
     const task = this.get(id)
     if (!task) return false

@@ -22,6 +22,10 @@ import { Routines } from './routines.js'
 import { Store } from './store.js'
 import { loadTeam, parseAgent, parseMcpServer, parseProvider, parseSkill, parseTeam, saveTeam, TeamError } from './team.js'
 import { summarizeUsage } from './usage.js'
+import { AuditLogger } from './audit.js'
+import { PermissionsEngine } from './permissions.js'
+import { WhatsAppService } from './whatsapp.js'
+import { EmergencyStopManager } from './emergency.js'
 import type { AppState, Attachment, Team } from '../shared/types.js'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
@@ -47,7 +51,10 @@ let team = loadTeam(teamFile)
 const store = new Store(dataDir)
 store.seed(team)
 const account = new Account(path.join(dataDir, 'account.json'))
-const approvals = new Approvals(dataDir)
+const audit = new AuditLogger(dataDir)
+const permissions = new PermissionsEngine(dataDir, audit)
+const whatsapp = new WhatsAppService(dataDir, audit)
+const approvals = new Approvals(dataDir, audit)
 const memory = new Memory(dataDir)
 const leads = new LeadStore(dataDir)
 const outputs = new OutputManager(dataDir)
@@ -56,7 +63,25 @@ const brands = new BrandsStore(team.workspace)
 const workflows = new WorkflowsStore(team.workspace)
 let orchestrator: Orchestrator
 const tasks = new TaskManager(dataDir, () => orchestrator, () => approvals)
-orchestrator = new Orchestrator(() => team, store, account, approvals, memory, leads, (p) => allowedFile(p))
+orchestrator = new Orchestrator(
+  () => team,
+  store,
+  account,
+  approvals,
+  memory,
+  leads,
+  (p) => allowedFile(p),
+  permissions,
+  audit,
+  (brandId) => whatsapp.isAutonomousMessagingEnabled(brandId)
+)
+const emergency = new EmergencyStopManager(
+  () => orchestrator,
+  () => tasks,
+  () => approvals,
+  () => whatsapp,
+  audit
+)
 const routines = new Routines(dataDir, (r) => orchestrator.runRoutine(r))
 routines.start()
 
@@ -954,6 +979,174 @@ app.post('/api/tools/test', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
   }
+})
+
+// ---- Real Windows Computer Control Extensions ----
+app.get('/api/computer/windows', (_req, res) => {
+  if (process.platform !== 'win32') {
+    res.json({ windows: [] })
+    return
+  }
+  const ps = `Get-Process | Where-Object { $_.MainWindowTitle } | Select-Object -Property Id, ProcessName, MainWindowTitle | ConvertTo-Json -Compress`
+  const child = spawn('powershell.exe', ['-NoProfile', '-Command', ps], { windowsHide: true })
+  let stdout = ''
+  child.stdout.on('data', (d) => { stdout += d.toString() })
+  child.on('close', () => {
+    try {
+      const parsed = stdout.trim() ? JSON.parse(stdout) : []
+      const list = Array.isArray(parsed) ? parsed : [parsed]
+      res.json({ windows: list })
+    } catch {
+      res.json({ windows: [] })
+    }
+  })
+})
+
+app.post('/api/computer/launch-app', (req, res) => {
+  if (process.platform !== 'win32') {
+    res.status(400).json({ error: 'App launch is only supported on Windows' })
+    return
+  }
+  const appName = typeof req.body?.app === 'string' ? req.body.app.trim() : ''
+  if (!appName) {
+    res.status(400).json({ error: 'app parameter required' })
+    return
+  }
+  if (/[;&|`$]/.test(appName)) {
+    res.status(400).json({ error: 'Invalid application name or path' })
+    return
+  }
+  try {
+    spawn('cmd.exe', ['/c', 'start', '', appName], { detached: true, stdio: 'ignore', windowsHide: true }).unref()
+    audit.record({
+      category: 'app.launch',
+      tool: 'ComputerControl',
+      actionSummary: `Launched desktop application: ${appName}`,
+      decision: 'allowed',
+    })
+    res.json({ ok: true, app: appName })
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+// ---- Owner-Controlled Permissions Engine API ----
+app.get('/api/permissions', (_req, res) => {
+  res.json(permissions.getConfig())
+})
+
+app.post('/api/permissions', (req, res) => {
+  try {
+    const { defaults, overrides } = req.body ?? {}
+    if (!defaults || typeof defaults !== 'object') {
+      res.status(400).json({ error: 'defaults object required' })
+      return
+    }
+    const updated = permissions.updatePermissions(defaults, overrides)
+    res.json(updated)
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+// ---- Durable Audit Logging API ----
+app.get('/api/audit-logs', (req, res) => {
+  try {
+    const brandId = typeof req.query.brandId === 'string' ? req.query.brandId : undefined
+    const category = typeof req.query.category === 'string' ? req.query.category : undefined
+    const decision = typeof req.query.decision === 'string' ? req.query.decision : undefined
+    res.json({ logs: audit.list({ brandId, category, decision }) })
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.delete('/api/audit-logs', (_req, res) => {
+  audit.clear()
+  res.json({ ok: true })
+})
+
+// ---- Meta WhatsApp Business Cloud API & Messaging ----
+app.get('/api/whatsapp/config', (_req, res) => {
+  res.json({ configs: whatsapp.listConfigs() })
+})
+
+app.get('/api/whatsapp/config/:brandId', (req, res) => {
+  res.json(whatsapp.getConfig(String(req.params.brandId)))
+})
+
+app.post('/api/whatsapp/config/:brandId', (req, res) => {
+  try {
+    const updated = whatsapp.updateConfig(String(req.params.brandId), req.body ?? {})
+    res.json(updated)
+  } catch (err) {
+    res.status(400).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.post('/api/whatsapp/send', async (req, res) => {
+  try {
+    const { brandId, recipientPhone, message, templateName } = req.body ?? {}
+    if (!recipientPhone || !message) {
+      res.status(400).json({ error: 'recipientPhone and message are required' })
+      return
+    }
+    const result = await whatsapp.sendOutboundMessage({
+      brandId: brandId || 'growthifyx',
+      recipientPhone: String(recipientPhone),
+      message: String(message),
+      templateName,
+    })
+    res.json(result)
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.get('/api/whatsapp/webhook', (req, res) => {
+  const mode = req.query['hub.mode']
+  const token = req.query['hub.verify_token']
+  const challenge = req.query['hub.challenge']
+
+  if (mode === 'subscribe' && typeof token === 'string' && whatsapp.verifyWebhook(token)) {
+    res.status(200).send(challenge)
+  } else {
+    res.sendStatus(403)
+  }
+})
+
+app.post('/api/whatsapp/webhook', async (req, res) => {
+  try {
+    const result = await whatsapp.handleIncomingWebhook(req.body ?? {})
+    res.json(result)
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+  }
+})
+
+app.get('/api/whatsapp/messages', (req, res) => {
+  const brandId = typeof req.query.brandId === 'string' ? req.query.brandId : undefined
+  res.json({ messages: whatsapp.listMessages(brandId) })
+})
+
+// ---- Global Emergency Stop API ----
+app.get('/api/emergency/status', (_req, res) => {
+  res.json(emergency.getState())
+})
+
+app.post('/api/emergency/stop', (req, res) => {
+  const scope = req.body?.scope || 'all'
+  const reason = req.body?.reason || 'Owner triggered Emergency Stop'
+  const targetId = req.body?.targetId
+  const result = emergency.trigger(scope, reason, targetId)
+  emit({ type: 'emergency:triggered', state: result })
+  res.json(result)
+})
+
+app.post('/api/emergency/resume', (_req, res) => {
+  const result = emergency.resume()
+  emit({ type: 'emergency:resumed', state: result })
+  res.json(result)
 })
 
 app.post('/api/team/agents', (req, res) => {

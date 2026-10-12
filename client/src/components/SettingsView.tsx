@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import type { Brand, ProviderStatus, Team } from '../../../shared/types'
+import type { Brand, ProviderStatus, Team, WhatsAppBrandConfig } from '../../../shared/types'
 import {
   clearMemories,
   createBrand,
   deleteBrand,
   fetchBrands,
+  fetchWhatsAppConfig,
+  updateWhatsAppConfig,
+  sendWhatsAppMessage,
   listBrowsers,
   listOutputs,
   openBrowserProfile,
@@ -28,7 +31,7 @@ interface SettingsViewProps {
   onBrandChange?: (brandId: string) => void
 }
 
-type SettingsTab = 'general' | 'brands' | 'providers' | 'automation' | 'memory' | 'outputs' | 'permissions' | 'system'
+type SettingsTab = 'general' | 'brands' | 'whatsapp' | 'providers' | 'automation' | 'memory' | 'outputs' | 'permissions' | 'system'
 
 export function SettingsView({
   team,
@@ -66,6 +69,83 @@ export function SettingsView({
   const [baseDir, setBaseDir] = useState('')
   const [dirInput, setDirInput] = useState('')
   const [editingDir, setEditingDir] = useState(false)
+
+  // WhatsApp Meta Cloud API state
+  const [waBrandId, setWaBrandId] = useState<string>(activeBrand)
+  const [waConfig, setWaConfig] = useState<WhatsAppBrandConfig | null>(null)
+  const [waPhoneId, setWaPhoneId] = useState('')
+  const [waWabaId, setWaWabaId] = useState('')
+  const [waToken, setWaToken] = useState('')
+  const [waVerifyToken, setWaVerifyToken] = useState('')
+  const [waAutoReply, setWaAutoReply] = useState(true)
+  const [waAutoMarketing, setWaAutoMarketing] = useState(true)
+  const [waSaving, setWaSaving] = useState(false)
+  const [waTestRecipient, setWaTestRecipient] = useState('')
+  const [waTestMessage, setWaTestMessage] = useState('')
+  const [waTestStatus, setWaTestStatus] = useState<string | null>(null)
+
+  const loadWaConfig = async (bid: string) => {
+    try {
+      const cfg = await fetchWhatsAppConfig(bid)
+      setWaConfig(cfg)
+      setWaPhoneId(cfg.phoneNumberId || '')
+      setWaWabaId(cfg.wabaId || '')
+      setWaToken(cfg.accessToken || '')
+      setWaVerifyToken(cfg.webhookVerifyToken || '')
+      setWaAutoReply(cfg.autoReplyEnabled ?? true)
+      setWaAutoMarketing(cfg.autoMarketingEnabled ?? true)
+    } catch {
+      // fallback
+    }
+  }
+
+  useEffect(() => {
+    void loadWaConfig(waBrandId)
+  }, [waBrandId])
+
+  const handleSaveWaConfig = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setWaSaving(true)
+    setError(null)
+    setNotice(null)
+    try {
+      const updated = await updateWhatsAppConfig(waBrandId, {
+        phoneNumberId: waPhoneId.trim(),
+        wabaId: waWabaId.trim(),
+        accessToken: waToken.trim(),
+        webhookVerifyToken: waVerifyToken.trim() || `ogb_verify_${waBrandId}_2026`,
+        autoReplyEnabled: waAutoReply,
+        autoMarketingEnabled: waAutoMarketing,
+        enabled: true,
+      })
+      setWaConfig(updated)
+      setNotice(`WhatsApp settings for ${waBrandId.toUpperCase()} saved successfully!`)
+      setTimeout(() => setNotice(null), 4000)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err))
+    } finally {
+      setWaSaving(false)
+    }
+  }
+
+  const handleSendTestWa = async () => {
+    if (!waTestRecipient.trim() || !waTestMessage.trim()) return
+    setWaTestStatus('Sending…')
+    try {
+      const res = await sendWhatsAppMessage({
+        brandId: waBrandId,
+        recipientPhone: waTestRecipient.trim(),
+        message: waTestMessage.trim(),
+      })
+      if (res.ok) {
+        setWaTestStatus(`Message ${res.status.toUpperCase()} (ID: ${res.messageId.slice(0, 8)})`)
+      } else {
+        setWaTestStatus(`Failed: ${res.error}`)
+      }
+    } catch (err) {
+      setWaTestStatus(`Error: ${err instanceof Error ? err.message : String(err)}`)
+    }
+  }
 
   const leadAgent = team.agents.find((a) => a.id === 'lead_collection_specialist')
   const marketingAgent = team.agents.find((a) => a.id === 'marketing')
@@ -236,6 +316,13 @@ export function SettingsView({
           onClick={() => handleSelectTab('brands')}
         >
           BRANDS ({brands.length})
+        </button>
+        <button
+          type="button"
+          className={`tab-btn ${activeTab === 'whatsapp' ? 'active' : ''}`}
+          onClick={() => handleSelectTab('whatsapp')}
+        >
+          WHATSAPP CLOUD API
         </button>
         <button
           type="button"
@@ -474,6 +561,181 @@ export function SettingsView({
                 </div>
               )
             })}
+          </div>
+        </div>
+      )}
+
+      {/* TAB: WHATSAPP CLOUD API */}
+      {activeTab === 'whatsapp' && (
+        <div className="card section-card">
+          <div className="section-head">
+            <div>
+              <h3>📱 Meta WhatsApp Business Cloud API & Messaging</h3>
+              <p className="section-desc">
+                Configure direct Meta Graph API credentials for automated customer communication, Bengali/English auto-replies, and scheduled marketing outreach.
+              </p>
+            </div>
+            <div className="brand-badge-group">
+              <span
+                className="status-pill"
+                style={{
+                  backgroundColor: waConfig?.status === 'connected' ? '#18836B' : '#d97706',
+                  color: '#fff',
+                }}
+              >
+                {waConfig?.status === 'connected' ? 'CONNECTED' : 'SETUP REQUIRED'}
+              </span>
+            </div>
+          </div>
+
+          {/* Brand Selector for WhatsApp settings */}
+          <div style={{ marginTop: '16px', display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <label style={{ fontWeight: 600, fontSize: '13px' }}>Configure for Brand:</label>
+            <select
+              value={waBrandId}
+              onChange={(e) => setWaBrandId(e.target.value)}
+              className="select"
+              style={{ maxWidth: '240px' }}
+            >
+              {brands.map((b) => (
+                <option key={b.id} value={b.id}>
+                  {b.name} ({b.id})
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <form onSubmit={handleSaveWaConfig} style={{ marginTop: '16px' }}>
+            <div className="form-group" style={{ marginBottom: '14px' }}>
+              <label className="form-label">Phone Number ID (From Meta Developer Portal)</label>
+              <input
+                type="text"
+                className="form-input"
+                placeholder="e.g. 104829104829104"
+                value={waPhoneId}
+                onChange={(e) => setWaPhoneId(e.target.value)}
+              />
+              <span className="form-hint" style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+                Located in your Meta WhatsApp App Dashboard &gt; API Setup &gt; Phone number ID.
+              </span>
+            </div>
+
+            <div className="form-group" style={{ marginBottom: '14px' }}>
+              <label className="form-label">WhatsApp Business Account ID (WABA ID)</label>
+              <input
+                type="text"
+                className="form-input"
+                placeholder="e.g. 192847192847192"
+                value={waWabaId}
+                onChange={(e) => setWaWabaId(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group" style={{ marginBottom: '14px' }}>
+              <label className="form-label">System User Permanent Access Token</label>
+              <input
+                type="password"
+                className="form-input"
+                placeholder="EAAB..."
+                value={waToken}
+                onChange={(e) => setWaToken(e.target.value)}
+              />
+              <span className="form-hint" style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+                Token with <code>whatsapp_business_messaging</code> and <code>whatsapp_business_management</code> permissions.
+              </span>
+            </div>
+
+            <div className="form-group" style={{ marginBottom: '14px' }}>
+              <label className="form-label">Webhook Verify Token</label>
+              <input
+                type="text"
+                className="form-input"
+                value={waVerifyToken}
+                onChange={(e) => setWaVerifyToken(e.target.value)}
+              />
+              <span className="form-hint" style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+                Set your Meta Webhook URL to: <code>http://&lt;your-domain-or-tunnel&gt;/api/whatsapp/webhook</code>
+              </span>
+            </div>
+
+            {/* Autonomous Mode Toggles */}
+            <div style={{ marginTop: '18px', padding: '16px', border: '1px solid var(--border)', borderRadius: '8px', backgroundColor: 'var(--bg-subtle, #f9f9f9)' }}>
+              <h4 style={{ margin: '0 0 10px 0', fontSize: '14px' }}>⚡ Autonomous Operation Controls:</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                  <input
+                    type="checkbox"
+                    checked={waAutoReply}
+                    onChange={(e) => setWaAutoReply(e.target.checked)}
+                  />
+                  <div>
+                    <strong style={{ fontSize: '13px' }}>Autonomous Auto-Reply (Inbound Messages)</strong>
+                    <span style={{ display: 'block', fontSize: '12px', color: 'var(--text-muted)' }}>
+                      Automatically reply to incoming customer inquiries in natural Bengali/English without requiring manual owner approval for each reply.
+                    </span>
+                  </div>
+                </label>
+
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                  <input
+                    type="checkbox"
+                    checked={waAutoMarketing}
+                    onChange={(e) => setWaAutoMarketing(e.target.checked)}
+                  />
+                  <div>
+                    <strong style={{ fontSize: '13px' }}>Autonomous Outbound Marketing Outreach</strong>
+                    <span style={{ display: 'block', fontSize: '12px', color: 'var(--text-muted)' }}>
+                      Authorize Marketing bot to send scheduled proposal campaigns to verified leads directly via WhatsApp Cloud API without per-message confirmation.
+                    </span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
+              <button type="submit" className="btn-primary" disabled={waSaving}>
+                {waSaving ? 'Saving…' : 'Save WhatsApp Configuration'}
+              </button>
+            </div>
+          </form>
+
+          {/* Test Messenger Card */}
+          <div style={{ marginTop: '24px', borderTop: '1px solid var(--border)', paddingTop: '16px' }}>
+            <h4>📨 Direct WhatsApp Dispatch Test</h4>
+            <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '12px' }}>
+              Send a test message to verify Meta Cloud API connectivity or queue a draft for WhatsApp Web.
+            </p>
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+              <input
+                type="text"
+                placeholder="Recipient Phone (+88017...)"
+                value={waTestRecipient}
+                onChange={(e) => setWaTestRecipient(e.target.value)}
+                className="form-input"
+                style={{ maxWidth: '240px' }}
+              />
+              <input
+                type="text"
+                placeholder="Message body"
+                value={waTestMessage}
+                onChange={(e) => setWaTestMessage(e.target.value)}
+                className="form-input"
+                style={{ flex: 1 }}
+              />
+              <button
+                type="button"
+                className="btn-secondary"
+                onClick={handleSendTestWa}
+                disabled={!waTestRecipient.trim() || !waTestMessage.trim()}
+              >
+                Send Test
+              </button>
+            </div>
+            {waTestStatus && (
+              <p style={{ marginTop: '8px', fontSize: '12px', fontWeight: 600, color: 'var(--primary)' }}>
+                {waTestStatus}
+              </p>
+            )}
           </div>
         </div>
       )}

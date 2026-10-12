@@ -71,6 +71,9 @@ export interface PostOptions {
   note?: string
 }
 
+import type { PermissionsEngine } from './permissions.js'
+import type { AuditLogger } from './audit.js'
+
 export class Orchestrator {
   private readonly rounds = new Map<string, RoundState>()
 
@@ -83,6 +86,9 @@ export class Orchestrator {
     private readonly leads: LeadStore,
     /** Whether a file path may be shown in the chat (inside the workspace, an employee folder, or uploads). */
     private readonly allowedFile: (p: string) => boolean,
+    private readonly permissions?: PermissionsEngine,
+    private readonly audit?: AuditLogger,
+    private readonly isAutonomousMessaging?: (brandId?: string) => boolean,
   ) {}
 
   isBusy(conversationId: string): boolean {
@@ -140,6 +146,18 @@ export class Orchestrator {
     if (!state) return
     state.pending = []
     state.abort?.abort()
+  }
+
+  stopAll(): number {
+    let count = 0
+    for (const [, state] of this.rounds) {
+      if (state.running || state.pending.length > 0) {
+        state.pending = []
+        state.abort?.abort()
+        count++
+      }
+    }
+    return count
   }
 
   /** Runs a minimal Claude turn just to refresh the account's rate-limit picture. */
@@ -340,6 +358,41 @@ export class Orchestrator {
           emit({ type: 'account', account: this.account.get() })
         },
         onToolPermission: async (tool, input) => {
+          if (this.permissions) {
+            const autonomous = this.isAutonomousMessaging ? this.isAutonomousMessaging(agent.brandId) : false
+            const evaluation = this.permissions.evaluate(tool, input, agent, agent.brandId, autonomous)
+
+            if (evaluation.verdict === 'deny') {
+              start()
+              const line = `🛑 Blocked by Security Policy: ${evaluation.reason}`
+              message.activity?.push(line)
+              emit({ type: 'message:activity', conversationId, messageId: message.id, line })
+              this.audit?.record({
+                brandId: agent.brandId,
+                agentId: agent.id,
+                category: evaluation.category,
+                tool,
+                actionSummary: evaluation.actionSummary,
+                decision: 'denied',
+                reason: evaluation.reason,
+              })
+              return false
+            }
+
+            if (evaluation.verdict === 'allow') {
+              this.audit?.record({
+                brandId: agent.brandId,
+                agentId: agent.id,
+                category: evaluation.category,
+                tool,
+                actionSummary: evaluation.actionSummary,
+                decision: 'allowed',
+                reason: evaluation.reason,
+              })
+              return true
+            }
+          }
+
           const verdict = reviewByRules(this.getTeam(), tool, input)
           if (verdict === 'allow') return true
           start()

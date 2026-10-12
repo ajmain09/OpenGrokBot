@@ -1,4 +1,27 @@
-import type { AccountStatus, Agent, AppState, Attachment, Brand, Conversation, Lead, LeadSummary, McpServerDef, Message, ProviderDef, ProviderStatus, Routine, RoutineRun, Skill, TeamSettings, Workflow } from '../../shared/types'
+import type {
+  AccountStatus,
+  Agent,
+  AppState,
+  Attachment,
+  Brand,
+  Conversation,
+  Lead,
+  LeadSummary,
+  McpServerDef,
+  Message,
+  ProviderDef,
+  ProviderStatus,
+  Routine,
+  RoutineRun,
+  Skill,
+  TeamSettings,
+  Workflow,
+  OwnerPermissionsConfig,
+  PermissionLevel,
+  AuditLogEntry,
+  WhatsAppBrandConfig,
+  EmergencyStopState,
+} from '../../shared/types'
 
 async function call<T>(url: string, init?: RequestInit): Promise<T> {
   const res = await fetch(url, init)
@@ -382,4 +405,75 @@ export function captureScreenshot(brandId?: string): Promise<{ ok: boolean; path
 export function testTool(tool: string): Promise<{ ok: boolean; tool: string; message: string }> {
   return call('/api/tools/test', json('POST', { tool }))
 }
+
+export function fetchRunningWindows(): Promise<{ windows: { Id: number; ProcessName: string; MainWindowTitle: string }[] }> {
+  return call('/api/computer/windows')
+}
+
+export function launchApp(app: string): Promise<{ ok: boolean; app: string }> {
+  return call('/api/computer/launch-app', json('POST', { app }))
+}
+
+// ---- Owner Permissions Engine API ----
+export function fetchPermissions(): Promise<OwnerPermissionsConfig> {
+  return call('/api/permissions')
+}
+
+export function updatePermissions(defaults: Record<string, PermissionLevel>, overrides?: Record<string, PermissionLevel>): Promise<OwnerPermissionsConfig> {
+  return call('/api/permissions', json('POST', { defaults, overrides }))
+}
+
+// ---- Durable Audit Logs API ----
+export function fetchAuditLogs(filters?: { brandId?: string; category?: string; decision?: string }): Promise<{ logs: AuditLogEntry[] }> {
+  const params = new URLSearchParams()
+  if (filters?.brandId) params.set('brandId', filters.brandId)
+  if (filters?.category) params.set('category', filters.category)
+  if (filters?.decision) params.set('decision', filters.decision)
+  const qs = params.toString() ? `?${params.toString()}` : ''
+  return call(`/api/audit-logs${qs}`)
+}
+
+export function clearAuditLogs(): Promise<{ ok: boolean }> {
+  return call('/api/audit-logs', { method: 'DELETE' })
+}
+
+// ---- Meta WhatsApp Business Cloud API & Messaging ----
+export function fetchWhatsAppConfigs(): Promise<{ configs: WhatsAppBrandConfig[] }> {
+  return call('/api/whatsapp/config')
+}
+
+export function fetchWhatsAppConfig(brandId: string): Promise<WhatsAppBrandConfig> {
+  return call(`/api/whatsapp/config/${encodeURIComponent(brandId)}`)
+}
+
+export function updateWhatsAppConfig(brandId: string, patch: Partial<WhatsAppBrandConfig>): Promise<WhatsAppBrandConfig> {
+  return call(`/api/whatsapp/config/${encodeURIComponent(brandId)}`, json('POST', patch))
+}
+
+export function sendWhatsAppMessage(input: {
+  brandId: string
+  recipientPhone: string
+  message: string
+  templateName?: string
+}): Promise<{ ok: boolean; messageId: string; status: string; error?: string }> {
+  return call('/api/whatsapp/send', json('POST', input))
+}
+
+export function fetchWhatsAppMessages(brandId?: string): Promise<{ messages: any[] }> {
+  return call(`/api/whatsapp/messages${brandId ? `?brandId=${encodeURIComponent(brandId)}` : ''}`)
+}
+
+// ---- Global Emergency Stop API ----
+export function fetchEmergencyStatus(): Promise<EmergencyStopState> {
+  return call('/api/emergency/status')
+}
+
+export function triggerEmergencyStop(scope: 'all' | 'task' | 'bot' | 'pause' = 'all', reason?: string, targetId?: string): Promise<EmergencyStopState> {
+  return call('/api/emergency/stop', json('POST', { scope, reason, targetId }))
+}
+
+export function resumeEmergencyStop(): Promise<EmergencyStopState> {
+  return call('/api/emergency/resume', { method: 'POST' })
+}
+
 

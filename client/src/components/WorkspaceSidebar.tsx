@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { ApprovalRequest, Brand, Conversation } from '../../../shared/types'
 import { DEFAULT_BRANDS } from '../../../shared/types'
+import { fetchEmergencyStatus, resumeEmergencyStop, triggerEmergencyStop } from '../api'
 
 interface NavItem {
   id: string
@@ -109,6 +110,38 @@ export function WorkspaceSidebar({
   const [collapsed, setCollapsed] = useState(() => {
     return localStorage.getItem('ogb_sidebar_collapsed') === 'true'
   })
+  const [emergencyActive, setEmergencyActive] = useState(false)
+
+  useEffect(() => {
+    fetchEmergencyStatus().then((st) => setEmergencyActive(st.active)).catch(() => {})
+    const timer = setInterval(() => {
+      fetchEmergencyStatus().then((st) => setEmergencyActive(st.active)).catch(() => {})
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const handleEmergencyToggle = async () => {
+    if (emergencyActive) {
+      try {
+        const res = await resumeEmergencyStop()
+        setEmergencyActive(res.active)
+      } catch {
+        // ignore
+      }
+    } else {
+      const confirm = window.confirm(
+        'Trigger Global Emergency Stop?\n\nThis will immediately abort active AI rounds, cancel all queued tasks, reject pending approvals, and pause outbound messaging.'
+      )
+      if (confirm) {
+        try {
+          const res = await triggerEmergencyStop('all', 'Owner clicked Emergency Stop in sidebar')
+          setEmergencyActive(res.active)
+        } catch {
+          // ignore
+        }
+      }
+    }
+  }
 
   useEffect(() => {
     localStorage.setItem('ogb_sidebar_collapsed', String(collapsed))
@@ -229,6 +262,41 @@ export function WorkspaceSidebar({
 
       {/* Bottom Controls Bar */}
       <div className="workspace-sidebar-bottom">
+        {/* Global Emergency Stop Control */}
+        <div style={{ marginBottom: '8px', width: '100%' }}>
+          <button
+            type="button"
+            className="emergency-stop-btn"
+            onClick={handleEmergencyToggle}
+            style={{
+              width: '100%',
+              padding: collapsed ? '6px 2px' : '7px 10px',
+              borderRadius: '8px',
+              border: emergencyActive ? '2px solid #b91c1c' : '1px solid #ef4444',
+              backgroundColor: emergencyActive ? '#ef4444' : 'rgba(239, 68, 68, 0.08)',
+              color: emergencyActive ? '#ffffff' : '#dc2626',
+              fontWeight: 600,
+              fontSize: '11px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              transition: 'all 0.15s ease',
+            }}
+            title={
+              emergencyActive
+                ? 'System execution HALTED. Click to resume operations.'
+                : 'Global Emergency Stop: Instantly halt all running bots, cancel tasks, and pause messaging.'
+            }
+          >
+            <span>{emergencyActive ? '⚠️' : '🛑'}</span>
+            {!collapsed && (
+              <span>{emergencyActive ? 'RESUME SYSTEM' : 'EMERGENCY STOP'}</span>
+            )}
+          </button>
+        </div>
+
         <div className="sidebar-bottom-row">
           {/* Zoom controls */}
           <div className="zoom-controls-bar" title="Zoom: Ctrl + / Ctrl - / Ctrl 0">
