@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { ApprovalRequest, Conversation, Message, Team, UsageSummary } from '../../../shared/types'
-import { updateAgent } from '../api'
+import { captureScreenshot, openBrowserProfile, updateAgent } from '../api'
 import { formatCost, formatDuration, formatTokens, modelLabel } from '../format'
 import { conversationAvatars, conversationTitle, personFor, type Person } from '../people'
 import { ApprovalCard } from './Approval'
@@ -124,6 +124,41 @@ export function ChatView({
   const primaryAgentId = isLeadHunt ? 'lead_collection_specialist' : isMarketing ? 'marketing' : null
   const primaryAgent = primaryAgentId ? team.agents.find((a) => a.id === primaryAgentId) : null
 
+  const [browserNotice, setBrowserNotice] = useState<string | null>(null)
+  const [isOpeningBrowser, setIsOpeningBrowser] = useState(false)
+  const [isTakingSnapshot, setIsTakingSnapshot] = useState(false)
+
+  const handleLaunchChrome = async () => {
+    const prof = isLeadHunt ? 'lead-hunt' : 'marketing'
+    setIsOpeningBrowser(true)
+    setBrowserNotice(null)
+    try {
+      const res = await openBrowserProfile(prof)
+      setBrowserNotice(res.message || `Opened dedicated Chrome Profile: ${prof}`)
+      setTimeout(() => setBrowserNotice(null), 4000)
+    } catch (err) {
+      setBrowserNotice(err instanceof Error ? err.message : String(err))
+      setTimeout(() => setBrowserNotice(null), 5000)
+    } finally {
+      setIsOpeningBrowser(false)
+    }
+  }
+
+  const handleQuickSnapshot = async () => {
+    setIsTakingSnapshot(true)
+    try {
+      const res = await captureScreenshot()
+      if (res.ok) {
+        setBrowserNotice(`Screenshot saved: ${res.filename}`)
+        setTimeout(() => setBrowserNotice(null), 4000)
+      }
+    } catch {
+      // ignore
+    } finally {
+      setIsTakingSnapshot(false)
+    }
+  }
+
   const handleProviderChange = async (newProvider: string) => {
     if (!primaryAgent) return
     await updateAgent(primaryAgent.id, { provider: newProvider })
@@ -132,6 +167,10 @@ export function ChatView({
         detail: { id: primaryAgent.id, provider: newProvider },
       })
     )
+  }
+
+  const handleUsePrompt = (promptText: string) => {
+    window.dispatchEvent(new CustomEvent('set-composer-text', { detail: promptText }))
   }
 
   const isWorking = typingPeople.length > 0 || conversation.messages.some((m) => m.status === 'streaming')
@@ -191,14 +230,69 @@ export function ChatView({
             type="button"
             className={`members-toggle-btn${panel ? ' is-active' : ''}`}
             onClick={togglePanel}
-            title={panel ? 'Collapse members panel' : 'Expand members panel'}
-            aria-label={panel ? 'Collapse members panel' : 'Expand members panel'}
+            title={panel ? 'Collapse panel' : 'Open AI Operator & PC Control panel'}
+            aria-label={panel ? 'Collapse panel' : 'Open AI Operator & PC Control panel'}
           >
             <UsersIcon />
-            <span>{panel ? 'Hide Members' : 'Members'}</span>
+            <span>{panel ? 'Hide Panel' : 'Operator Panel'}</span>
           </button>
         </div>
       </header>
+
+      {/* Workspace Quick Action & Chrome Operator Bar */}
+      {(isLeadHunt || isMarketing) && (
+        <div className="workspace-action-bar">
+          <div className="action-bar-left">
+            <span className="profile-chip" title="Dedicated persistent Chrome profile for this workspace">
+              <span className="profile-status-dot">●</span>
+              <strong>{isMarketing ? 'Chrome Profile: Marketing / WhatsApp Web' : 'Chrome Profile: Lead Hunt / Research'}</strong>
+            </span>
+            <span className="action-divider">·</span>
+            <span className="operator-chip">⚡ Connected AI Operator</span>
+            {browserNotice && <span className="action-notice-badge">{browserNotice}</span>}
+          </div>
+
+          <div className="action-bar-right">
+            <button
+              type="button"
+              className="action-btn-chip btn-launch-chrome"
+              onClick={handleLaunchChrome}
+              disabled={isOpeningBrowser}
+              title="Launch this dedicated persistent Chrome browser profile on your PC"
+            >
+              <span>{isOpeningBrowser ? 'Launching…' : isMarketing ? '🌐 Launch WhatsApp Web Chrome' : '🌐 Launch Research Chrome'}</span>
+            </button>
+
+            <button
+              type="button"
+              className="action-btn-chip"
+              onClick={() => window.dispatchEvent(new CustomEvent('navigate-to-view', { detail: 'browser' }))}
+              title="Open full Browser & Computer Automation Control panel"
+            >
+              <span>💻 PC Automation</span>
+            </button>
+
+            <button
+              type="button"
+              className="action-btn-chip"
+              onClick={handleQuickSnapshot}
+              disabled={isTakingSnapshot}
+              title="Capture instantaneous desktop screen snapshot"
+            >
+              <span>📸 {isTakingSnapshot ? 'Saving…' : 'Snapshot'}</span>
+            </button>
+
+            <button
+              type="button"
+              className={`action-btn-chip btn-panel-toggle ${panel ? 'is-active' : ''}`}
+              onClick={togglePanel}
+              title="Toggle AI Operator Details and Quick Prompts"
+            >
+              <span>⚙️ Operator Info</span>
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="chat-body">
         <div className="chat-scroll" ref={scroller} onScroll={onScroll}>
@@ -246,42 +340,185 @@ export function ChatView({
         {panel && (
           <aside className="info-panel">
             <div className="info-panel-head">
-              <h2>Members</h2>
+              <h2>AI Operator & PC Control</h2>
               <button
                 type="button"
                 className="close-panel-btn"
                 onClick={togglePanel}
-                title="Collapse members"
-                aria-label="Collapse members"
+                title="Collapse panel"
+                aria-label="Collapse panel"
               >
                 ✕
               </button>
             </div>
-            {conversation.memberIds
-              .filter((id) => id !== 'user')
-              .map((id) => {
-                const p = personFor(team, id)
-                const a = p.agent
-                const busy = typing.has(id)
-                const u = usage.byAgent[id]
-                return (
-                  <button key={id} type="button" className="info-member" onClick={() => onEditAgent(id)} title="Edit profile">
-                    <Avatar person={p} size={30} />
-                    <span className="info-text">
-                      <span className="info-name">{p.label}</span>
-                      {a && (
-                        <span className="info-meta">
-                          {a.provider === 'codex' ? 'OpenAI Codex · ' : 'Google Antigravity · '}
-                          {modelLabel(a.model)} · {a.effort}
-                          {a.muted ? ' · muted' : ''}
-                          {u ? ` · ${formatTokens(u.inputTokens + u.cacheReadTokens + u.cacheCreationTokens + u.outputTokens)} tok` : ''}
-                        </span>
-                      )}
-                    </span>
-                    {busy && <span className="dot" aria-label="typing" />}
-                  </button>
-                )
-              })}
+
+            <div className="operator-panel-content">
+              {/* Bot Persona Card */}
+              {primaryAgent && (
+                <div className="operator-section-card">
+                  <div className="operator-card-header">
+                    <span className="operator-badge-tag">ACTIVE OPERATOR</span>
+                  </div>
+                  <div className="operator-identity">
+                    <Avatar person={personFor(team, primaryAgent.id)} size={36} />
+                    <div style={{ minWidth: 0 }}>
+                      <h4 className="operator-name">{primaryAgent.name}</h4>
+                      <p className="operator-role">{primaryAgent.role}</p>
+                    </div>
+                  </div>
+
+                  <div className="operator-meta-grid">
+                    <div className="meta-item">
+                      <span className="meta-lbl">Engine</span>
+                      <strong className="meta-val">{primaryAgent.provider === 'codex' ? 'OpenAI Codex' : 'Google Antigravity'}</strong>
+                    </div>
+                    <div className="meta-item">
+                      <span className="meta-lbl">Execution Mode</span>
+                      <strong className="meta-val">Authorized Operator</strong>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Chrome Profile Card */}
+              <div className="operator-section-card">
+                <div className="operator-card-header">
+                  <span className="operator-badge-tag">CHROME PROFILE</span>
+                  <span className="status-indicator-live">● Ready</span>
+                </div>
+                <h4 style={{ margin: '0 0 4px', fontSize: '13px' }}>
+                  {isMarketing ? 'Profile 2 — Business & Outreach' : 'Profile 1 — Public Research'}
+                </h4>
+                <p style={{ margin: '0 0 10px', fontSize: '11.5px', color: 'var(--text-muted)', lineHeight: '1.4' }}>
+                  {isMarketing
+                    ? 'Persistent Chrome profile with WhatsApp Web session, client groups, and messaging tools.'
+                    : 'Persistent Chrome profile for Google business search, directories, and web research.'}
+                </p>
+                <button
+                  type="button"
+                  className="btn-launch-profile-block"
+                  onClick={handleLaunchChrome}
+                  disabled={isOpeningBrowser}
+                >
+                  {isOpeningBrowser ? 'Opening Chrome…' : '🌐 Open Dedicated Chrome Window'}
+                </button>
+              </div>
+
+              {/* Connected Automation Systems */}
+              <div className="operator-section-card">
+                <div className="operator-card-header">
+                  <span className="operator-badge-tag">CONNECTED CAPABILITIES</span>
+                </div>
+                <div className="capability-list">
+                  <div className="capability-row">
+                    <span>🌐 Playwright MCP Browser</span>
+                    <span className="cap-status">Active</span>
+                  </div>
+                  <div className="capability-row">
+                    <span>💻 Windows Desktop MCP</span>
+                    <span className="cap-status">Connected</span>
+                  </div>
+                  <div className="capability-row">
+                    <span>🛡️ Owner Approval Gate</span>
+                    <span className="cap-status">Enforced</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Workflow Prompts */}
+              <div className="operator-section-card">
+                <div className="operator-card-header">
+                  <span className="operator-badge-tag">QUICK WORKFLOW STARTERS</span>
+                </div>
+                <p style={{ margin: '0 0 8px', fontSize: '11px', color: 'var(--text-muted)' }}>
+                  Click to populate message box:
+                </p>
+                <div className="prompt-starters-list">
+                  {isMarketing ? (
+                    <>
+                      <button
+                        type="button"
+                        className="prompt-starter-btn"
+                        onClick={() => handleUsePrompt('আমার দেওয়া ফোন নম্বরগুলোতে WhatsApp Web দিয়ে মেসেজ পাঠানোর একটি কিউ সাজাও এবং গ্রুপে পাঠানোর আগে কনফার্ম করো।')}
+                      >
+                        📱 WhatsApp Web মেসেজ কিউ ও গ্রুপ সেন্ডিং
+                      </button>
+                      <button
+                        type="button"
+                        className="prompt-starter-btn"
+                        onClick={() => handleUsePrompt('ঢাকার শীর্ষ ক্লায়েন্টদের জন্য একটি পার্সোনালাইজড বাংলা মার্কেটিং আউটরিচ মেসেজ ড্রাফট করো।')}
+                      >
+                        ✍️ বাংলা মার্কেটিং আউটরিচ ড্রাফট
+                      </button>
+                      <button
+                        type="button"
+                        className="prompt-starter-btn"
+                        onClick={() => handleUsePrompt('সেভ করা লিডগুলোর বিস্তারিত অ্যানালাইজ করো এবং হাই-প্রাইওরিটি ক্লায়েন্টদের জন্য ফলো-আপ প্ল্যান তৈরি করো।')}
+                      >
+                        📊 কোয়ালিফাইড লিড ফলো-আপ
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        className="prompt-starter-btn"
+                        onClick={() => handleUsePrompt('ঢাকার শীর্ষ ২০টি সফটওয়্যার ও আইটি কোম্পানির নাম, ভেরিফাইড ফোন নম্বর ও ফেসবুক পেজ সংগ্রহ করো।')}
+                      >
+                        🎯 ঢাকার শীর্ষ আইটি কোম্পানি লিড
+                      </button>
+                      <button
+                        type="button"
+                        className="prompt-starter-btn"
+                        onClick={() => handleUsePrompt('বাংলাদেশের রপ্তানিকারক তৈরি পোশাক (RMG) কারখানা ও বায়িং হাউসের অফিসিয়াল যোগাযোগ তথ্য বের করো।')}
+                      >
+                        🏭 গার্মেন্টস ও বায়িং হাউস লিড
+                      </button>
+                      <button
+                        type="button"
+                        className="prompt-starter-btn"
+                        onClick={() => handleUsePrompt('চট্টগ্রামের প্রধান ফ্রেইট ফরোয়ার্ডিং ও শিপিং এজেন্সির পাবলিক ডিরেক্টরি থেকে লিড সংগ্রহ করো।')}
+                      >
+                        🚢 লজিস্টিকস ও শিপিং কোম্পানি লিড
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Team Members List */}
+              {conversation.memberIds.length > 2 && (
+                <div className="operator-section-card">
+                  <div className="operator-card-header">
+                    <span className="operator-badge-tag">CONVERSATION MEMBERS</span>
+                  </div>
+                  {conversation.memberIds
+                    .filter((id) => id !== 'user')
+                    .map((id) => {
+                      const p = personFor(team, id)
+                      const a = p.agent
+                      const busy = typing.has(id)
+                      const u = usage.byAgent[id]
+                      return (
+                        <button key={id} type="button" className="info-member" onClick={() => onEditAgent(id)} title="Edit profile">
+                          <Avatar person={p} size={28} />
+                          <span className="info-text">
+                            <span className="info-name">{p.label}</span>
+                            {a && (
+                              <span className="info-meta">
+                                {a.provider === 'codex' ? 'OpenAI Codex · ' : 'Google Antigravity · '}
+                                {modelLabel(a.model)}
+                                {u ? ` · ${formatTokens(u.inputTokens + u.outputTokens)} tok` : ''}
+                              </span>
+                            )}
+                          </span>
+                          {busy && <span className="dot" aria-label="typing" />}
+                        </button>
+                      )
+                    })}
+                </div>
+              )}
+            </div>
           </aside>
         )}
       </div>

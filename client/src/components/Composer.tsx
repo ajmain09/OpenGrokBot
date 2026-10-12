@@ -134,6 +134,18 @@ export function Composer({ team, conversation, busy, replyTo, onClearReply, onSe
   }, [conversation.id])
 
   useEffect(() => {
+    const handleSetText = (e: Event) => {
+      const custom = e as CustomEvent<string>
+      if (typeof custom.detail === 'string') {
+        setText(custom.detail)
+        area.current?.focus()
+      }
+    }
+    window.addEventListener('set-composer-text', handleSetText)
+    return () => window.removeEventListener('set-composer-text', handleSetText)
+  }, [])
+
+  useEffect(() => {
     if (replyTo) area.current?.focus()
   }, [replyTo])
 

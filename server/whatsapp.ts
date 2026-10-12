@@ -356,3 +356,4 @@ export class WhatsAppService {
     return [...this.messages]
   }
 }
+

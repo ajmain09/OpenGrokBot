@@ -19,47 +19,33 @@ interface NavGroup {
 
 const NAV_GROUPS: NavGroup[] = [
   {
-    id: 'overview',
-    title: 'OVERVIEW',
-    items: [
-      { id: 'dashboard', title: 'Dashboard', icon: '📊', type: 'tool', detail: 'System Overview & Live Stats' },
-    ],
-  },
-  {
     id: 'ai-workspace',
-    title: 'AI WORKSPACE',
+    title: 'MAIN WORKSPACE',
     items: [
-      { id: 'workspace-lead-hunt', title: 'Lead Hunt', icon: '🎯', type: 'workspace', detail: 'Market Research & Lead Collection' },
-      { id: 'workspace-marketing', title: 'Marketing', icon: '📢', type: 'workspace', detail: 'Personalized Bengali Outreach' },
+      { id: 'dashboard', title: 'Dashboard', icon: '📊', type: 'tool', detail: 'Overview & Live Stats' },
+      { id: 'workspace-lead-hunt', title: 'Lead Hunt', icon: '🎯', type: 'workspace', detail: 'Research & Public Leads' },
+      { id: 'workspace-marketing', title: 'Marketing', icon: '📢', type: 'workspace', detail: 'WhatsApp Web & Outreach' },
     ],
   },
   {
-    id: 'ai-workforce',
-    title: 'AI WORKFORCE',
+    id: 'computer-automation',
+    title: 'PC & AUTOMATION',
     items: [
-      { id: 'my-bots', title: 'AI Bots', icon: '🤖', type: 'tool', detail: 'Manage, Edit & Clone Bots' },
-      { id: 'create-bot', title: 'Create Bot', icon: '✨', type: 'tool', detail: 'AI Bot Builder & Prompt Wizard' },
+      { id: 'browser', title: 'Chrome & Computer Control', icon: '💻', type: 'tool', detail: 'Browser Profiles & PC Automation' },
       { id: 'workflows', title: 'Workflows', icon: '🔄', type: 'tool', detail: 'Multi-Bot Execution Pipelines' },
+      { id: 'my-bots', title: 'AI Bots', icon: '🤖', type: 'tool', detail: 'Manage & Customize Bots' },
+      { id: 'create-bot', title: 'Create Bot', icon: '✨', type: 'tool', detail: 'AI Bot Builder & Prompt Wizard' },
     ],
   },
   {
-    id: 'management',
-    title: 'MANAGEMENT',
+    id: 'data-management',
+    title: 'DATA & CONTROL',
     items: [
       { id: 'leads', title: 'Lead Manager', icon: '👥', type: 'tool', detail: 'Lead Database & CSV Export' },
       { id: 'tasks', title: 'Task Manager', icon: '⚡', type: 'tool', detail: 'Background Task Queue' },
-      { id: 'memory', title: 'AI Memory', icon: '🧠', type: 'tool', detail: 'Persistent Rules & Preferences' },
-      { id: 'outputs', title: 'Output Manager', icon: '📁', type: 'tool', detail: 'Generated Files & Folders' },
-      { id: 'browser', title: 'Browser & Computer', icon: '💻', type: 'tool', detail: 'Chrome Profiles & PC Automation' },
-      { id: 'tools', title: 'Tools & MCP', icon: '🧩', type: 'tool', detail: 'MCP Catalog & Permissions' },
-      { id: 'approvals', title: 'Approval Center', icon: '🛡️', type: 'tool', detail: 'Tool Execution Safeguards' },
-    ],
-  },
-  {
-    id: 'advanced',
-    title: 'ADVANCED',
-    items: [
-      { id: 'routines', title: 'Automation Routines', icon: '⏰', type: 'tool', detail: 'Scheduled Tasks & Webhooks' },
+      { id: 'memory', title: 'AI Memory', icon: '🧠', type: 'tool', detail: 'Persistent Rules & Memory' },
+      { id: 'outputs', title: 'Output Manager', icon: '📁', type: 'tool', detail: 'Generated Files & Assets' },
+      { id: 'approvals', title: 'Approval Center', icon: '🛡️', type: 'tool', detail: 'Execution Approvals & Safety' },
       { id: 'logs', title: 'Activity Logs', icon: '📋', type: 'tool', detail: 'Audit Trail & Operations' },
     ],
   },
@@ -67,7 +53,7 @@ const NAV_GROUPS: NavGroup[] = [
     id: 'system',
     title: 'SYSTEM',
     items: [
-      { id: 'settings', title: 'Settings', icon: '⚙️', type: 'tool', detail: 'Provider & Brand Management' },
+      { id: 'settings', title: 'Settings', icon: '⚙️', type: 'tool', detail: 'AI Providers & Brand Management' },
     ],
   },
 ]

@@ -29,8 +29,15 @@ import { EmergencyStopManager } from './emergency.js'
 import type { AppState, Attachment, Team } from '../shared/types.js'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
-// Works both from server/ (tsx) and dist/server/ (built).
-const root = existsSync(path.join(here, '..', 'team.example.json')) ? path.join(here, '..') : path.join(here, '..', '..')
+// Search candidate directories for team files (works in dev, tsx, dist, and packaged Electron app)
+const candidates = [
+  path.join(here, '..'),
+  path.join(here, '..', '..'),
+  process.cwd(),
+  path.dirname(process.execPath),
+]
+const foundRoot = candidates.find((c) => existsSync(path.join(c, 'team.example.json')) || existsSync(path.join(c, 'team.json')))
+const root = foundRoot || path.join(here, '..', '..')
 
 const PORT = Number(process.env.PORT ?? 4310)
 /** 127.0.0.1 by default. Set HOST=0.0.0.0 plus OPENGROKBOT_TOKEN to reach it from your phone or a VPS. */
@@ -43,7 +50,12 @@ if (HOST !== '127.0.0.1' && HOST !== 'localhost' && !TOKEN) {
 
 /** OPENGROKBOT_TEAM / OPENGROKBOT_DATA let you run a second, separate office (demos, tests) from the same install. */
 const teamFile = process.env.OPENGROKBOT_TEAM ? path.resolve(process.env.OPENGROKBOT_TEAM) : path.join(root, 'team.json')
-if (!existsSync(teamFile)) copyFileSync(path.join(root, 'team.example.json'), teamFile)
+if (!existsSync(teamFile)) {
+  const exampleFile = candidates.map((c) => path.join(c, 'team.example.json')).find(existsSync)
+  if (exampleFile) {
+    copyFileSync(exampleFile, teamFile)
+  }
+}
 const dataDir = process.env.OPENGROKBOT_DATA ? path.resolve(process.env.OPENGROKBOT_DATA) : path.join(root, 'data')
 const uploadsDir = path.join(dataDir, 'uploads')
 mkdirSync(uploadsDir, { recursive: true })

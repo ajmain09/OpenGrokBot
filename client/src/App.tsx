@@ -138,6 +138,17 @@ export function App() {
     if (saved) setActiveId(saved)
   }, [])
 
+  useEffect(() => {
+    const handleNav = (e: Event) => {
+      const custom = e as CustomEvent<string>
+      if (custom.detail) {
+        handleSelectNav(custom.detail)
+      }
+    }
+    window.addEventListener('navigate-to-view', handleNav)
+    return () => window.removeEventListener('navigate-to-view', handleNav)
+  }, [])
+
   const handleSelectNav = (id: string) => {
     setReplyTo(null)
     setActiveId(id)
