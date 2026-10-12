@@ -77,6 +77,15 @@ export function parseAgent(raw: unknown, label = 'agent'): Agent {
   if (typeof r.cwd === 'string' && r.cwd.trim().length > 0) agent.cwd = r.cwd.trim()
   if (typeof r.department === 'string' && r.department.trim().length > 0) agent.department = r.department.trim()
   if (typeof r.scope === 'string' && r.scope.trim().length > 0) agent.scope = r.scope.trim()
+  if (typeof r.brandId === 'string' && r.brandId.trim().length > 0) agent.brandId = r.brandId.trim()
+  if (r.browserProfile === 'lead-hunt' || r.browserProfile === 'marketing' || r.browserProfile === 'none') {
+    agent.browserProfile = r.browserProfile
+  }
+  if (r.outputFormat === 'csv' || r.outputFormat === 'json' || r.outputFormat === 'markdown' || r.outputFormat === 'text') {
+    agent.outputFormat = r.outputFormat
+  }
+  if (typeof r.version === 'number') agent.version = r.version
+  if (Array.isArray(r.history)) agent.history = r.history as Agent['history']
   return agent
 }
 

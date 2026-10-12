@@ -1,4 +1,4 @@
-import type { AccountStatus, Agent, AppState, Attachment, Conversation, Lead, LeadSummary, McpServerDef, Message, ProviderDef, ProviderStatus, Routine, RoutineRun, Skill, TeamSettings } from '../../shared/types'
+import type { AccountStatus, Agent, AppState, Attachment, Brand, Conversation, Lead, LeadSummary, McpServerDef, Message, ProviderDef, ProviderStatus, Routine, RoutineRun, Skill, TeamSettings, Workflow } from '../../shared/types'
 
 async function call<T>(url: string, init?: RequestInit): Promise<T> {
   const res = await fetch(url, init)
@@ -314,5 +314,72 @@ export function importLeads(data: unknown): Promise<{ created: number; updated: 
 
 export function sendLeadsToMarketing(leadIds: string[]): Promise<{ ok: boolean; count: number }> {
   return call('/api/leads/to-marketing', json('POST', { leadIds }))
+}
+
+// ---- Multi-Brand API ----
+export function fetchBrands(): Promise<Brand[]> {
+  return call('/api/brands')
+}
+
+export function createBrand(brand: { name: string; tagline?: string; description?: string; color?: string }): Promise<{ brand: Brand }> {
+  return call('/api/brands', json('POST', brand))
+}
+
+export function updateBrand(id: string, patch: Partial<Brand>): Promise<{ brand: Brand }> {
+  return call(`/api/brands/${encodeURIComponent(id)}`, json('PUT', patch))
+}
+
+export function deleteBrand(id: string): Promise<{ ok: boolean }> {
+  return call(`/api/brands/${encodeURIComponent(id)}`, { method: 'DELETE' })
+}
+
+// ---- AI Bot Builder & Customization API ----
+export function generateBotConfig(prompt: string, brandId?: string): Promise<{ agent: Agent }> {
+  return call('/api/bot-builder/generate', json('POST', { prompt, brandId }))
+}
+
+export function restoreBotVersion(id: string, version: number): Promise<{ agent: Agent }> {
+  return call(`/api/team/agents/${encodeURIComponent(id)}/restore-version/${version}`, { method: 'POST' })
+}
+
+// ---- Workflows API ----
+export function fetchWorkflows(brandId?: string): Promise<Workflow[]> {
+  return call(`/api/workflows${brandId ? `?brandId=${encodeURIComponent(brandId)}` : ''}`)
+}
+
+export function createWorkflow(input: unknown): Promise<{ workflow: Workflow }> {
+  return call('/api/workflows', json('POST', input))
+}
+
+export function updateWorkflow(id: string, patch: unknown): Promise<{ workflow: Workflow }> {
+  return call(`/api/workflows/${encodeURIComponent(id)}`, json('PUT', patch))
+}
+
+export function deleteWorkflow(id: string): Promise<{ ok: boolean }> {
+  return call(`/api/workflows/${encodeURIComponent(id)}`, { method: 'DELETE' })
+}
+
+export function runWorkflow(id: string): Promise<{ ok: boolean; queuedSteps: number }> {
+  return call(`/api/workflows/${encodeURIComponent(id)}/run`, { method: 'POST' })
+}
+
+// ---- Computer & Tool Control API ----
+export function fetchComputerStatus(): Promise<{
+  platform: string
+  arch: string
+  nodeVersion: string
+  windowsAutomationSupported: boolean
+  powershellAvailable: boolean
+  timestamp: number
+}> {
+  return call('/api/computer/status')
+}
+
+export function captureScreenshot(brandId?: string): Promise<{ ok: boolean; path: string; filename: string }> {
+  return call('/api/computer/screenshot', json('POST', { brandId }))
+}
+
+export function testTool(tool: string): Promise<{ ok: boolean; tool: string; message: string }> {
+  return call('/api/tools/test', json('POST', { tool }))
 }
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { ApprovalRequest, Conversation } from '../../../shared/types'
+import type { ApprovalRequest, Brand, Conversation } from '../../../shared/types'
 import { DEFAULT_BRANDS } from '../../../shared/types'
 
 interface NavItem {
@@ -33,6 +33,15 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
+    id: 'ai-workforce',
+    title: 'AI WORKFORCE',
+    items: [
+      { id: 'my-bots', title: 'AI Bots', icon: '🤖', type: 'tool', detail: 'Manage, Edit & Clone Bots' },
+      { id: 'create-bot', title: 'Create Bot', icon: '✨', type: 'tool', detail: 'AI Bot Builder & Prompt Wizard' },
+      { id: 'workflows', title: 'Workflows', icon: '🔄', type: 'tool', detail: 'Multi-Bot Execution Pipelines' },
+    ],
+  },
+  {
     id: 'management',
     title: 'MANAGEMENT',
     items: [
@@ -40,7 +49,8 @@ const NAV_GROUPS: NavGroup[] = [
       { id: 'tasks', title: 'Task Manager', icon: '⚡', type: 'tool', detail: 'Background Task Queue' },
       { id: 'memory', title: 'AI Memory', icon: '🧠', type: 'tool', detail: 'Persistent Rules & Preferences' },
       { id: 'outputs', title: 'Output Manager', icon: '📁', type: 'tool', detail: 'Generated Files & Folders' },
-      { id: 'browser', title: 'Browser Manager', icon: '🌐', type: 'tool', detail: 'Dedicated Chrome Profiles' },
+      { id: 'browser', title: 'Browser & Computer', icon: '💻', type: 'tool', detail: 'Chrome Profiles & PC Automation' },
+      { id: 'tools', title: 'Tools & MCP', icon: '🧩', type: 'tool', detail: 'MCP Catalog & Permissions' },
       { id: 'approvals', title: 'Approval Center', icon: '🛡️', type: 'tool', detail: 'Tool Execution Safeguards' },
     ],
   },
@@ -48,7 +58,6 @@ const NAV_GROUPS: NavGroup[] = [
     id: 'advanced',
     title: 'ADVANCED',
     items: [
-      { id: 'skills', title: 'Skills & Tools', icon: '🧩', type: 'tool', detail: 'Reusable Prompts & Tool Catalog' },
       { id: 'routines', title: 'Automation Routines', icon: '⏰', type: 'tool', detail: 'Scheduled Tasks & Webhooks' },
       { id: 'logs', title: 'Activity Logs', icon: '📋', type: 'tool', detail: 'Audit Trail & Operations' },
     ],
@@ -57,7 +66,7 @@ const NAV_GROUPS: NavGroup[] = [
     id: 'system',
     title: 'SYSTEM',
     items: [
-      { id: 'settings', title: 'Settings', icon: '⚙️', type: 'tool', detail: 'Provider & Workspace Config' },
+      { id: 'settings', title: 'Settings', icon: '⚙️', type: 'tool', detail: 'Provider & Brand Management' },
     ],
   },
 ]
@@ -76,6 +85,7 @@ interface WorkspaceSidebarProps {
   theme?: 'dark' | 'light'
   onToggleTheme?: () => void
   activeBrand?: string
+  brands?: Brand[]
   onBrandChange?: (brandId: string) => void
 }
 
@@ -93,6 +103,7 @@ export function WorkspaceSidebar({
   theme = 'light',
   onToggleTheme,
   activeBrand = 'growthifyx',
+  brands,
   onBrandChange,
 }: WorkspaceSidebarProps) {
   const [collapsed, setCollapsed] = useState(() => {
@@ -106,6 +117,8 @@ export function WorkspaceSidebar({
   const existingConvs = new Set(conversations.map((c) => c.id))
   const needsApproval = new Set(approvals.map((a) => a.conversationId))
   const pendingApprovalsCount = approvals.length
+  const brandList = brands && brands.length > 0 ? brands : DEFAULT_BRANDS
+  const currentBrandObj = brandList.find((b) => b.id === activeBrand) || brandList[0] || DEFAULT_BRANDS[0]
 
   return (
     <aside className={`workspace-sidebar ${collapsed ? 'is-collapsed' : ''}`}>
@@ -142,7 +155,7 @@ export function WorkspaceSidebar({
             title="Switch Active Brand Workspace"
             aria-label="Active Brand Workspace"
           >
-            {DEFAULT_BRANDS.map((b) => (
+            {brandList.map((b) => (
               <option key={b.id} value={b.id}>
                 {b.name}
               </option>
@@ -152,12 +165,16 @@ export function WorkspaceSidebar({
       ) : (
         <div
           className="brand-selector-collapsed"
-          title={`Active Brand: ${activeBrand === 'the-solver-agency' ? 'The Solver Agency' : 'Growthifyx'}`}
-          onClick={() => onBrandChange?.(activeBrand === 'the-solver-agency' ? 'growthifyx' : 'the-solver-agency')}
+          title={`Active Brand: ${currentBrandObj ? currentBrandObj.name : 'Brand'}`}
+          onClick={() => {
+            const nextIdx = (brandList.findIndex((b) => b.id === activeBrand) + 1) % brandList.length
+            const nextBrand = brandList[nextIdx] || brandList[0]
+            if (nextBrand) onBrandChange?.(nextBrand.id)
+          }}
         >
           <span
             className="brand-dot"
-            style={{ backgroundColor: activeBrand === 'the-solver-agency' ? '#2B6CB0' : '#18836B' }}
+            style={{ backgroundColor: currentBrandObj ? currentBrandObj.color || '#18836B' : '#18836B' }}
           />
         </div>
       )}

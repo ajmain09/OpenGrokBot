@@ -27,6 +27,17 @@ export interface ProviderDef {
   models?: string[]
 }
 
+export interface AgentConfigHistory {
+  version: number
+  updatedAt: number
+  name: string
+  role: string
+  personality: string
+  provider: string
+  tools: string[]
+  approvals: ApprovalPolicy
+}
+
 export interface Agent {
   id: string
   name: string
@@ -60,6 +71,29 @@ export interface Agent {
    * ask-all: every tool call stops for approval.
    */
   approvals: ApprovalPolicy
+  brandId?: string
+  browserProfile?: 'lead-hunt' | 'marketing' | 'none'
+  outputFormat?: 'csv' | 'json' | 'markdown' | 'text'
+  version?: number
+  history?: AgentConfigHistory[]
+}
+
+export interface WorkflowStep {
+  id: string
+  agentId: string
+  title: string
+  prompt: string
+  workspace: 'workspace-lead-hunt' | 'workspace-marketing'
+}
+
+export interface Workflow {
+  id: string
+  brandId?: string
+  title: string
+  description?: string
+  steps: WorkflowStep[]
+  createdAt: number
+  lastRunAt?: number
 }
 
 export type ApprovalPolicy = 'auto' | 'ask-dangerous' | 'ask-all'
@@ -244,6 +278,7 @@ export interface Brand {
   description?: string
   website?: string
   color?: string
+  createdAt?: number
 }
 
 export const DEFAULT_BRANDS: Brand[] = [

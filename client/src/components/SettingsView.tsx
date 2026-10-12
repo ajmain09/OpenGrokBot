@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react'
-import type { ProviderStatus, Team } from '../../../shared/types'
+import type { Brand, ProviderStatus, Team } from '../../../shared/types'
 import {
   clearMemories,
+  createBrand,
+  deleteBrand,
+  fetchBrands,
   listBrowsers,
   listOutputs,
   openBrowserProfile,
   openOutputFolder,
   providerStatuses,
   updateAgent,
+  updateBrand,
   updateOutputsDir,
 } from '../api'
 
@@ -20,9 +24,11 @@ interface SettingsViewProps {
   onZoomOut: () => void
   onZoomReset: () => void
   onNavigate: (viewId: string) => void
+  activeBrand?: string
+  onBrandChange?: (brandId: string) => void
 }
 
-type SettingsTab = 'general' | 'providers' | 'automation' | 'memory' | 'outputs' | 'permissions' | 'system'
+type SettingsTab = 'general' | 'brands' | 'providers' | 'automation' | 'memory' | 'outputs' | 'permissions' | 'system'
 
 export function SettingsView({
   team,
@@ -33,6 +39,8 @@ export function SettingsView({
   onZoomOut,
   onZoomReset,
   onNavigate,
+  activeBrand = 'growthifyx',
+  onBrandChange,
 }: SettingsViewProps) {
   const [activeTab, setActiveTab] = useState<SettingsTab>(() => {
     const saved = localStorage.getItem('ogb_settings_tab') as SettingsTab | null
@@ -43,6 +51,16 @@ export function SettingsView({
   const [checking, setChecking] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
+
+  // Multi-brand state
+  const [brands, setBrands] = useState<Brand[]>([])
+  const [loadingBrands, setLoadingBrands] = useState(false)
+  const [showBrandForm, setShowBrandForm] = useState(false)
+  const [brandFormName, setBrandFormName] = useState('')
+  const [brandFormTagline, setBrandFormTagline] = useState('')
+  const [brandFormDesc, setBrandFormDesc] = useState('')
+  const [brandFormColor, setBrandFormColor] = useState('#18836B')
+  const [editingBrandId, setEditingBrandId] = useState<string | null>(null)
 
   // Outputs directory state
   const [baseDir, setBaseDir] = useState('')
@@ -55,6 +73,18 @@ export function SettingsView({
   const handleSelectTab = (tab: SettingsTab) => {
     setActiveTab(tab)
     localStorage.setItem('ogb_settings_tab', tab)
+  }
+
+  const loadBrands = async () => {
+    setLoadingBrands(true)
+    try {
+      const data = await fetchBrands()
+      setBrands(data)
+    } catch {
+      // ignore
+    } finally {
+      setLoadingBrands(false)
+    }
   }
 
   const refreshProviders = async (force = false) => {
@@ -82,7 +112,70 @@ export function SettingsView({
   useEffect(() => {
     void refreshProviders()
     void loadOutputs()
+    void loadBrands()
   }, [])
+
+  const handleSaveBrand = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!brandFormName.trim()) return
+    setError(null)
+    try {
+      if (editingBrandId) {
+        await updateBrand(editingBrandId, {
+          name: brandFormName.trim(),
+          tagline: brandFormTagline.trim(),
+          description: brandFormDesc.trim(),
+          color: brandFormColor,
+        })
+        setNotice(`Brand "${brandFormName.trim()}" updated successfully!`)
+      } else {
+        await createBrand({
+          name: brandFormName.trim(),
+          tagline: brandFormTagline.trim(),
+          description: brandFormDesc.trim(),
+          color: brandFormColor,
+        })
+        setNotice(`New brand "${brandFormName.trim()}" created successfully!`)
+      }
+      setShowBrandForm(false)
+      setEditingBrandId(null)
+      setBrandFormName('')
+      setBrandFormTagline('')
+      setBrandFormDesc('')
+      setBrandFormColor('#18836B')
+      await loadBrands()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err))
+    }
+  }
+
+  const handleDeleteBrand = async (id: string, name: string) => {
+    if (brands.length <= 1) {
+      setError('You must keep at least one brand workspace.')
+      return
+    }
+    if (!window.confirm(`Are you sure you want to delete brand "${name}"?`)) return
+    try {
+      await deleteBrand(id)
+      setNotice(`Brand "${name}" removed.`)
+      if (activeBrand === id) {
+        const remaining = brands.find((b) => b.id !== id)
+        if (remaining && onBrandChange) onBrandChange(remaining.id)
+      }
+      await loadBrands()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err))
+    }
+  }
+
+  const handleStartEditBrand = (b: Brand) => {
+    setEditingBrandId(b.id)
+    setBrandFormName(b.name)
+    setBrandFormTagline(b.tagline || '')
+    setBrandFormDesc(b.description || '')
+    setBrandFormColor(b.color || '#18836B')
+    setShowBrandForm(true)
+  }
 
   const handleSaveOutputDir = async () => {
     if (!dirInput.trim()) return
@@ -136,6 +229,13 @@ export function SettingsView({
           onClick={() => handleSelectTab('general')}
         >
           GENERAL
+        </button>
+        <button
+          type="button"
+          className={`tab-btn ${activeTab === 'brands' ? 'active' : ''}`}
+          onClick={() => handleSelectTab('brands')}
+        >
+          BRANDS ({brands.length})
         </button>
         <button
           type="button"
@@ -238,6 +338,142 @@ export function SettingsView({
                 <strong>{team.owner.name} ({team.owner.title})</strong>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* TAB: BRANDS */}
+      {activeTab === 'brands' && (
+        <div className="card section-card">
+          <div className="section-head">
+            <div>
+              <h3>🏢 Multi-Brand Workspaces</h3>
+              <p className="section-desc">
+                Organize bots, leads, memory, tasks, and outputs into fully isolated brand workspaces.
+              </p>
+            </div>
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => {
+                setEditingBrandId(null)
+                setBrandFormName('')
+                setBrandFormTagline('')
+                setBrandFormDesc('')
+                setBrandFormColor('#18836B')
+                setShowBrandForm(true)
+              }}
+            >
+              + Add New Brand
+            </button>
+          </div>
+
+          {showBrandForm && (
+            <form className="card brand-edit-form" onSubmit={handleSaveBrand} style={{ marginTop: '16px', marginBottom: '20px' }}>
+              <h4>{editingBrandId ? 'Edit Brand Workspace' : 'Create New Brand Workspace'}</h4>
+              <div className="form-group">
+                <label>Brand Name *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Growthifyx, The Solver Agency"
+                  value={brandFormName}
+                  onChange={(e) => setBrandFormName(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Tagline / Motto</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Scaling Local Brands with Automated Outreach"
+                  value={brandFormTagline}
+                  onChange={(e) => setBrandFormTagline(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Brand Description & Mission</label>
+                <textarea
+                  rows={2}
+                  placeholder="Short description of the company and target clients"
+                  value={brandFormDesc}
+                  onChange={(e) => setBrandFormDesc(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Theme Color Hex</label>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <input
+                    type="color"
+                    value={brandFormColor}
+                    onChange={(e) => setBrandFormColor(e.target.value)}
+                    style={{ width: '40px', height: '36px', padding: '0', cursor: 'pointer' }}
+                  />
+                  <input
+                    type="text"
+                    value={brandFormColor}
+                    onChange={(e) => setBrandFormColor(e.target.value)}
+                    style={{ width: '120px' }}
+                  />
+                </div>
+              </div>
+              <div className="btn-group" style={{ marginTop: '12px' }}>
+                <button type="submit" className="btn-primary">
+                  {editingBrandId ? 'Save Changes' : 'Create Brand'}
+                </button>
+                <button
+                  type="button"
+                  className="btn-secondary"
+                  onClick={() => setShowBrandForm(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          )}
+
+          <div className="brands-list-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px', marginTop: '16px' }}>
+            {brands.map((b) => {
+              const isActive = b.id === activeBrand
+              return (
+                <div key={b.id} className="card brand-card" style={{ borderLeft: `4px solid ${b.color || '#18836B'}` }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div>
+                      <h4 style={{ margin: '0 0 4px 0' }}>{b.name}</h4>
+                      <code style={{ fontSize: '0.75rem' }}>{b.id}</code>
+                    </div>
+                    {isActive ? (
+                      <span className="status-pill pill-verified">● Active Workspace</span>
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn-secondary btn-sm"
+                        onClick={() => onBrandChange?.(b.id)}
+                      >
+                        Switch to Brand
+                      </button>
+                    )}
+                  </div>
+                  {b.tagline && <p style={{ fontSize: '0.85rem', margin: '8px 0 4px 0', color: 'var(--text-secondary)' }}>{b.tagline}</p>}
+                  {b.description && <p style={{ fontSize: '0.8rem', margin: '4px 0', color: 'var(--text-tertiary)' }}>{b.description}</p>}
+                  <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
+                    <button
+                      type="button"
+                      className="btn-secondary btn-sm"
+                      onClick={() => handleStartEditBrand(b)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      type="button"
+                      className="btn-danger-ghost btn-sm"
+                      onClick={() => handleDeleteBrand(b.id, b.name)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       )}

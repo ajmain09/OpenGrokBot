@@ -1,20 +1,24 @@
 import { useEffect, useReducer, useState } from 'react'
-import type { ServerEvent } from '../../shared/types'
-import { fetchState, sendMessageFull, stopRound } from './api'
+import type { Brand, ServerEvent } from '../../shared/types'
+import { fetchBrands, fetchState, sendMessageFull, stopRound } from './api'
 import { ActivityLogsView } from './components/ActivityLogsView'
 import { ApprovalCenterView } from './components/ApprovalCenterView'
 import { BrowserManagerView } from './components/BrowserManagerView'
 import { ChatView } from './components/ChatView'
 import { Composer, type ReplyTarget } from './components/Composer'
+import { CreateBotView } from './components/CreateBotView'
 import { DashboardView } from './components/DashboardView'
 import { LeadManagerView } from './components/LeadManagerView'
 import { MemoryManagerView } from './components/MemoryManagerView'
+import { MyBotsView } from './components/MyBotsView'
 import { OutputManagerView } from './components/OutputManagerView'
 import { Routines } from './components/Routines'
 import { Settings, type SettingsSection } from './components/Settings'
 import { SettingsView } from './components/SettingsView'
 import { Skills } from './components/Skills'
 import { TaskManagerView } from './components/TaskManagerView'
+import { ToolsAndIntegrationsView } from './components/ToolsAndIntegrationsView'
+import { WorkflowsView } from './components/WorkflowsView'
 import { WorkspaceSidebar } from './components/WorkspaceSidebar'
 import { initialState, reducer } from './state'
 
@@ -48,6 +52,11 @@ export function App() {
     const saved = localStorage.getItem('ogb_active_brand')
     return saved === 'the-solver-agency' ? 'the-solver-agency' : 'growthifyx'
   })
+  const [brands, setBrands] = useState<Brand[]>([])
+
+  useEffect(() => {
+    fetchBrands().then((b) => setBrands(b)).catch(() => {})
+  }, [])
 
   const handleBrandChange = (brandId: string) => {
     setActiveBrand(brandId)
@@ -198,22 +207,27 @@ export function App() {
         theme={theme}
         onToggleTheme={handleToggleTheme}
         activeBrand={activeBrand}
+        brands={brands}
         onBrandChange={handleBrandChange}
       />
 
       <main className="main workspace-main">
         {activeId === 'dashboard' && <DashboardView onNavigate={handleSelectNav} brandId={activeBrand} />}
+        {activeId === 'my-bots' && <MyBotsView team={state.team} brands={brands} activeBrand={activeBrand} onNavigate={handleSelectNav} />}
+        {activeId === 'create-bot' && <CreateBotView brands={brands} activeBrand={activeBrand} onBotCreated={() => handleSelectNav('my-bots')} />}
+        {activeId === 'workflows' && <WorkflowsView agents={state.team.agents} brands={brands} activeBrand={activeBrand} onNavigate={handleSelectNav} />}
         {activeId === 'leads' && <LeadManagerView onNavigateToMarketing={() => handleSelectNav(MARKETING)} brandId={activeBrand} />}
         {activeId === 'tasks' && <TaskManagerView onNavigateToApprovals={() => handleSelectNav('approvals')} brandId={activeBrand} />}
         {activeId === 'memory' && <MemoryManagerView brandId={activeBrand} />}
         {activeId === 'outputs' && <OutputManagerView brandId={activeBrand} />}
-        {activeId === 'browser' && <BrowserManagerView />}
-        {activeId === 'approvals' && <ApprovalCenterView />}
+        {activeId === 'browser' && <BrowserManagerView brandId={activeBrand} />}
+        {activeId === 'tools' && <ToolsAndIntegrationsView />}
         {activeId === 'skills' && (
           <div className="management-view skills-view">
             <Skills team={state.team} />
           </div>
         )}
+        {activeId === 'approvals' && <ApprovalCenterView />}
         {activeId === 'routines' && (
           <div className="management-view routines-view">
             <Routines team={state.team} conversations={state.conversations} routines={state.routines} />
@@ -230,6 +244,8 @@ export function App() {
             onZoomOut={handleZoomOut}
             onZoomReset={handleZoomReset}
             onNavigate={handleSelectNav}
+            activeBrand={activeBrand}
+            onBrandChange={handleBrandChange}
           />
         )}
 
